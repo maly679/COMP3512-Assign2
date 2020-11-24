@@ -1,0 +1,143 @@
+body {
+  background-color: steelblue;
+  font-family: Open Sans, sans-serif;
+  font-size: 0.8rem;
+}
+
+.container {
+  display: grid;
+  padding: 40px;
+  grid-gap: 10px;
+  color: #444;
+  grid-template-areas:
+    "header header header"
+    "form info info";
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 6.5rem 30rem;
+}
+
+.a {
+  grid-area: header;
+}
+
+.b {
+  grid-area: form;
+}
+
+.c {
+  grid-area: info;
+}
+
+.box {
+  background-color: lightsteelblue;
+  color: black;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 150%;
+}
+
+/* div.a section {
+}
+
+div.b section {
+}
+
+div.c section {
+} */
+
+.ui_form {
+  display: grid;
+  /* grid-template-columns: 12rem 1fr;
+  grid-template-rows: 1em 1em 1em 1em 1em 1em 1em; */
+
+  grid-template-areas:
+    "label1 box1"
+    "label2 box2"
+    "label3 box3"
+    "label4 box4"
+    "label5 box5"
+    "label6 box6"
+    "label7 box7";
+  grid-template-columns: 12rem 1fr;
+  grid-template-rows: 30px 30px 30px 30px 30px 30px 30px;
+  /* grid-row-gap: 2em; */
+}
+
+#row1 {
+  grid-area: label1;
+}
+#row2 {
+  grid-area: label2;
+}
+#row3 {
+  grid-area: label3;
+}
+#row4 {
+  grid-area: label4;
+}
+#row5 {
+  grid-area: label5;
+}
+#row6 {
+  grid-area: label6;
+}
+/* #row7 {
+  grid-area: label7;
+} */
+
+#boxrow1 {
+  grid-area: box1;
+}
+
+#boxrow2 {
+  grid-area: box2;
+}
+#boxrow3 {
+  grid-area: box3;
+}
+#boxrow4 {
+  grid-area: box4;
+}
+#boxrow5 {
+  grid-area: box5;
+}
+#boxrow6 {
+  grid-area: box6;
+}
+#boxrow7 {
+  grid-area: box7;
+}
+
+.ui_form_row {
+}
+
+.formLabels {
+  grid-area: formLabels;
+  /* grid-column: 1/2;
+  grid-template-rows: 15px 10px 10px; */
+}
+
+.formBoxes {
+  grid-area: formBoxes;
+  /* grid-column: 2/2; */
+  /* display: grid; */
+  /* grid-template-rows: 1em 1em 1em 1em 1em 1em 1em 1em 1em; */
+}
+
+.formLabels label {
+  width: 5em;
+  padding-top: 10px;
+  margin-top: 10px;
+  padding-bottom: 3px;
+  margin-bottom: 10px;
+}
+
+select {
+  height: 2em;
+  width: 10em;
+}
+
+.inputtext {
+  height: 1.8em;
+  width: 9.4em;
+}

@@ -37,4 +37,3 @@ function isCorrectQueryStringInfo($param) {
         return false; 
     }
 }
-?>
