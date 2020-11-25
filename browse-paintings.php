@@ -1,7 +1,7 @@
 <?php
 
 require_once 'config.inc.php';
-//require_once 'lab14a-test03-helpers.inc.php';
+require_once 'helpers.inc.php';
 require_once 'db-classes.inc.php';
 
 // 1. Connect to the database.
@@ -95,27 +95,29 @@ try {
                         <input class="inputtext" type="text" placeholder="enter search string" name="search" />
                     </div> -->
 
+
+                    <!--  maintaining form stat php or cookies?, how to clear the form -->
+                    <!-- add checked to radiobutton to preselect -->
+
                     <div id="row1"><label>Title </label></div>
                     <div id="row2"><label>Artist</label></div>
-                    <div id="row3"><label> Gallery</label></div>
-                    <div id="row4"><input type="radio" id="Before" name="Year" value="Before" /><label for="Before"> Before </label></div>
-                    <div id="row5"><input type="radio" id="After" name="Year" value="After" /><label for="After"> After </label></div>
-                    <div id="row6"><input type="radio" id="Between" name="Year" value="Between" /><label for="Between"> Between </label></div>
+                    <div id="row3"><label>Gallery</label></div>
+                    <div id="row4"><label>Year</lable>
+                    </div>
+                    <div id="row5"><input type="radio" id="Before" name="Year" value="Before" /><label for="Before"> Before </label></div>
+                    <div id="row6"><input type="radio" id="After" name="Year" value="After" /><label for="After"> After </label></div>
+                    <div id="row7"><input type="radio" id="Between" name="Year" value="Between" /><label for="Between"> Between </label></div>
                     <div id="boxrow1"><input class="inputtext" type="text" placeholder="enter search string" name="search" /></div>
                     <div id="boxrow2"><select class="ui fluid dropdown" name="artist">
                             <option value='0'>Select Artist</option>
                             <?php
-
-                            // foreach ($data as $row) {
-                            //     echo '<option value=' . $row['GalleryID'] . ">" . $row['GalleryName'] . "</option>";
-                            // }
+                            outputArtists($artists);
                             ?>
                         </select></div>
                     <div id="boxrow3"><select class="ui fluid dropdown" name="gallery">
                             <option value='0'>Select Gallery</option>
                             <?php
-                            foreach ($galleries as $row) {
-                            }
+                            outputGalleries($galleries);
                             ?>
                         </select></div>
                     <div id="boxrow4"><input class="inputtext" type="text" name="Before" /></div>
@@ -137,7 +139,7 @@ try {
                     <input class="inputtext" type="text" for="Between" name="Between2" />
                     <br /> -->
 
-                    <div id="row7">
+                    <div id="row8">
                         <button class="small ui orange button" type="submit">
                             <i class="filter icon"></i> Filter
                         </button>
@@ -149,13 +151,19 @@ try {
             <section class="twelve wide column">
                 <h2> Paintings </h2>
                 <?php
+                foreach ($_GET as $key => $data) {
+                    echo $key . " " . $data . "<br />";
+                }
+
+                outputPaintings($paintings);
+
                 /* add your PHP code here */
-                if (isset($_POST['search'])) {
+                if (isset($_GET['search'])) {
                     if (count($paintings) > 0) {
                         //outputPaintings($paintings);
                     } else {
                         echo "no paintings found with search term = " .
-                            $_POST['search'];
+                            $_GET['search'];
                     }
                 } else {
                     echo "Enter a search term and press Filter";
