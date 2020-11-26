@@ -90,7 +90,7 @@ function outputArtists($results)
 
 function outputSingleArtist($row)
 {
-    echo '<option value=' . $row['PaintingID'] . '>' . $row['FirstName'] . $row['LastName'] . '</option>';
+    echo '<option value=' . $row['ArtistID'] . '>' . $row['FirstName'] . $row['LastName'] . '</option>';
 }
 
 function outputGalleries($results)

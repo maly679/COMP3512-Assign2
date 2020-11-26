@@ -12,7 +12,7 @@ require_once 'db-classes.inc.php';
 
 // now retrieve galleries 
 
-// SHOULD USE ONE CONNECTION TO GET ALL DATA ONCE THEN CLOSE???
+// SHOULD USE ONE CONNECTION TO GET ALL DATA ONCE THEN CLOSE??? When should i close connection?
 
 try {
     $conn = DatabaseHelper::createConnection(array(
@@ -39,9 +39,13 @@ try {
     //   } else {
     //     $paintings = null;
     //   }
+
+    //$conn = null;
 } catch (Exception $e) {
     die($e->getMessage());
 }
+
+
 
 ?>
 
@@ -96,8 +100,9 @@ try {
                     </div> -->
 
 
-                    <!--  maintaining form stat php or cookies?, how to clear the form -->
+                    <!--  maintaining form state php or cookies?, how to clear the form -->
                     <!-- add checked to radiobutton to preselect -->
+                    <!-- input type = reset ... check out reset buttons for HTML -->
 
                     <div id="row1"><label>Title </label></div>
                     <div id="row2"><label>Artist</label></div>
@@ -142,6 +147,9 @@ try {
                     <div id="row8">
                         <button class="small ui orange button" type="submit">
                             <i class="filter icon"></i> Filter
+                        </button> <br />
+                        <button class="resetbutton" type="reset">
+                            <i class="filter icon"></i> Reset
                         </button>
                     </div>
                 </form>
@@ -155,7 +163,7 @@ try {
                     echo $key . " " . $data . "<br />";
                 }
 
-                outputPaintings($paintings);
+                //outputPaintings($paintings);
 
                 /* add your PHP code here */
                 if (isset($_GET['search'])) {
