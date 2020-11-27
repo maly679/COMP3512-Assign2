@@ -57,9 +57,9 @@ document.addEventListener("DOMContentLoaded", function() {
         let fileName = getFileName(painting.ImageFileName);
         document.getElementById("image").src = paintingsPath + fileName + imageExtension;
         document.getElementById("title").innerHTML = painting.Title;
-        document.getElementById("artist").innerHTML = painting.FirstName + " " + painting.LastName;
+        document.getElementById("artist").innerHTML = getArtistName(painting);
         document.getElementById("gallery-year").innerHTML = painting.GalleryName + ", " + painting.YearOfWork;
-        document.getElementById("description").innerHTML = painting.Description;
+        document.getElementById("description").innerHTML = painting.Description != null ? painting.Description : "No Description";
         document.getElementById("medium").innerHTML = painting.Medium;
         document.getElementById("height").innerHTML = painting.Height + '"';
         document.getElementById("width").innerHTML = painting.Width + '"';
@@ -70,12 +70,26 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("museum-link").innerHTML = painting.MuseumLink;
         setPaintingColors(painting);
     }
+    
+    function getArtistName(painting) {
+        var artistName = "";
+        
+        if (painting.FirstName != null) {
+            artistName += painting.FirstName + " ";
+        }
+        
+        if (painting.LastName != null) {
+            artistName += painting.LastName;
+        }
+        
+        return artistName;
+    }
 
     function setPaintingColors(selectedPainting) {
         let paintingData = JSON.parse(selectedPainting.JsonAnnotations);
         let paintingColors = paintingData.dominantColors;
         document.getElementById("colors-tab").innerHTML = "";
-
+        
         for (let color of paintingColors) {
             var span = document.createElement("span");
             span.classList.add("painting-color");

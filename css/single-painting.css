@@ -5,6 +5,7 @@ body, div, span, h1, h2, h3, h4, aside, p, main, nav, ul, li {
 }
 
 body {
+    font-family: 'Helvetica', 'Arial', sans-serif;
     padding: 15px;
 }
 
@@ -17,22 +18,25 @@ img {
     box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.3);
 }
 
-.heading {
-    font-size: 24px;
-    font-weight: bolder;
-}
-
-.sub-heading {
-    font-size: 16px;
-    font-weight: bold;
-}
-
 .container {
+    border-radius: 5px;
     background-color: lightgray;
     height: 100vh;
     display: grid;
     grid-row-gap: 1px;
     grid-template-columns: 1fr 1fr;
+}
+
+.heading {
+    margin-bottom: 7.5px;
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+.sub-heading {
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .data-container {
@@ -42,20 +46,24 @@ img {
 
 .section {
     height: inherit;
-    padding: 15px;
+    padding: 25px;
 }
 
 .tab-button {
     background-color: white;
+    color: black;
     margin: 0px;
     border-bottom: 0px;
+    border-radius: 5px 5px 0px 0px;
 }
 
 .tab-button.open {
-    background-color: blueviolet;
+    background-color: black;
+    color: white;
 }
 
 .tab {
+    border-radius: 0px 5px 5px 5px;
     height: 0px;
     visibility: hidden;
 }
