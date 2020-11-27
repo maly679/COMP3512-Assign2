@@ -15,8 +15,6 @@ try {
 
     if (isCorrectQueryStringInfo("id")) {
         $json = $paintingGateway->getForID($_GET["id"]);
-    } else if (isCorrectQueryStringInfo("gallery")) {
-        $json = $paintingGateway->getAllForGallery($_GET["gallery"]);
     } else {
         $json = $galleryGateway->getAll();
     }
