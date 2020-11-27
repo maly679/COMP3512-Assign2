@@ -90,7 +90,7 @@ function outputArtists($results)
 
 function outputSingleArtist($row)
 {
-    echo '<option value=' . $row['ArtistID'] . '>' . $row['FirstName'] . $row['LastName'] . '</option>';
+    echo '<option value=' . $row['ArtistID'] . '>' . $row['LastName'] . '</option>'; //. $row['FirstName'] . " "
 }
 
 function outputGalleries($results)
@@ -119,7 +119,7 @@ function outputSinglePainting($row)
     echo  '<a class="ui small image" href="single-painting.php?id=' . $row['PaintingID'] . '"><img src="images/paintings/square-medium/' . $row['ImageFileName'] . '.jpg"></a>';
     echo  '<div class="content">';
     echo  '<a class="header" href="single-painting.php?id=' . $row['PaintingID'] . ' ">' . $row['Title'] . '</a>';
-    echo  '<div class="meta"><span class="cinema">' . $row['FirstName'] . " " . $row['LastName'] . '</span></div>';
+    echo  '<div class="meta"><span class="cinema">' . $row['LastName'] . '</span></div>';
     echo  '<div class="description">';
     echo  '<p>' . $row['Excerpt'] . '</p>';
     echo  '</div>';

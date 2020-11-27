@@ -113,7 +113,7 @@ class GalleryDB
 
     public function getAll()
     {
-        $sql = self::$baseSQL;
+        $sql = self::$baseSQL . " ORDER BY GalleryName";
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
         return $statement->fetchAll();
     }
