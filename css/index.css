@@ -1,0 +1,27 @@
+/* 
+Full page image
+https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_full_page
+ */
+
+ body {
+   background-image: url("../images/login-page/galleryHall.jpg");
+   height: 100vh;
+   background-size: 100%;
+   background-position: center;
+   background-repeat: no-repeat;
+   margin: 0;
+   padding: 0;
+ }
+
+ html, body {
+    margin: 0;
+    height: 100%;
+   overflow: hidden;
+ }
+
+ .item input[type=text] {
+    width: 300px;
+ }
+ /* @media screen and (max-width: 600px) {
+
+ } */
