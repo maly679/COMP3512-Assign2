@@ -117,4 +117,11 @@ class GalleryDB
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
         return $statement->fetchAll();
     }
+
+    public function getForID($galleryID)
+    {
+        $sql = self::$baseSQL . " WHERE GalleryID=?"; // change this
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($galleryID));
+        return $statement->fetchAll();
+    }
 }
