@@ -15,16 +15,19 @@
 <body class="container">
    <div class="main">
       <div class="loginBtn">
-         <input type="button" value="LOGIN">
+         <input type="button" value="LOGIN"> 
+         <!-- Redirect to logged in page -->
       </div>
       <div class="joinBtn">
          <input type="button" value="JOIN">
+         <!-- Ask Randy what the join button does. Create new user page ??? -->
       </div>
 
    </div>
    <div class="searchBar">
       <input type="text" placeholder="Search painting or gallery..">
       <button><i class="fa fa-search"></i></button>
+      <!-- Result of this should filter -->
    </div>
 </body>
 
