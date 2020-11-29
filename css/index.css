@@ -1,27 +1,103 @@
 /* 
-Full page image
+For reference: full page image
 https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_full_page
+
+Image retrieved from 
+https://unsplash.com/photos/UCNaGWn4EfU
+By Darya Tryfanava
  */
 
- body {
-   background-image: url("../images/login-page/galleryHall.jpg");
-   height: 100vh;
-   background-size: 100%;
-   background-position: center;
-   background-repeat: no-repeat;
-   margin: 0;
-   padding: 0;
- }
+.container {
+    background-image: url("../images/login-page/unsplash.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+}
 
- html, body {
+
+/* 
+If feeling extra, implement this to change the background images on every page reload
+http://thecodepress.blogspot.com/2013/04/change-background-on-every-refresh.html
+*/
+
+html,
+body {
     margin: 0;
     height: 100%;
-   overflow: hidden;
- }
+    overflow: hidden;
+}
 
- .item input[type=text] {
-    width: 300px;
- }
- /* @media screen and (max-width: 600px) {
+.loginBtn,
+.joinBtn {
+    display: inline-block;
+    padding: 20px;
+}
 
- } */
+.joinBtn input[type=button],
+.loginBtn input[type=button] {
+    cursor: pointer;
+    padding: 10px;
+    width: 150px;
+    font-size: 16px;
+    background-color: white;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 1px 1px 20px black;
+}
+
+.loginBtn input[type=button]:hover,
+.joinBtn input[type=button]:hover,
+.searchBar input[type=text]:hover {
+    box-shadow: 1px 1px 20px #4E4A47;
+}
+
+.searchBar {
+    display: flex;
+    justify-self: center;
+    align-items: flex-start;
+}
+
+.searchBar input[type=text] {
+    width: 400px;
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: white;
+    border: none;
+    box-shadow: 1px 1px 20px black;
+}
+
+.searchBar button {
+    border: none;
+    background-color: #AEADAB;
+    height: 38px;
+}
+
+.main {
+    display: flex;
+    justify-self: center;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+
+/*
+For reference: fixed footer
+https://www.w3schools.com/howto/howto_css_fixed_footer.asp
+*/
+
+footer {
+    font-family: Arial, Helvetica, sans-serif;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+}
+
+@media screen and (max-width: 1000px) {}
