@@ -56,6 +56,12 @@ body {
     box-shadow: 1px 1px 20px #4E4A47;
 }
 
+
+/* 
+For reference: nav searcb bar
+https://www.w3schools.com/howto/howto_css_searchbar.asp
+ */
+
 .searchBar {
     display: flex;
     justify-self: center;
