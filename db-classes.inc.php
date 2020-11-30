@@ -104,7 +104,7 @@ class PaintingDB
 
 class GalleryDB
 {
-    private static $baseSQL = "SELECT GalleryID, GalleryName FROM Galleries ";
+    private static $baseSQL = "SELECT GalleryID, GalleryName, GalleryNativeName, GalleryCity, GalleryAddress, GalleryCountry, Latitude, Longitude, GalleryWebSite FROM Galleries ";
 
     public function __construct($connection)
     {
@@ -120,7 +120,7 @@ class GalleryDB
 
     public function getForID($galleryID)
     {
-        $sql = self::$baseSQL . " WHERE GalleryID=?"; // change this
+        $sql = self::$baseSQL . " WHERE GalleryID=?"; 
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($galleryID));
         return $statement->fetchAll();
     }

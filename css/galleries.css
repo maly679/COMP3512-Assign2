@@ -4,10 +4,14 @@ body {
   font-size: 0.8rem;
 }
 
-#paintingDescription,
-#paintingMedium {
+#paintingDescription, #paintingMedium {
   font-style: italic;
   margin: 0;
+}
+
+#listPainting {
+    width: 100px;
+    height: 100px;
 }
 
 #paintingTitle {
