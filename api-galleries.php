@@ -18,6 +18,7 @@ try {
         $json = $galleryGateway->getAll();
     }
 
+    console_log($json);
     echo json_encode($json, JSON_NUMERIC_CHECK);
 } catch (Exception $e) {
     die($e->getMessage());
