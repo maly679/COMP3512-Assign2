@@ -19,7 +19,8 @@ try {
     die($e->getMessage());
 }
 
-if ($digest == $password_field_from_database_table && emails also match) {
+if ($digest == $password_field_from_database_table //&& emails also match
+) {
  // we have a match, log the user in
  session_start(); // starts the session
  // check for favorites
