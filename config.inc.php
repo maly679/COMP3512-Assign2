@@ -2,13 +2,22 @@
 
 $url = 'mysql://p6d3fldzumd697t8:un11bavbn0ccbnev@kavfu5f7pido12mr.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/tl1lklkcndfcb8di';
 $dbparts = parse_url($url);
+console_log($dbparts);
+
 $hostname = $dbparts['host'];
 $username = $dbparts['user'];
 $password = $dbparts['pass'];
 $database = ltrim($dbparts['path'],'/');
+
 define('DBCONNSTRING', "mysql:host=" . $hostname . ";dbname=" . $database);
 define('DBUSER', $username);
 define('DBPASS', $password);
+
+function console_log( $data ){
+  echo '<script>';
+  echo 'console.log('. json_encode( $data ) .')';
+  echo '</script>';
+}
 
 // //define('DBHOST', 'localhost');
 // //define('DBNAME', 'art');
