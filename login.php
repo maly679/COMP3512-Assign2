@@ -1,5 +1,11 @@
 <?php
+/*
+$digest = password_hash( $_POST['pass'], PASSWORD_BCRYPT, ['cost' => 12] );
+if ($digest == $password_field_from_database_table && emails also match) {
+ // we have a match, log the user in
+ session_start();
 
+}*/
 ?>
 <!DOCTYPE html>
 <html lang=en>
