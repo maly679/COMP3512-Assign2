@@ -42,7 +42,7 @@ body {
 }
 
 .joinBtn input[type=button],
-.loginBtn input[type=button] {
+.loginBtn input[type=submit] {
     cursor: pointer;
     padding: 10px;
     width: 150px;
@@ -53,7 +53,7 @@ body {
     box-shadow: 1px 1px 20px black;
 }
 
-.loginBtn input[type=button]:hover,
+.loginBtn input[type=submit]:hover,
 .joinBtn input[type=button]:hover,
 .searchBar input[type=text]:hover {
     box-shadow: 1px 1px 20px #4E4A47;

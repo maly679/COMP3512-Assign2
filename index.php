@@ -1,5 +1,7 @@
 <?php
-
+// if (isset($_POST['submit'])) {
+//    header("Location: single-painting.php");
+// }
 ?>
 <!DOCTYPE html>
 <html lang=en>
@@ -14,15 +16,16 @@
 
 <body class="container">
    <div class="main">
-      <div class="loginBtn">
-         <input type="button" value="LOGIN"> 
-         <!-- Redirect to logged in page -->
-      </div>
-      <div class="joinBtn">
-         <input type="button" value="JOIN">
-         <!-- Ask Randy what the join button does. Create new user page ??? -->
-      </div>
-
+      <form method='POST' action="single-painting.php">
+         <div class="loginBtn">
+            <input type="submit" value="LOGIN">
+            <!-- Redirect to logged in page -->
+         </div>
+         <div class="joinBtn">
+            <input type="button" value="JOIN">
+            <!-- Ask Randy what the join button does. Create new user page ??? -->
+         </div>
+      </form>
    </div>
    <div class="searchBar">
       <input type="text" placeholder="Search painting or gallery..">
