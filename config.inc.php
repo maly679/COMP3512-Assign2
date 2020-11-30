@@ -11,7 +11,7 @@ $dpparts = parse_url($url);
 $hostname = $dbparts['host'];
 $username = $dbparts['user'];
 $password = $dbparts['pass'];
-$database = ltrim($dbparts['host'], '/');
+$database = ltrim($dbparts['path'], '/');
 
 define('DBUSER', $username);
 define('DBPASS', $password);
