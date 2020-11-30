@@ -44,7 +44,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 //https://davidwalsh.name/event-delegate
                 });
             })
-        .catch((error) => console.error(error));
+        .catch((error) => console.error(error)
+               console.log(data);
+          );
 
     toggleGalleryList();
 
