@@ -16,7 +16,7 @@
 
 <body class="container">
    <div class="main">
-      <form method='POST' action="single-painting.php">
+      <form method='POST' action="login.php">
          <div class="loginBtn">
             <input type="submit" value="LOGIN">
             <!-- Redirect to logged in page -->
