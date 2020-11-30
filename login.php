@@ -1,20 +1,34 @@
 <?php
 require_once 'config.inc.php';
 require_once 'db-classes.inc.php';
-/*
+
 $digest = password_hash( $_POST['pass'], PASSWORD_BCRYPT, ['cost' => 12] );
-$userName = 
-$pass = 
+$userName = $_SESSION[""];
+$pass = "SELECT Password_sha256 from customerlogon";
+
+try {
+    $conn = DatabaseHelper::createConnection(array(
+        DBCONNSTRING,
+        DBUSER, DBPASS
+    ));
+
+    $result = DatabaseHelper::runQuery($conn, $pass, null);
+    $data = $result->fetchAll(PDO::FETCH_ASSOC);
+    echo "hello";
+} catch (Exception $e) {
+    die($e->getMessage());
+}
+
 if ($digest == $password_field_from_database_table && emails also match) {
  // we have a match, log the user in
  session_start(); // starts the session
  // check for favorites
- if (isset("favorites")) {
+ if (isset($_SESSION["favorites"])) {
      $_SESSION["favorites"];
  }
  header(location: index.php); // redirect the logged in user to the homepage 
-}*/
-// 
+}
+
 ?>
 <!DOCTYPE html>
 <html lang=en>
