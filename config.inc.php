@@ -2,7 +2,6 @@
 
 $url = getenv('JAWSDB_URL');
 $dpparts = parse_url($url);
-console_log($dpparts);
 
 $hostname = $dbparts['host'];
 $username = $dbparts['user'];
@@ -11,13 +10,7 @@ $database = ltrim($dbparts['path'], '/');
 
 define('DBUSER', $username);
 define('DBPASS', $password);
-define('DBCONNSTRING',"mysql:host=" . $hostname . ";dbname=" . $database);
-
-function console_log( $data ){
-    echo '<script>';
-    echo 'console.log('. json_encode( $data ) .')';
-    echo '</script>';
-}
+define('DBCONNSTRING', "mysql:host=" . $hostname . ";dbname=" . $database);
 
 // //define('DBHOST', 'localhost');
 // //define('DBNAME', 'art');
