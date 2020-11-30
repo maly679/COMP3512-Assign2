@@ -1,25 +1,24 @@
 <?php
 
-$url = getenv('JAWSDB_URL');
-//$url = 'mysql://p6d3fldzumd697t8:un11bavbn0ccbnev@kavfu5f7pido12mr.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/tl1lklkcndfcb8di';
+// $url = getenv('JAWSDB_URL');
+// //$url = 'mysql://p6d3fldzumd697t8:un11bavbn0ccbnev@kavfu5f7pido12mr.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/tl1lklkcndfcb8di';
+// mysql://username:password@hostname:port/dbname
+// $dbparts = parse_url($url);
+// console_log($dbparts);
 
-$dbparts = parse_url($url);
-console_log($dbparts);
+$hostname = "kavfu5f7pido12mr.cbetxkdyhwsb.us-east-1.rds.amazonaws.com";
+$username = "p6d3fldzumd697t8";
+$password = "un11bavbn0ccbnev";
 
-$hostname = $dbparts['host'];
-$username = $dbparts['user'];
-$password = $dbparts['pass'];
-$database = ltrim($dbparts['path'],'/');
-
-define('DBCONNSTRING', "mysql:host=" . $hostname . ";dbname=" . $database . ";charset=utf8mb4;");
+define('DBCONNSTRING', "mysql:host=" . $hostname . ";dbname=" . "tl1lklkcndfcb8di" . ";charset=utf8mb4;");
 define('DBUSER', $username);
 define('DBPASS', $password);
 
-function console_log( $data ){
-  echo '<script>';
-  echo 'console.log('. json_encode( $data ) .')';
-  echo '</script>';
-}
+// function console_log( $data ){
+//   echo '<script>';
+//   echo 'console.log('. json_encode( $data ) .')';
+//   echo '</script>';
+// }
 
 // //define('DBHOST', 'localhost');
 // //define('DBNAME', 'art');
