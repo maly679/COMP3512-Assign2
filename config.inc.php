@@ -6,7 +6,7 @@ $hostname = $dbparts['host'];
 $username = $dbparts['user'];
 $password = $dbparts['pass'];
 $database = ltrim($dbparts['path'],'/');
-define('DBCONNECTION', "mysql:host=$hostname;dbname=$database");
+define('DBCONNSTRING', "mysql:host=$hostname;dbname=$database");
 define('DBUSER', $username);
 define('DBPASS', $password);
 
