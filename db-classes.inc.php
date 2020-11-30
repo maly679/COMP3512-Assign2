@@ -42,7 +42,7 @@ class DatabaseHelper
 
 class ArtistDB
 {
-    private static $baseSQL = "SELECT * FROM Artists ORDER BY LastName";
+    private static $baseSQL = "SELECT * FROM artists ORDER BY LastName";
 
     public function __construct($connection)
     {
@@ -59,7 +59,7 @@ class ArtistDB
 
 class PaintingDB
 {
-    private static $baseSQL = "SELECT PaintingID, Paintings.ArtistID, FirstName, LastName, Paintings.GalleryID, GalleryName, ImageFileName, Title, Excerpt, YearOfWork, ImageFileName, Description, Width, Height, Medium, CopyrightText, WikiLink, MuseumLink, JsonAnnotations FROM Galleries INNER JOIN (Artists INNER JOIN Paintings ON Artists.ArtistID = Paintings.ArtistID) ON Galleries.GalleryID = Paintings.GalleryID ";
+    private static $baseSQL = "SELECT PaintingID, paintings.ArtistID, FirstName, LastName, paintings.GalleryID, GalleryName, ImageFileName, Title, Excerpt, YearOfWork, ImageFileName, Description, Width, Height, Medium, CopyrightText, WikiLink, MuseumLink, JsonAnnotations FROM galleries INNER JOIN (artists INNER JOIN paintings ON artists.ArtistID = paintings.ArtistID) ON galleries.GalleryID = paintings.GalleryID ";
 
     public function __construct($connection)
     {
@@ -75,21 +75,21 @@ class PaintingDB
 
     public function getForID($paintingID)
     {
-        $sql = self::$baseSQL . " WHERE Paintings.PaintingID=?";
+        $sql = self::$baseSQL . " WHERE paintings.PaintingID=?";
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($paintingID));
         return $statement->fetchAll();
     }
 
     public function getAllForArtist($artistID)
     {
-        $sql = self::$baseSQL . " WHERE Paintings.ArtistID=?";
+        $sql = self::$baseSQL . " WHERE paintings.ArtistID=?";
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($artistID));
         return $statement->fetchAll();
     }
 
     public function getAllForGallery($galleryID)
     {
-        $sql = self::$baseSQL . " WHERE Paintings.GalleryID=?";
+        $sql = self::$baseSQL . " WHERE paintings.GalleryID=?";
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($galleryID));
         return $statement->fetchAll();
     }
@@ -104,7 +104,7 @@ class PaintingDB
 
 class GalleryDB
 {
-    private static $baseSQL = "SELECT GalleryID, GalleryName, GalleryNativeName, GalleryCity, GalleryAddress, GalleryCountry, Latitude, Longitude, GalleryWebSite FROM Galleries ";
+    private static $baseSQL = "SELECT GalleryID, GalleryName, GalleryNativeName, GalleryCity, GalleryAddress, GalleryCountry, Latitude, Longitude, GalleryWebSite FROM galleries ";
 
     public function __construct($connection)
     {
