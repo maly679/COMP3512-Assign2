@@ -42,14 +42,16 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function getPainting(id) {
-        let url = 'api-galleries.php?id=' + id;
+        let url = 'api-paintings.php?id=' + id;
         fetch(url)
             .then( response => {
                 if (response.ok) {
                     return response.json();
                 }
             }) 
-            .then( data => { outputPainting(data[0]); });
+            .then( data => { 
+                outputPainting(data[0]); 
+            });
     }
 
     function outputPainting(painting) {

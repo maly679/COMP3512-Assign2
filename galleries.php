@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang=en>
   <head>
     <meta charset="UTF-8">
     <title>COMP 3512 Assign1</title>
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/galleries.css" />
   </head>
   <div id="modalContainer">
-    <img id="popupModal"></img>
+    <img id="popupModal"/>
   </div>
   <body>   
     <main class="container">
@@ -59,8 +59,8 @@
 
       <div id="header" class="box e">
           <section>
-            <input type="button" value="Hide Galleries" id="toggleButton"></input>
-            <label id=>COMP 3512 Assignment 1</label>
+            <input type="button" value="Hide Galleries" id="toggleButton" />
+            <label id="">COMP 3512 Assignment 1</label>
             <span>Jordan Walker & Mariangel Ramirez & loading.io </span> 
           </section>
       </div>
@@ -72,7 +72,7 @@
             <span>Jordan Walker & Mariangel Ramirez & loading.io </span> 
         </div>
         <div id=largePaintingsImage class="box h">
-            <img id="largeImage"></img>
+            <img id="largeImage" />
         </div>
             <div id="largePaintingDetails" class="box i">
               <section>
@@ -82,18 +82,18 @@
                 <span id="paintingYearOfWork"></span>
                 <p id="paintingMedium"></p>
                 <label>Size: </label><span id="paintingWidth"></span> x <span id="paintingHeight"></span>
-              </br> </br>
+              <br/> <br/>
               <span id="paintingDescription"></span>
-              </br></br>
+              <br/><br/>
                 <label>Gallery: </label>
                 <span id="paintingGalleryName"></span>
-            </br>
-                <spam>City: </span><span id="paintingGalleryCity"></span>
-              </br>
+            <br/>
+                <span>City: </span><span id="paintingGalleryCity"></span>
+              <br/>
                 <span>Museum Link: </span><a href="" id="museumLink"></a>
-              </br>
+              <br/>
                 <span>Copyright: </span><span id="copyright"></span>
-            </br></br>
+            <br/><br/>
                 <figcaption id="colors"></figcaption>
                 <button id="closeLargeImage">Close</button>
               </section>  
