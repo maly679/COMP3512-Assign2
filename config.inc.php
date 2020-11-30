@@ -1,6 +1,6 @@
 <?php
 
-$url = mysql://p6d3fldzumd697t8:un11bavbn0ccbnev@kavfu5f7pido12mr.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/tl1lklkcndfcb8di;
+$url = 'mysql://p6d3fldzumd697t8:un11bavbn0ccbnev@kavfu5f7pido12mr.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/tl1lklkcndfcb8di';
 $dbparts = parse_url($url);
 $hostname = $dbparts['host'];
 $username = $dbparts['user'];
@@ -9,6 +9,7 @@ $database = ltrim($dbparts['path'],'/');
 define('DBCONNECTION', "mysql:host=$hostname;dbname=$database");
 define('DBUSER', $username);
 define('DBPASS', $password);
+
 // //define('DBHOST', 'localhost');
 // //define('DBNAME', 'art');
 // //define('DBUSER', 'root');
