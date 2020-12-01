@@ -18,8 +18,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (savedData != null) {
         console.log("retrieved saved data");
+        let galleryData = JSON.parse(savedData);
         console.log(savedData);
-        loadGalleryData(savedData);
+        console.log(galleryData);
+        loadGalleryData(galleryData);
     }
     else {
         console.log("no saved data");
@@ -29,14 +31,13 @@ document.addEventListener("DOMContentLoaded", function () {
             return response.json();
         })
         .then((data) => {
-            window.localStorage.setItem(galleryDataKey, data);
+            window.localStorage.setItem(galleryDataKey, JSON.stringify(data));
             console.log("saved to local storage");
             loadGalleryData(data);
         })
         .catch((error) => console.error(error));
     }
     
-
     toggleGalleryList();
 
     document.querySelector("#galleryList").addEventListener("click", (e) => {
