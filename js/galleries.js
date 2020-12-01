@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
             window.localStorage.setItem(galleryDataKey, data);
             console.log("saved to local storage");
             loadGalleryData(data);
+        }
         .catch((error) => console.error(error));
     }
     
