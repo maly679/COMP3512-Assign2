@@ -18,9 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (savedData != null) {
         console.log("retrieved saved data");
-        let galleryData = JSON.parse(savedData);
         console.log(savedData);
-        console.log(galleryData);
         loadGalleryData(galleryData);
     }
     else {
@@ -31,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return response.json();
         })
         .then((data) => {
-            window.localStorage.setItem(galleryDataKey, JSON.stringify(data));
+            window.localStorage.setItem(galleryDataKey, data);
             console.log("saved to local storage");
             loadGalleryData(data);
         })
