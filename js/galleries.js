@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (savedData != null) {
         console.log("retrieved saved data");
+        console.log(savedData);
         loadGalleryData(savedData);
     }
     else {
