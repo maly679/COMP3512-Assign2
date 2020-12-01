@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
             window.localStorage.setItem(galleryDataKey, data);
             console.log("saved to local storage");
             loadGalleryData(data);
-        }
+        })
         .catch((error) => console.error(error));
     }
     
@@ -102,29 +102,29 @@ document.addEventListener("DOMContentLoaded", function () {
         
     function loadGalleryData(galleryData) {
         document.querySelector("#loader3").style.display = "none";
-            document.querySelector("div.b section").style.display = "block";
-            document.querySelector("#galleryList").style.display = "block";
+        document.querySelector("div.b section").style.display = "block";
+        document.querySelector("#galleryList").style.display = "block";
 
-            galleries.push(...galleryData); //fill galleries array with data
+        galleries.push(...galleryData); //fill galleries array with data
 
-            // galleries were already sorted by gallery name but we sorted anyways per asg specs
-            galleries = galleries.sort(function (a, b) {
-                if (a.GalleryName < b.GalleryName) return -1;
-                else if (a.GalleryName > b.GalleryName) return 1;
-                else return 0;
-            });
+        // galleries were already sorted by gallery name but we sorted anyways per asg specs
+        galleries = galleries.sort(function (a, b) {
+            if (a.GalleryName < b.GalleryName) return -1;
+            else if (a.GalleryName > b.GalleryName) return 1;
+            else return 0;
+        });
 
-            galleries.forEach((gallery) => {
-                let galleryListItem = document.createElement("li");
-                galleryListItem.textContent = gallery.GalleryName;
-                galleryListItem.setAttribute("data-key", gallery.GalleryID);
-                galleryListItem.setAttribute("data-longitude", gallery.Longitude);
-                galleryListItem.setAttribute("data-latitude", gallery.Latitude);
-                document.querySelector("#galleryList").appendChild(galleryListItem);
+        galleries.forEach((gallery) => {
+            let galleryListItem = document.createElement("li");
+            galleryListItem.textContent = gallery.GalleryName;
+            galleryListItem.setAttribute("data-key", gallery.GalleryID);
+            galleryListItem.setAttribute("data-longitude", gallery.Longitude);
+            galleryListItem.setAttribute("data-latitude", gallery.Latitude);
+            document.querySelector("#galleryList").appendChild(galleryListItem);
 
-                //https://davidwalsh.name/event-delegate
-                });
-            })
+            //https://davidwalsh.name/event-delegate
+        });
+        
     }
     
     function getFileName(fileName) {
