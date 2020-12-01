@@ -8,43 +8,32 @@ function initMap() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+    const galleryDataKey = "galleryData";
     const galleryEndpoint = 'api-galleries.php';
     const paintingsEndpoint = "api-paintings.php?gallery=";
     const paintingImagesEndpoint = "images/paintings/square/";
     let galleries = [];
     let paintings = [];
+    let savedData = window.localStorage.getItem(galleryDataKey);
 
-    fetch(galleryEndpoint)
+    if (savedData != null) {
+        console.log("retrieved saved data");
+        loadGalleryData(savedData);
+    }
+    else {
+        console.log("no saved data");
+        fetch(galleryEndpoint)
         .then((response) => {
             document.querySelector("#loader1").style.display = "inline-block";
             return response.json();
         })
         .then((data) => {
-            document.querySelector("#loader3").style.display = "none";
-            document.querySelector("div.b section").style.display = "block";
-            document.querySelector("#galleryList").style.display = "block";
-
-            galleries.push(...data); //fill galleries array with data
-
-            // galleries were already sorted by gallery name but we sorted anyways per asg specs
-            galleries = galleries.sort(function (a, b) {
-                if (a.GalleryName < b.GalleryName) return -1;
-                else if (a.GalleryName > b.GalleryName) return 1;
-                else return 0;
-            });
-
-            galleries.forEach((gallery) => {
-                let galleryListItem = document.createElement("li");
-                galleryListItem.textContent = gallery.GalleryName;
-                galleryListItem.setAttribute("data-key", gallery.GalleryID);
-                galleryListItem.setAttribute("data-longitude", gallery.Longitude);
-                galleryListItem.setAttribute("data-latitude", gallery.Latitude);
-                document.querySelector("#galleryList").appendChild(galleryListItem);
-
-                //https://davidwalsh.name/event-delegate
-                });
-            })
+            window.localStorage.setItem(galleryDataKey, data);
+            console.log("saved to local storage");
+            loadGalleryData(data);
         .catch((error) => console.error(error));
+    }
+    
 
     toggleGalleryList();
 
@@ -103,9 +92,40 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             })
             .catch((error) => console.error(error));
-            }
-        });
+        }
+    });
 
+    function getSavedData(key) {
+        return window.localStorage.getItem(key);
+    }
+        
+    function loadGalleryData(galleryData) {
+        document.querySelector("#loader3").style.display = "none";
+            document.querySelector("div.b section").style.display = "block";
+            document.querySelector("#galleryList").style.display = "block";
+
+            galleries.push(...galleryData); //fill galleries array with data
+
+            // galleries were already sorted by gallery name but we sorted anyways per asg specs
+            galleries = galleries.sort(function (a, b) {
+                if (a.GalleryName < b.GalleryName) return -1;
+                else if (a.GalleryName > b.GalleryName) return 1;
+                else return 0;
+            });
+
+            galleries.forEach((gallery) => {
+                let galleryListItem = document.createElement("li");
+                galleryListItem.textContent = gallery.GalleryName;
+                galleryListItem.setAttribute("data-key", gallery.GalleryID);
+                galleryListItem.setAttribute("data-longitude", gallery.Longitude);
+                galleryListItem.setAttribute("data-latitude", gallery.Latitude);
+                document.querySelector("#galleryList").appendChild(galleryListItem);
+
+                //https://davidwalsh.name/event-delegate
+                });
+            })
+    }
+    
     function getFileName(fileName) {
         let length = fileName.toString().length;
         let diff = 6 - length;
