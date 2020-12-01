@@ -22,27 +22,18 @@ By Darya Tryfanava
     grid-template-rows: repeat(2, 1fr);
 }
 
-
-/* 
-If feeling extra, implement this to change the background images on every page reload
-http://thecodepress.blogspot.com/2013/04/change-background-on-every-refresh.html
-*/
-
-html,
-body {
+html, body {
     margin: 0;
     height: 100%;
     overflow: hidden;
 }
 
-.loginBtn,
-.joinBtn {
+.btnContainer {
     display: inline-block;
     padding: 20px;
 }
 
-.joinBtn input[type=button],
-.loginBtn input[type=submit] {
+.button {
     cursor: pointer;
     padding: 10px;
     width: 150px;
@@ -53,12 +44,9 @@ body {
     box-shadow: 1px 1px 20px black;
 }
 
-.loginBtn input[type=submit]:hover,
-.joinBtn input[type=button]:hover,
-.searchBar input[type=text]:hover {
+.button:hover, .searchBar input[type=text]:hover {
     box-shadow: 1px 1px 20px #4E4A47;
 }
-
 
 /* 
 For reference: nav searcb bar
@@ -80,7 +68,7 @@ https://www.w3schools.com/howto/howto_css_searchbar.asp
     box-shadow: 1px 1px 20px black;
 }
 
-.searchBar button {
+.searchBar #buttonIcon {
     border: none;
     background-color: #AEADAB;
     height: 38px;
@@ -92,7 +80,6 @@ https://www.w3schools.com/howto/howto_css_searchbar.asp
     flex-direction: row;
     align-items: flex-end;
 }
-
 
 /*
 For reference: fixed footer

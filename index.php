@@ -1,7 +1,10 @@
 <?php
-// if (isset($_POST['submit'])) {
-//    header("Location: single-painting.php");
-// }
+// $redirect = $_POST['name'];
+if (isset($_POST['name'])) {
+   header("Location: login.php");
+} else if (isset($_POST['search'])) {
+   header("Location: browse-painting.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang=en>
@@ -16,22 +19,25 @@
 
 <body class="container">
    <div class="main">
-      <form method='POST' action="login.php">
-         <div class="loginBtn">
-            <input type="submit" value="LOGIN">
-            <!-- Redirect to logged in page -->
-         </div>
-         <div class="joinBtn">
-            <input type="button" value="JOIN">
-            <!-- Ask Randy what the join button does. Create new user page ??? -->
-         </div>
-      </form>
+      <!-- <form name="login" method="GET" action="login.php"> -->
+      <div class="btnContainer">
+         <!-- <button class="button" type="submit" name="login">LOGIN</button> -->
+         <button class="button" type="button" name="login" onClick="location.href='login.php'">LOGIN</button>
+         <!-- Redirect to logged in page -->
+      </div>
+      <div class="btnContainer">
+         <input class="button" type="button" value="JOIN">
+         <!-- Does nothing, as instructed by Randy -->
+      </div>
+      <!-- </form> -->
    </div>
-   <div class="searchBar">
-      <input type="text" placeholder="Search painting or gallery..">
-      <button><i class="fa fa-search"></i></button>
-      <!-- Result of this should filter -->
-   </div>
+   <form name="search" method="GET" action="browse-paintings.php?">
+      <div class="searchBar">
+         <input class="searchBar" type="text" placeholder="Search painting or gallery.." name="search">
+         <button id="buttonIcon"><i class="fa fa-search"></i></button>
+         <!-- Result of this should filter -->
+      </div>
+   </form>
 </body>
 
 <footer>
