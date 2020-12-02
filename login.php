@@ -9,7 +9,7 @@ require_once 'db-classes.inc.php';
 
 function checkIfError() {
 if (isset($_GET['redirect'])) {
-    if ($redirect = 'error') {
+    if ($_GET['redirect'] = 'error') {
         echo "<div class = 'error'> Incorrect username and password combination entered. Please try again. </div>";
         }
     }
