@@ -9,6 +9,10 @@ $database = ltrim($dbparts['path'],'/');
 define('DBCONNECTION', "mysql:host=$hostname;dbname=$database");
 define('DBUSER', $username);
 define('DBPASS', $password);
+echo "host" . $hostname;
+echo "db". $database;
+echo "un" . $username;
+echo "pw" . $password;
 ?>
 
 
