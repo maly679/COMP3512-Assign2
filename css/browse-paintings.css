@@ -11,9 +11,10 @@ body {
   color: #444;
   grid-template-areas:
     "header header header"
-    "form info info";
+    "form info info"
+    ".    info info";
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 6.5rem 30rem;
+  grid-template-rows: 6.5rem 25rem auto;
 }
 
 .a {
@@ -26,6 +27,8 @@ body {
 
 .c {
   grid-area: info;
+  display: grid;
+  overflow: auto;
 }
 
 .box {
@@ -40,9 +43,11 @@ body {
 }
 
 div.b section {
-}
+} */
 
-div.c section {
+/* div.c section {
+  display: grid;
+  grid-row: flex;
 } */
 
 .ui_form {
@@ -148,3 +153,46 @@ select {
   height: 1.8em;
   width: 9.4em;
 }
+
+table {
+  width: 100%;
+  height: 100%;
+  font-size: 1em;
+  border-spacing: 15px 0px;
+}
+
+table td {
+  font-size: small;
+}
+
+/* https://stackoverflow.com/questions/2187008/styling-an-anchor-tag-to-look-like-a-submit-button */
+/* .likeabutton {
+  text-decoration: none;
+  font: menu;
+  display: inline-block;
+  padding: 2px 8px;
+  background: ButtonFace;
+  color: ButtonText;
+  border-style: solid;
+  border-width: 2px;
+  border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
+}
+.likeabutton:active {
+  border-color: ButtonShadow ButtonHighlight ButtonHighlight ButtonShadow;
+} */
+
+/* https://www.w3schools.com/css/css3_borders */
+.style_link {
+  font: menu;
+  border-radius: 5px;
+  color: black;
+  display: inline-block;
+  padding: 2px 8px;
+  background: white;
+  border-style: solid;
+  border-width: 1px;
+  text-decoration: none;
+}
+/* .style_link {
+  background-color: red;
+} */

@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //event deligation
     // row5 row6 row7 id for radiobuttons
     // boxrow4 5 6 7
+
     if (e.target && e.target.matches("#radioBefore")) {
       console.log("clicked on before");
       document.querySelector("#inputBefore").removeAttribute("disabled");
