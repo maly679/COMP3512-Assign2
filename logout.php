@@ -9,6 +9,5 @@ if (isset($_SESSION['ID']) && isset($_SESSION['status']) ) {
 } else {
     
     //catch error, where if user was not logged in, and redirect to login page.
-    heder('location:login.php');
+    header('location:login.php');
 }
-?>
