@@ -1,3 +1,40 @@
+<?php
+session_start();
+require_once 'config.inc.php';
+require_once 'db-classes.inc.php';
+
+// checks if there is an existing array of favorites
+if (!isset($_SESSION['favorites'])) {
+    // initializes the array if the check is true
+    $_SESSION['favorites'] = [];
+    echo "<script>console.log('no existing session')</script>";
+}
+else {
+    echo "<script>console.log('existing session')</script>";
+}
+
+function getfavoritesButton() {
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+        $fav = $_SESSION['favorites']; // retrieves existing favorites
+        $favoritesLink = "favorites.php?id=" . $id;
+        $isfavorite = false;
+
+        //check if current painting is already favorite
+        if ($id != null && in_array($id, $fav, true)) {
+            $isfavorite = true;
+        }
+
+        if (!$isfavorite) {
+            echo "<a href='" . $favoritesLink . "'><button class='enabled' id='add-to-favorites'>Add To Favorites</button></a>";
+        }
+        else {
+            echo "<button class='disabled' id='add-to-favorites'>Added To Favorites</button>";
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -17,7 +54,7 @@
                 <p class="heading" id="title"></p>
                 <p class="sub-heading" id="artist"></p>
                 <p class="sub-heading" id="gallery-year"></p>
-                <button id="add-to-favorites">Add To Favorites</button>
+                <?=getfavoritesButton()?>
             </div>
             <div class="data-section">
                 <div id="tab-button-bar">
