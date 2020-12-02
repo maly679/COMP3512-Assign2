@@ -22,7 +22,7 @@ function outputList($fav)
     echo "<ul>";
     foreach ($fav as $f) {
         echo "<li>";
-        echo "<a ></a>";
+        echo $f;
         echo "</li>";
     }
     echo "</ul>";
