@@ -1,57 +1,77 @@
 <?php
 
-
 session_start();
 
 require_once 'config.inc.php';
 require_once 'db-classes.inc.php';
 
-
-function checkIfError() {
-if (isset($_GET['redirect'])) {
-    if ($_GET['redirect'] = 'error') {
-        echo "<div class = 'error'> Incorrect username and password combination entered. Please try again. </div>";
+//Function invoked below in markup, and redirects to page that produces error; this occurs only if the user entered an incorrect username and password combination.
+function checkIfError()
+{
+    if (isset($_GET['redirect']))
+    {
+        if ($_GET['redirect'] = 'error')
+        {
+            echo "<div class = 'error'> Incorrect username and password combination entered. Please try again. </div>";
         }
     }
 }
 
-if (isset($_GET['email']) && isset($_GET['pass'])) {
+// checks email and password generated upon login of user, and processes check with database to verify.
+if (isset($_GET['email']) && isset($_GET['pass']))
+{
 
-    try {
-        $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
+    try
+    {
+        $conn = DatabaseHelper::createConnection(array(
+            DBCONNSTRING,
+            DBUSER,
+            DBPASS
+        ));
         $sql = "select UserName, CustomerID, Pass FROM customerlogon WHERE UserName = ?";
-        $result = DatabaseHelper::runQuery($conn, $sql, array($_GET['email']));
+        $result = DatabaseHelper::runQuery($conn, $sql, array(
+            $_GET['email']
+        ));
         $data = $result->fetchAll(PDO::FETCH_ASSOC);
-        checkData( $_GET['pass'], $data);
-    } catch (PDOException $e) {
-        die ($e -> getMessage());
+        checkData($_GET['pass'], $data);
+    }
+    catch(PDOException $e)
+    {
+        die($e->getMessage());
     }
 
 }
 
-function checkData($pass, $data) {
+// Checks if the data is retrieved form database, and if the password matches that of the database's.
+function checkData($pass, $data)
+{
 
-    if (isset($data) && count($data) > 0) {
-        foreach($data as $row) {
-            if(password_verify($pass, $row['Pass'])) {
+    if (isset($data) && count($data) > 0)
+    {
+        foreach ($data as $row)
+        {
+            if (password_verify($pass, $row['Pass']))
+            {
                 $_SESSION['ID'] = $row['CustomerID'];
                 $_SESSION['status'] = "loggedIn";
-                header('location: index.php');
-            } else {
-              
+                header('location: single-painting.php');
+            }
+            else
+            {
+
+                //redirect to error page if incorrect user entry detected.
                 header("location:login.php?redirect='error'");
 
             }
-         }
-    } else {
-
+        }
+    }
+    else
+    {
+        //redirect to error page if incorrect user entry detected.
         header("location:login.php?redirect='error'");
 
     }
 }
-
-
-
 ?>
 
 <!DOCTYPE html>   
@@ -66,7 +86,8 @@ function checkData($pass, $data) {
     <form action="login.php" method="get">  
         <div class="container">   
         <div class="loginBox">
-        <?=checkIfError();?>
+         //if error occurs, based on query string value, output error here.
+        <?=checkIfError(); ?>
             <label>
                 <p>Email</p>
             </label for="email">
@@ -82,4 +103,4 @@ function checkData($pass, $data) {
         </div>   
     </form>     
 </body>     
-</html>  
+</html>
