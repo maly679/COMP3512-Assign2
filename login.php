@@ -86,7 +86,7 @@ function checkData($pass, $data)
     <form action="login.php" method="get">  
         <div class="container">   
         <div class="loginBox">
-         //if error occurs, based on query string value, output error here.
+        <!-- if error occurs, based on query string value, output error here. -->
         <?=checkIfError(); ?>
             <label>
                 <p>Email</p>
