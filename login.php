@@ -76,7 +76,7 @@ function checkData($pass, $data) {
             </label for="pass">
             <input type="password" placeholder="Enter Password" name="pass" required>
             <button type="Submit">Login</button>
-            <button type="Submit">Sign up</button>
+            <button type="button">Sign up</button>
         </div>
 
         </div>   
