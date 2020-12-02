@@ -17,13 +17,10 @@ $fav[] = $_GET['id'];
 $_SESSION['favorites'] = $fav;
 
 // outputs the lists of the logged-in user's favourited paintings
-function outputList($fav)
-{
-    echo "<ul>";
-    foreach ($fav as $f) {
-        echo "<li>";
-        echo $f;
-        echo "</li>";
-    }
-    echo "</ul>";
+echo "<ul>";
+foreach ($fav as $f) {
+    echo "<li>";
+    echo $f;
+    echo "</li>";
 }
+echo "</ul>";
