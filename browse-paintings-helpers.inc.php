@@ -1,6 +1,5 @@
 <?php
 
-/* these three will need to be moved to lab14a-db-classes.inc.php */
 
 function getGallerySQL()
 {
@@ -15,7 +14,6 @@ function getPaintingSQL()
     return $sql;
 }
 
-// use this function for getTop20
 function addSortAndLimit($sqlOld)
 {
     $sqlNew = $sqlOld . " ORDER BY YearOfWork limit 20";
@@ -28,18 +26,6 @@ function makeArtistName($first, $last)
     return utf8_encode($first . ' ' . $last);
 }
 
-
-/*
-  You will likely need to implement functions such as these ...
-*/
-
-// function getGalleries($pdo)
-// {
-//    $sql = "SELECT GalleryID, GalleryName FROM Galleries
-//    ORDER BY GalleryName";
-//    $result = $pdo->query($sql);
-//    return $result->fetchAll(PDO::FETCH_ASSOC);
-// }
 
 function getAllGalleries($connection)
 {
@@ -58,7 +44,7 @@ function getAllGalleries($connection)
 //    return $statement->fetchAll(PDO::FETCH_ASSOC);
 // }
 
-// TALK TO JP ABOUT THE BIND VALUE
+
 // https://www.php.net/manual/en/pdostatement.bindvalue.php
 function getAllPaintings($connection)
 {
@@ -76,7 +62,7 @@ function getPaintingsByGallery($connection, $gallery)
     $sql = getPaintingSQL();
     $sql .= "WHERE GALLERYID= :galleryid";
     $statement = $connection->prepare($sql);
-    $statement->bindValue(':galleryid', $gallery); // 1
+    $statement->bindValue(':galleryid', $gallery);
     $statement->execute();
     return $statement->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -90,7 +76,7 @@ function outputArtists($results)
 
 function outputSingleArtist($row)
 {
-    echo '<option value=' . $row['ArtistID'] . '>' . $row['LastName'] . '</option>'; //. $row['FirstName'] . " "
+    echo '<option value=' . $row['ArtistID'] . '>' . $row['FirstName'] . " " . $row['LastName'] . '</option>';
 }
 
 function outputGalleries($results)
@@ -105,45 +91,233 @@ function outputSingleGallery($row)
     echo '<option value=' . $row['GalleryID'] . '>' . $row['GalleryName'] . '</option>';
 }
 
-function outputPaintings($paintings)
+
+function checkFormData()
 {
-    foreach ($paintings as $row) {
-        outputSinglePainting($row);
+    if (
+        (isset($_GET['title']) && !empty($_GET['title'])) ||
+        (isset($_GET['gallery']) && $_GET['gallery'] > 0) ||
+        (isset($_GET['artist']) && $_GET['artist'] > 0) ||
+        (isset($_GET['Before']) && !empty($_GET['Before'])) ||
+        (isset($_GET['After']) && !empty($_GET['After'])) ||
+        (isset($_GET['Between1']) && !empty($_GET['Between1'])) &&
+        (isset($_GET['Between2']) && !empty($_GET['Between2']))
+    ) {
+        return true;
+    } else {
+        return false;
     }
 }
 
-function outputSinglePainting($row)
+function bindValues($connection, $sql, $parameters = array())
+{
+    if (!is_array($parameters)) {
+        $parameters = array($parameters);
+    }
+
+    $statement = null;
+    if (count($parameters) > 0) {
+        // Use a prepared statement if parameters
+        $statement = $connection->prepare($sql);
+        foreach ($parameters as $key => $value) {
+            $statement->bindValue($key, $value);
+        }
+        $statement->execute();
+        $executedOk = $statement;
+        if (!$executedOk) throw new PDOException;
+    } else {
+        // Execute a normal query
+        $statement = $connection->query($sql);
+        if (!$statement) throw new PDOException;
+    }
+
+    return $statement;
+}
+
+//POTENTIAL METHODS TO HELP WITH OUTPUTPAINTNGS
+// header("Location: home-login.php");
+// http_build_query()
+// check if has key
+//$_SERVER["QUERY_STRING"]
+// . $_SESSION['sort'] = "artist" . '
+
+function outputPaintings($paintings)
+{
+    echo '<table>';
+    echo '<tr>';
+    echo '<th></th>';
+    echo '<th id="tableArtist"><a href=browse-paintings.php?' . addSort("byArtist") . '> Artist </a> </th>'; //Needs to sort by artist Name
+    echo '<th id="tableTitle"><a href=browse-paintings.php?' . addSort("byTitle") . '> Title </a></th>'; // Needs to sort by Title
+    echo '<th id="tableYear"><a href=browse-paintings.php?' . addSort("byYear") . '> Year</a></th>'; // Needst to sort by YearOfWork
+    echo '<th></th>';
+    echo '<th></th>';
+    echo '</tr>';
+    foreach ($paintings as $row) {
+        outputPainting($row);
+    }
+    echo '</table';
+}
+
+//I used this to search for the strpos and str_replace manuals https://www.php.net/manual/en/function.strpos.php.
+// I used php.net for manuals.
+
+function addSort($addString)
 {
 
-    echo  '<li class="item">';
-    echo  '<a class="ui small image" href="single-painting.php?id=' . $row['PaintingID'] . '"><img src="images/paintings/square-medium/' . $row['ImageFileName'] . '.jpg"></a>';
-    echo  '<div class="content">';
-    echo  '<a class="header" href="single-painting.php?id=' . $row['PaintingID'] . ' ">' . $row['Title'] . '</a>';
-    echo  '<div class="meta"><span class="cinema">' . $row['LastName'] . '</span></div>';
-    echo  '<div class="description">';
-    echo  '<p>' . $row['Excerpt'] . '</p>';
-    echo  '</div>';
-    echo  '<div class="meta">';
-    echo  '<strong>' . $row['YearOfWork'] . '</strong>';
-    echo  '</div>';
-    echo  '</div>';
-    echo  '</li>';
+    //check if there is a query string
+    if (isset($_SERVER["QUERY_STRING"])) {
 
+        $queryString = $_SERVER["QUERY_STRING"];
 
-    // Ask about this method
-    // <li class="item">
-    //     <a class="ui small image" href="single-painting.php?id=<?php $row['PaintingID'] need ? here>"><img src="images/art/works/square-medium/001150.jpg"></a>
-    //     <div class="content">
-    //         <a class="header" href="single-painting.php?id=id here">
-    //             <php? $row[Title] </a> <div class="meta"><span class="cinema">Artist name here</span></div>
-    //     <div class="description">
-    //         <p>Excerpt here</p>
-    //     </div>
-    //     <div class="meta">
-    //         <strong>YearOfWork here</strong>
-    //     </div>
-    //     </div>
-    // </li>
-
-
+        if (strpos($queryString, '&sort=') === false) {
+            $queryString .= "&sort=" . $addString;
+        } else {
+            if (strpos($queryString, 'sort=byArtist') !== false) {
+                $queryString = str_replace("byArtist", $addString, $queryString);
+            } elseif (strpos($queryString, 'sort=byTitle') !== false) {
+                $queryString = str_replace("byTitle", $addString, $queryString);
+            } elseif (strpos($queryString, 'sort=byYear') !== false) {
+                $queryString = str_replace("byYear", $addString, $queryString);
+            }
+        }
+        return $queryString;
+    }
 }
+
+
+
+function outputPainting($row)
+{
+    echo '<tr>';
+    echo '<td><img src="images/paintings/square-medium/' . $row['ImageFileName'] . '.jpg"></td>';
+    echo '<td>' . $row['FirstName'] . " " . $row['LastName'] . '</td>';
+    echo '<td><a href=single-paintings.php?id=' . $row['PaintingID'] . '>' . $row['Title'] . '</a></td>';
+    echo '<td>' . $row['YearOfWork'] .  '</td>';
+    echo '<td><a class="style_link" href=favorites.php?id=' . $row['PaintingID'] . '>Add Favorites</a></td>'; // Needs to link to other part + add Fav Data
+    echo '<td><a class="style_link" href=single-paintings.php?id=' . $row['PaintingID'] . '>View</a></td>'; // Needs to link to other part
+    echo '</tr>';
+}
+
+function buildQuery($conn)
+{
+
+    $addArray = [];
+    $paramArray = [];
+
+    $newsql = "SELECT PaintingID, FirstName, LastName, Title, YearOfWork, ImageFileName 
+            FROM Galleries INNER JOIN (Artists INNER JOIN Paintings ON Artists.ArtistID = Paintings.ArtistID) ON Galleries.GalleryID = Paintings.GalleryID";
+
+    //This checks the query string has any feilds set (with checkFormData()), the it finds the feilds and builds a query string.
+    if (checkFormData()) {
+        $newsql .= " WHERE";
+
+        if (isset($_GET['title']) && !empty($_GET['title'])) {
+
+            $addsql = " Title LIKE :title";
+            $addArray[] = $addsql;
+            $paramArray[':title'] = '%' . $_GET['title'] . '%';
+        }
+        if (isset($_GET['gallery']) && $_GET['gallery'] != 0) {
+
+            $addsql = " Galleries.GalleryID = :gallery";
+            $addArray[] = $addsql;
+            $paramArray[':gallery'] = $_GET['gallery'];
+        }
+        if (isset($_GET['artist']) && $_GET['artist'] != 0) {
+
+            $addsql = " Artists.ArtistID = :artist";
+            $addArray[] = $addsql;
+            $paramArray[':artist'] = $_GET['artist'];
+        }
+        if (isset($_GET['Before']) && !empty($_GET['Before'])) {
+
+            $addsql = " YearOfWork < :before";
+            $addArray[] = $addsql;
+            $paramArray[':before'] = $_GET['Before'];
+        }
+        if (isset($_GET['After']) && !empty($_GET['After'])) {
+
+            $addsql = " YearOfWork > :after";
+            $addArray[] = $addsql;
+            $paramArray[':after'] = $_GET['After'];
+        }
+        if ((isset($_GET['Between1']) && !empty($_GET['Between1'])) && (isset($_GET['Between2']) && !empty($_GET['Between2']))) {
+            $addsql = " YearOfWork BETWEEN :between1";
+            $addArray[] = $addsql;
+            $paramArray[':between1'] = $_GET['Between1'];
+        }
+        if ((isset($_GET['Between1']) && !empty($_GET['Between1'])) && (isset($_GET['Between2']) && !empty($_GET['Between2']))) {
+            $addsql = " :between2";
+            $addArray[] = $addsql;
+            $paramArray[':between2'] = $_GET['Between2'];
+        }
+
+        //THIS ADDS THE ARRAY STRINGS TO THE SQL QUERY
+        for ($i = 0; $i <= count($addArray) - 1; $i++) {
+            if ($i == 0) {
+                $newsql .= $addArray[$i];
+            } else {
+                $newsql .= " AND";
+                $newsql .= $addArray[$i];
+            }
+        }
+
+
+
+        // Add the order by statment
+        if (isset($_GET['sort'])) { // this is getting 
+            if ($_GET['sort'] == "byTitle") {
+                $newsql .= " ORDER BY Title";
+            } elseif ($_GET['sort'] == "byArtist") {
+                $newsql .=  " ORDER BY LastName";
+            } elseif ($_GET['sort'] == "byYear") {
+                $newsql .=  " ORDER BY YearOfWork";
+            }
+        } else {
+            $newsql .= " ORDER BY YearOfWork";
+        }
+
+        //PRINT OUT PARAMS FOR TROUBLESHOOTING
+        // foreach ($paramArray as $param) {
+        //     echo " Param " . $param . "<br/>";
+        // }
+        // echo $newsql . "<br/>";
+
+
+        //TEST PARAMETERS
+        // $testSql = "SELECT Title , PaintingID FROM paintings WHERE PaintingID = :test";
+        // $testParam = ['test' => "1"];
+    }
+
+    //$statement = bindValues($conn, $testSql, $testParam);
+    $statement = DatabaseHelper::runQuery($conn, $newsql, $paramArray);
+
+
+    $paintings = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    return $paintings;
+}
+
+
+// REFERENCE CODE FROM LABS
+// public static function runQuery($connection, $sql, $parameters = array())
+// {
+//     // Ensure parameters are in an array
+//     if (!is_array($parameters)) {
+//         $parameters = array($parameters);
+//     }
+
+//     $statement = null;
+//     if (count($parameters) > 0) {
+//         // Use a prepared statement if parameters
+//         $statement = $connection->prepare($sql);
+//         $executedOk = $statement->execute($parameters);
+//         if (!$executedOk) throw new PDOException;
+//     } else {
+//         // Execute a normal query
+//         $statement = $connection->query($sql);
+//         if (!$statement) throw new PDOException;
+//     }
+
+//     return $statement;
+// }
