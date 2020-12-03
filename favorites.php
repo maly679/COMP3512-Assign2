@@ -25,7 +25,7 @@ try {
     $result = DatabaseHelper::runQuery(
         $conn,
         $sql, //array($_SESSION['favorites']
-        array($fav)
+        $fav
         //)
     );
     $data = $result->fetchAll(PDO::FETCH_ASSOC);
