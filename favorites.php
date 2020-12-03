@@ -31,7 +31,7 @@ try {
     $data = $result->fetchAll(PDO::FETCH_ASSOC);
 
     foreach ($data as $row) {
-        //echo $row;
+        echo $row['title'];
         echo "<ul>";
         //outputList($row);
         echo "hello";
