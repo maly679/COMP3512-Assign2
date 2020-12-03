@@ -15,7 +15,7 @@ if (!isset($_SESSION['favorites'])) {
 $fav = $_SESSION['favorites'];
 //print_r($_SESSION['favorites']);
 
-
+print_r($fav);
 try {
     $conn = DatabaseHelper::createConnection(array(
         DBCONNSTRING,
