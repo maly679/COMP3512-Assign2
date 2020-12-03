@@ -22,9 +22,12 @@ try {
         DBPASS
     ));
     $sql = "select title, imagefilename from paintings where paintingid = ?";
-    $result = DatabaseHelper::runQuery($conn, $sql, array(
-        $_SESSION['favorites']
-    ));
+    $result = DatabaseHelper::runQuery(
+        $conn,
+        $sql, //array($_SESSION['favorites']
+        5
+        //)
+    );
     $data = $result->fetchAll(PDO::FETCH_ASSOC);
 
     foreach ($data as $row) {
