@@ -8,12 +8,12 @@ if (!isset($_SESSION['favorites'])) {
     // initializes the array if the check is true
     $_SESSION['favorites'] = [];
     echo "<script>console.log('no existing session')</script>";
-} else {
+}
+else {
     echo "<script>console.log('existing session')</script>";
 }
 
-function getfavoritesButton()
-{
+function getfavoritesButton() {
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
         $fav = $_SESSION['favorites']; // retrieves existing favorites
@@ -27,7 +27,8 @@ function getfavoritesButton()
 
         if (!$isfavorite) {
             echo "<a href='" . $favoritesLink . "'><button id='add-to-favorites'>Add To Favorites</button></a>";
-        } else {
+        }
+        else {
             echo "Added To Favorites";
         }
     }
@@ -36,28 +37,25 @@ function getfavoritesButton()
 
 <!DOCTYPE html>
 <html lang=en>
-
 <head>
     <title>Single Painting</title>
     <meta charset=utf-8>
     <script src="js/single-painting.js"></script>
     <link rel="stylesheet" href="css/single-painting.css">
 </head>
-
 <body>
     <div class="header"></div>
     <div class="container">
         <div class="section" id="painting-section">
-            <img id="image" src="" />
+            <img id="image" src=""/>
         </div>
         <div class="section data-container">
             <div class="data-section">
                 <p class="heading" id="title"></p>
                 <p class="sub-heading" id="artist"></p>
                 <p class="sub-heading" id="gallery-year"></p>
-                <<<<<<< HEAD <?= getfavoritesButton() ?>=======<br />
-                <?= getfavoritesButton() ?>
-                >>>>>>> b19fa4ee67d43c5200c5ea088d8ed7eaeebfa99a
+                <br/>
+                <?=getfavoritesButton()?>
             </div>
             <div class="data-section">
                 <div id="tab-button-bar">
@@ -69,17 +67,16 @@ function getfavoritesButton()
                     <p id="description"></p>
                 </div>
                 <div class="tab" id="details-tab">
-                    <strong>Medium: </strong><span id="medium"></span><br />
-                    <strong>Width: </strong><span id="width"></span><br />
-                    <strong>Height: </strong><span id="height"></span><br />
-                    <strong>Copyright: </strong><span id="copyright"></span><br />
-                    <strong>WikiLink: </strong><a id="wiki-link" href=""></a><br />
-                    <strong>Museum Link: </strong><a id="museum-link" href=""></a><br />
+                    <strong>Medium: </strong><span id="medium"></span><br/>
+                    <strong>Width: </strong><span id="width"></span><br/>
+                    <strong>Height: </strong><span id="height"></span><br/>
+                    <strong>Copyright: </strong><span id="copyright"></span><br/>
+                    <strong>WikiLink: </strong><a id="wiki-link" href=""></a><br/>
+                    <strong>Museum Link: </strong><a id="museum-link" href=""></a><br/>
                 </div>
                 <div class="tab" id="colors-tab"></div>
             </div>
         </div>
     </div>
 </body>
-
 </html>
