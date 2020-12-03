@@ -10,6 +10,8 @@
 // define('DBCONNSTRING', "mysql:host=" . $host . ";dbname=" . $dbname . $charSetTrail);
 
 $url = getenv('JAWSDB_URL');
+
+echo $url;
 $dbparts = parse_url($url);
 $hostname = $dbparts['host'];
 $username = $dbparts['user'];
