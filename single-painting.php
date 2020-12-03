@@ -17,7 +17,7 @@ function getfavoritesButton() {
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
         $fav = $_SESSION['favorites']; // retrieves existing favorites
-        $favoritesLink = "favorites.php?id=" . $id;
+        $favoritesLink = "add-favorites.php?id=" . $id;
         $isfavorite = false;
 
         //check if current painting is already favorite
