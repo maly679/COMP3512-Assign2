@@ -23,9 +23,7 @@ try
         DBPASS
     ));
     $sql = "select title, imagefilename from paintings where paintingid = ?";
-    $result = DatabaseHelper::runQuery($conn, $sql, array(
-        $fav
-    ));
+    $result = DatabaseHelper::runQuery($conn, $sql, 5);
     $data = $result->fetchAll(PDO::FETCH_ASSOC);
   
     foreach($data as $row) {
@@ -39,7 +37,7 @@ catch(PDOException $e)
 
 // outputs the lists of the logged-in user's favourited paintings
 
-echo "<ul>";
+//echo "<ul>";
 foreach ($fav as $f) {
     /*
     echo "<li>";
@@ -48,7 +46,7 @@ foreach ($fav as $f) {
     */
     echo $f;
 }
-echo "</ul>"; 
+//echo "</ul>"; 
 
 
 
