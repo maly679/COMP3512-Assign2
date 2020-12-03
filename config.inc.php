@@ -1,7 +1,11 @@
 <?php
 
-define('DBUSER', "p6d3fldzumd697t8");
-define('DBPASS', "un11bavbn0ccbnev");
-define('DBCONNSTRING', "mysql:host=" . "kavfu5f7pido12mr.cbetxkdyhwsb.us-east-1.rds.amazonaws.com" . ";dbname=" . "tl1lklkcndfcb8di;charset=utf8mb4;");
+$user = "p6d3fldzumd697t8";
+$pass = "un11bavbn0ccbnev";
+$host = "kavfu5f7pido12mr.cbetxkdyhwsb.us-east-1.rds.amazonaws.com";
+$dbname = "tl1lklkcndfcb8di;charset=utf8mb4;";
+define('DBUSER', $user);
+define('DBPASS', $pass);
+define('DBCONNSTRING', "mysql:host=" . $host . ";dbname=" . $dbname);
 
 ?> 
