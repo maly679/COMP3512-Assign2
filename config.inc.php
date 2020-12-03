@@ -11,7 +11,7 @@
 
 $url = getenv('JAWSDB_URL');
 
-echo $url;
+print_r($url);
 $dbparts = parse_url($url);
 $hostname = $dbparts['host'];
 $username = $dbparts['user'];
