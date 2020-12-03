@@ -29,7 +29,7 @@ try {
 echo "<ul>";
 foreach ($fav as $f) {
     echo "<li>";
-    echo "<a href='single-painting.php?id=" . $f . "'>" . $f['Title'] . "</a>";
+    echo "<a href='single-painting.php?id=" . $f . "'>" . $_GET['Title'] . "</a>";
     echo "</li>";
 }
 echo "</ul>";
