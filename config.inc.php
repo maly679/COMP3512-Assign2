@@ -8,4 +8,6 @@ $charSetTrail = ";charset=utf8mb4;";
 define('DBUSER', $user);
 define('DBPASS', $pass);
 define('DBCONNSTRING', "mysql:host=" . $host . ";dbname=" . $dbname . $charSetTrail);
+
+
 ?>
