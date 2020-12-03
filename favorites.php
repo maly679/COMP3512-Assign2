@@ -27,7 +27,7 @@ if (isset($_GET['id'])) {
     echo "<ul>";
     foreach ($fav as $f) {
         echo "<li>";
-        echo "<a href='" . $singlePLink . "'> " . $f['title'] . "</a>";
+        echo "<a href='single-painting.php?id=$f'>" . $f['Title'] . "</a>";
         echo "</li>";
     }
     echo "</ul>";
