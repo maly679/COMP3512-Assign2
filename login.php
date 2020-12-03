@@ -17,7 +17,7 @@ function checkIfError()
     }
 }
 
-// checks email and password generated upon login of user, and processes check with database to verify.
+// checks email and password generated upon login attempt of user, and processes check with database to verify.
 if (isset($_GET['email']) && isset($_GET['pass']))
 {
 
