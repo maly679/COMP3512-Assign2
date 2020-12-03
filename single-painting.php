@@ -26,10 +26,10 @@ function getfavoritesButton() {
         }
 
         if (!$isfavorite) {
-            echo "<a href='" . $favoritesLink . "'><button class='enabled' id='add-to-favorites'>Add To Favorites</button></a>";
+            echo "<a href='" . $favoritesLink . "'><button id='add-to-favorites'>Add To Favorites</button></a>";
         }
         else {
-            echo "<button class='disabled' id='add-to-favorites'>Added To Favorites</button>";
+            echo "Added To Favorites";
         }
     }
 }
@@ -54,6 +54,7 @@ function getfavoritesButton() {
                 <p class="heading" id="title"></p>
                 <p class="sub-heading" id="artist"></p>
                 <p class="sub-heading" id="gallery-year"></p>
+                <br/>
                 <?=getfavoritesButton()?>
             </div>
             <div class="data-section">
