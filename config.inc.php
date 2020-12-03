@@ -12,7 +12,7 @@
 $url = getenv('JAWSDB_URL');
 
 print_r($url);
-$url2 = 'mysql -h kavfu5f7pido12mr.cbetxkdyhwsb.us-east-1.rds.amazonaws.com -u p6d3fldzumd697t8 -pun11bavbn0ccbnev tl1lklkcndfcb8di';
+$url2 = 'mysql://p6d3fldzumd697t8:un11bavbn0ccbnev@kavfu5f7pido12mr.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/tl1lklkcndfcb8di;charset=utf8mb4;';
 echo $url2;
   
   
@@ -21,7 +21,7 @@ $hostname = $dbparts['host'];
 $username = $dbparts['user'];
 $password = $dbparts['pass'];
 $database = ltrim($dbparts['path'],'/');
-define('DBCONNECTION', "mysql:host=$hostname;dbname=$database");
+define('DBCONNECTION', "mysql:host=$hostname;dbname=$database" . ";charset=utf8mb4;");
 define('DBUSER', $username);
 define('DBPASS', $password);
 
