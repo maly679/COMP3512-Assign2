@@ -11,7 +11,7 @@ if (!isset($_SESSION['favorites'])) {
 
 // retrieves existing favourites
 $fav = $_SESSION['favorites'];
-print_r($fav);
+//print_r($fav);
 
 try
 {
