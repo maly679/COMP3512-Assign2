@@ -15,38 +15,30 @@ if (!isset($_SESSION['favorites'])) {
 $fav = $_SESSION['favorites'];
 print_r($_SESSION['favorites']);
 
-try
-{
+try {
     $conn = DatabaseHelper::createConnection(array(
         DBCONNSTRING,
         DBUSER,
         DBPASS
     ));
     $sql = "select title, imagefilename from paintings where paintingid =" . $fav;
-    $result = DatabaseHelper::runQuery($conn, $sql, 5);
+    $result = DatabaseHelper::runQuery($conn, $sql, $fav);
     $data = $result->fetchAll(PDO::FETCH_ASSOC);
-  
-    foreach($data as $row) {
-        echo "hello";
+
+    foreach ($data as $row) {
+        echo $row;
+        echo "<ul>";
+        outputList($row);
+        echo "</ul>";
     }
-}
-catch(PDOException $e)
-{
+} catch (PDOException $e) {
     die($e->getMessage());
 }
 
 // outputs the lists of the logged-in user's favourited paintings
-
-//echo "<ul>";
-foreach ($fav as $f) {
-    /*
+function outputList($row)
+{
     echo "<li>";
-    echo "<a href='single-painting.php?id=" . $f . "'><img src=''/><p>" . $f . "</p></a>";
-    echo "</li>"; 
-    */
-    echo $f;
+    echo "<a href='single-painting.php?id=" . $row . "'><img src=''/><p>" . $row . "</p></a>";
+    echo "</li>";
 }
-//echo "</ul>"; 
-
-
-
