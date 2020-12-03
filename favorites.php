@@ -11,7 +11,7 @@ if (!isset($_SESSION['favorites'])) {
 }
 */
 
-// retrieves existing favourites
+if (isset($_SESSION['favorites'])){
 $fav = $_SESSION['favorites'];
 //print_r($_SESSION['favorites']);
 //print_r($fav);
@@ -25,7 +25,7 @@ try {
     $result = DatabaseHelper::runQuery(
         $conn,
         $sql, //array($_SESSION['favorites']
-        5
+        $fav
         //)
     );
     $data = $result->fetchAll(PDO::FETCH_ASSOC);
@@ -41,7 +41,9 @@ try {
 } catch (PDOException $e) {
     die($e->getMessage());
 }
-
+} else {
+    echo "Error no favorites added. Please add to favorites as needed.";
+}
 // outputs the lists of the logged-in user's favourited paintings
 function outputList($row)
 {
