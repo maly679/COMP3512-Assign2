@@ -17,7 +17,7 @@ function getfavoritesButton()
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
         $fav = $_SESSION['favorites']; // retrieves existing favorites
-        $favoritesLink = "favorites.php?id=" . $id;
+        $favoritesLink = "add-favorites.php?id=" . $id;
         $isfavorite = false;
 
         //check if current painting is already favorite
@@ -26,9 +26,9 @@ function getfavoritesButton()
         }
 
         if (!$isfavorite) {
-            echo "<a href='" . $favoritesLink . "'><button class='enabled' id='add-to-favorites'>Add To Favorites</button></a>";
+            echo "<a href='" . $favoritesLink . "'><button id='add-to-favorites'>Add To Favorites</button></a>";
         } else {
-            echo "<button class='disabled' id='add-to-favorites'>Added To Favorites</button>";
+            echo "Added To Favorites";
         }
     }
 }
@@ -55,7 +55,9 @@ function getfavoritesButton()
                 <p class="heading" id="title"></p>
                 <p class="sub-heading" id="artist"></p>
                 <p class="sub-heading" id="gallery-year"></p>
+                <<<<<<< HEAD <?= getfavoritesButton() ?>=======<br />
                 <?= getfavoritesButton() ?>
+                >>>>>>> b19fa4ee67d43c5200c5ea088d8ed7eaeebfa99a
             </div>
             <div class="data-section">
                 <div id="tab-button-bar">
