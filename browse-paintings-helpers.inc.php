@@ -263,7 +263,6 @@ function buildQuery($conn)
         }
 
 
-
         // Add the order by statment
         if (isset($_GET['sort'])) { // this is getting 
             if ($_GET['sort'] == "byTitle") {
