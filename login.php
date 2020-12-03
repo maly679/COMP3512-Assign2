@@ -5,7 +5,7 @@ session_start();
 require_once 'config.inc.php';
 require_once 'db-classes.inc.php';
 
-//Function invoked below in markup, and redirects to page that produces error; this occurs only if the user entered an incorrect username and password combination.
+//Function is invoked below in markup; this occurs only if the user entered an incorrect username and password combination.
 function checkIfError()
 {
     if (isset($_GET['redirect']))
