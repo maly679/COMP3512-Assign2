@@ -13,7 +13,7 @@ if (!isset($_SESSION['favorites'])) {
 
 // retrieves existing favourites
 $fav = $_SESSION['favorites'];
-print_r($_SESSION['favorites']);
+//print_r($_SESSION['favorites']);
 
 try {
     $conn = DatabaseHelper::createConnection(array(
@@ -28,9 +28,10 @@ try {
     $data = $result->fetchAll(PDO::FETCH_ASSOC);
 
     foreach ($data as $row) {
-        echo $row;
+        //echo $row;
         echo "<ul>";
-        outputList($row);
+        //outputList($row);
+        echo $row['title'];
         echo "</ul>";
     }
 } catch (PDOException $e) {
