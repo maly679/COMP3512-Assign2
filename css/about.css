@@ -1,0 +1,40 @@
+body, div, span, h1, h2, h3, h4, aside, p, main, nav, ul, li {
+   margin: 0;
+   padding: 0;
+   list-style: none;
+}
+
+body {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    padding: 15px;
+}
+
+li {
+    list-style: circle;
+    margin-left: 50px;
+}
+
+div.container {
+    height: 100vh;
+    display: grid;
+    grid-row-gap: 15px;
+    grid-template-rows: 1fr 15fr;
+}
+
+div.section {
+    border-radius: 5px;
+    padding: 15px;
+    background-color: lightgray;
+}
+
+.section.header {
+    text-align: center;
+}
+
+.section.body {
+    line-height: 30px;
+}
+
+.sub-heading {
+    font-weight: 600;
+}

@@ -5,7 +5,7 @@ session_start();
 require_once 'config.inc.php';
 require_once 'db-classes.inc.php';
 
-//Function invoked below in markup, and redirects to page that produces error; this occurs only if the user entered an incorrect username and password combination.
+//Function is invoked below in markup; this occurs only if the user entered an incorrect username and password combination.
 function checkIfError()
 {
     if (isset($_GET['redirect']))
@@ -86,7 +86,7 @@ function checkData($pass, $data)
     <form action="login.php" method="get">  
         <div class="container">   
         <div class="loginBox">
-         //if error occurs, based on query string value, output error here.
+        <!-- if error occurs, based on query string value, output error here. -->
         <?=checkIfError(); ?>
             <label>
                 <p>Email</p>
