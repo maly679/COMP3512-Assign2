@@ -193,7 +193,7 @@ function outputPainting($row)
     echo '<td>' . $row['FirstName'] . " " . $row['LastName'] . '</td>';
     echo '<td><a href=single-painting.php?id=' . $row['PaintingID'] . '>' . $row['Title'] . '</a></td>';
     echo '<td>' . $row['YearOfWork'] .  '</td>';
-    echo '<td><a class="style_link" href=favorites.php?id=' . $row['PaintingID'] . '>Add Favorites</a></td>'; // Needs to link to other part + add Fav Data
+    echo '<td><a class="style_link" href=add-favorites.php?id=' . $row['PaintingID'] . '>Add Favorites</a></td>'; // Needs to link to other part + add Fav Data
     echo '<td><a class="style_link" href=single-painting.php?id=' . $row['PaintingID'] . '>View</a></td>'; // Needs to link to other part
     echo '</tr>';
 }
@@ -205,7 +205,7 @@ function buildQuery($conn)
     $paramArray = [];
 
     $newsql = "SELECT PaintingID, FirstName, LastName, Title, YearOfWork, ImageFileName 
-            FROM Galleries INNER JOIN (Artists INNER JOIN Paintings ON Artists.ArtistID = Paintings.ArtistID) ON Galleries.GalleryID = Paintings.GalleryID";
+            FROM galleries INNER JOIN (artists INNER JOIN paintings ON artists.ArtistID = paintings.ArtistID) ON galleries.GalleryID = paintings.GalleryID";
 
     //This checks the query string has any feilds set (with checkFormData()), the it finds the feilds and builds a query string.
     if (checkFormData()) {
@@ -219,13 +219,13 @@ function buildQuery($conn)
         }
         if (isset($_GET['gallery']) && $_GET['gallery'] != 0) {
 
-            $addsql = " Galleries.GalleryID = :gallery";
+            $addsql = " galleries.GalleryID = :gallery";
             $addArray[] = $addsql;
             $paramArray[':gallery'] = $_GET['gallery'];
         }
         if (isset($_GET['artist']) && $_GET['artist'] != 0) {
 
-            $addsql = " Artists.ArtistID = :artist";
+            $addsql = " artists.ArtistID = :artist";
             $addArray[] = $addsql;
             $paramArray[':artist'] = $_GET['artist'];
         }
