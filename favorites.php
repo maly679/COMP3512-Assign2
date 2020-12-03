@@ -20,13 +20,14 @@ if (isset($_GET['id'])) {
     // reserve modified array back to the session state
     $_SESSION['favorites'] = $fav;
     header('Location: single-painting.php?id=' . $id);
-}
-else {
+} else {
+    $singlePLink = "single-painting.php?id=" . $id;
+
     // outputs the lists of the logged-in user's favourited paintings
     echo "<ul>";
     foreach ($fav as $f) {
         echo "<li>";
-        echo $f;
+        echo "<a href='" . $singlePLink . "'> " . $f['title'] . "</a>";
         echo "</li>";
     }
     echo "</ul>";
