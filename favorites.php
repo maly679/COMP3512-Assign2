@@ -44,6 +44,7 @@ try {
 } else {
     echo "Error no favorites added. Please add to favorites as needed.";
 }
+
 // outputs the lists of the logged-in user's favourited paintings
 function outputList($row)
 {
