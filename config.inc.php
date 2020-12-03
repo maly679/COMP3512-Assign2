@@ -12,6 +12,10 @@
 $url = getenv('JAWSDB_URL');
 
 print_r($url);
+$url2 = 'mysql -h kavfu5f7pido12mr.cbetxkdyhwsb.us-east-1.rds.amazonaws.com -u p6d3fldzumd697t8 -pun11bavbn0ccbnev tl1lklkcndfcb8di';
+echo $url2;
+  
+  
 $dbparts = parse_url($url);
 $hostname = $dbparts['host'];
 $username = $dbparts['user'];
