@@ -31,7 +31,8 @@ try {
     $data = $result->fetchAll(PDO::FETCH_ASSOC);
 
     foreach ($data as $row) {
-        echo count($data);
+        echo $row['title'];
+        echo $row['imagefilename'];
         //echo "<ul>";
         //outputList($row);
         echo "hello";
