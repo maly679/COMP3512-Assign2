@@ -11,36 +11,36 @@ if (!isset($_SESSION['favorites'])) {
 }
 */
 
-if (isset($_SESSION['favorites'])){
-$fav = $_SESSION['favorites'];
-//print_r($_SESSION['favorites']);
-//print_r($fav);
-try {
-    $conn = DatabaseHelper::createConnection(array(
-        DBCONNSTRING,
-        DBUSER,
-        DBPASS
-    ));
-    $sql = "select title, imagefilename from paintings where paintingid = ?";
-    $result = DatabaseHelper::runQuery(
-        $conn,
-        $sql, //array($_SESSION['favorites']
-        $fav
-        //)
-    );
-    $data = $result->fetchAll(PDO::FETCH_ASSOC);
+if (isset($_SESSION['favorites'])) {
+    $fav = $_SESSION['favorites'];
+    //print_r($_SESSION['favorites']);
+    //print_r($fav);
+    try {
+        $conn = DatabaseHelper::createConnection(array(
+            DBCONNSTRING,
+            DBUSER,
+            DBPASS
+        ));
+        $sql = "select title, imagefilename from paintings where paintingid = ?";
+        $result = DatabaseHelper::runQuery(
+            $conn,
+            $sql, //array($_SESSION['favorites']
+            array($fav)
+            //)
+        );
+        $data = $result->fetchAll(PDO::FETCH_ASSOC);
 
-    foreach ($data as $row) {
-        echo $row['title'];
-        echo $row['imagefilename'];
-        //echo "<ul>";
-        //outputList($row);
-        echo "hello";
-        //echo "</ul>";
+        foreach ($data as $row) {
+            echo $row['title'];
+            echo $row['imagefilename'];
+            //echo "<ul>";
+            //outputList($row);
+            echo "hello";
+            //echo "</ul>";
+        }
+    } catch (PDOException $e) {
+        die($e->getMessage());
     }
-} catch (PDOException $e) {
-    die($e->getMessage());
-}
 } else {
     echo "Error no favorites added. Please add to favorites as needed.";
 }
