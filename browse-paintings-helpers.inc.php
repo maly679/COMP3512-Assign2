@@ -191,10 +191,10 @@ function outputPainting($row)
     echo '<tr>';
     echo '<td><img src="images/paintings/square-medium/' . $row['ImageFileName'] . '.jpg"></td>';
     echo '<td>' . $row['FirstName'] . " " . $row['LastName'] . '</td>';
-    echo '<td><a href=single-paintings.php?id=' . $row['PaintingID'] . '>' . $row['Title'] . '</a></td>';
+    echo '<td><a href=single-painting.php?id=' . $row['PaintingID'] . '>' . $row['Title'] . '</a></td>';
     echo '<td>' . $row['YearOfWork'] .  '</td>';
     echo '<td><a class="style_link" href=favorites.php?id=' . $row['PaintingID'] . '>Add Favorites</a></td>'; // Needs to link to other part + add Fav Data
-    echo '<td><a class="style_link" href=single-paintings.php?id=' . $row['PaintingID'] . '>View</a></td>'; // Needs to link to other part
+    echo '<td><a class="style_link" href=single-painting.php?id=' . $row['PaintingID'] . '>View</a></td>'; // Needs to link to other part
     echo '</tr>';
 }
 
@@ -261,7 +261,6 @@ function buildQuery($conn)
                 $newsql .= $addArray[$i];
             }
         }
-
 
 
         // Add the order by statment
