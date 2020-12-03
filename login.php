@@ -5,6 +5,16 @@ session_start();
 require_once 'config.inc.php';
 require_once 'db-classes.inc.php';
 
+
+$pageWasRefreshed = isset($_SERVER['HTTP_CACHE_CONTROL']) && $_SERVER['HTTP_CACHE_CONTROL'] === 'max-age=0';
+
+if($pageWasRefreshed ) {
+   header('location:login.php');
+} else {
+   //do nothing;
+}
+
+
 //Function invoked below in markup, and redirects to page that produces error; this occurs only if the user entered an incorrect username and password combination.
 function checkIfError()
 {
