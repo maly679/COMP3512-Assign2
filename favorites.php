@@ -11,6 +11,7 @@ if (!isset($_SESSION['favorites'])) {
 
 // retrieves existing favourites
 $fav = $_SESSION['favorites'];
+print_r($fav);
 
 try
 {
@@ -24,8 +25,9 @@ try
         $fav
     ));
     $data = $result->fetchAll(PDO::FETCH_ASSOC);
+  
     foreach($data as $row) {
-        echo $row['title'];
+        echo "hello";
     }
 }
 catch(PDOException $e)
@@ -34,10 +36,11 @@ catch(PDOException $e)
 }
 
 // outputs the lists of the logged-in user's favourited paintings
+
 echo "<ul>";
 foreach ($fav as $f) {
     echo "<li>";
-    echo "<a href='single-painting.php?id=" . $f . "'><img src=''/><p>" . . "</p></a>";
+    echo "<a href='single-painting.php?id=" . $f . "'><img src=''/><p></p></a>";
     echo "</li>";
 }
 echo "</ul>";
