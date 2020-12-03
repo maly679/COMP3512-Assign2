@@ -21,7 +21,7 @@ try {
         DBUSER,
         DBPASS
     ));
-    $sql = "select title, imagefilename from paintings where paintingid =" . $fav;
+    $sql = "select title, imagefilename from paintings where paintingid = ?";
     $result = DatabaseHelper::runQuery($conn, $sql, array($fav));
     $data = $result->fetchAll(PDO::FETCH_ASSOC);
 
