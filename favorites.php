@@ -31,11 +31,11 @@ try {
     $data = $result->fetchAll(PDO::FETCH_ASSOC);
 
     foreach ($data as $row) {
-        echo $row['title'];
-        echo "<ul>";
+        echo count($data);
+        //echo "<ul>";
         //outputList($row);
         echo "hello";
-        echo "</ul>";
+        //echo "</ul>";
     }
 } catch (PDOException $e) {
     die($e->getMessage());
