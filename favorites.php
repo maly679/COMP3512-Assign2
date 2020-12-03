@@ -42,7 +42,7 @@ catch(PDOException $e)
 echo "<ul>";
 foreach ($fav as $f) {
     echo "<li>";
-    echo "<a href='single-painting.php?id=" . $f . "'><img src=''/><p></p></a>";
+    echo "<a href='single-painting.php?id=" . $f . "'><img src=''/><p>" . $f . "</p></a>";
     echo "</li>";
 }
 echo "</ul>";
