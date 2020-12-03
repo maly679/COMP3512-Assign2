@@ -26,7 +26,7 @@ if (isset($_GET['id'])) {
     echo "<ul>";
     foreach ($fav as $f) {
         echo "<li>";
-        echo "<a href='single-painting.php?id=" . $f . "'>" . $fav . "</a>";
+        echo "<a href='single-painting.php?id=" . $f . "'>" . $fav['Title'] . "</a>";
         echo "</li>";
     }
     echo "</ul>";
