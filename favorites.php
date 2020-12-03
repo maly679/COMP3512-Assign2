@@ -21,13 +21,12 @@ if (isset($_GET['id'])) {
     $_SESSION['favorites'] = $fav;
     header('Location: single-painting.php?id=' . $id);
 } else {
-    $singlePLink = "single-painting.php?id=" . $id;
 
     // outputs the lists of the logged-in user's favourited paintings
     echo "<ul>";
     foreach ($fav as $f) {
         echo "<li>";
-        echo "<a href='single-painting.php?id=$f'>" . $f['Title'] . "</a>";
+        echo "<a href='single-painting.php?id=" . $f . "'><img id='image' src=''/><p id='title'></p></a>";
         echo "</li>";
     }
     echo "</ul>";
