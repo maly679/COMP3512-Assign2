@@ -15,6 +15,7 @@ if (!isset($_SESSION['favorites'])) {
 $fav = $_SESSION['favorites'];
 //print_r($_SESSION['favorites']);
 
+
 try {
     $conn = DatabaseHelper::createConnection(array(
         DBCONNSTRING,
@@ -31,7 +32,7 @@ try {
         //echo $row;
         echo "<ul>";
         //outputList($row);
-        echo $row['title'];
+        echo "hello";
         echo "</ul>";
     }
 } catch (PDOException $e) {
