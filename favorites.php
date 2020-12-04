@@ -17,6 +17,7 @@ if (!isset($_SESSION['favorites'])) {
 //print_r($_SESSION['favorites']);
 //print_r($fav);
 if (isset($_GET['rmvP'])) {
+    echo "yes";
     foreach ($_SESSION['favorites'] as $key => $rmv) {
         if ($rmv = $_GET['rmvP']) {
             echo "yes";
@@ -48,7 +49,9 @@ try {
                 // echo $row['title'];
                 // echo $row['imagefilename'];
 ?><form action="favorites.php?rmvP=5" method="get">
-                    <?= outputList($row); ?>
+                    <?php echo "<li>";
+                    echo "<a href='single-painting.php?id=" . $row['PaintingID'] . "'><img src='images/paintings/square-medium/" . $row['ImageFileName'] . ".jpg'/><p>" . $row['Title'] . "</p></a>";
+                    echo "</li>"; ?>
                     <button type="submit">Delete Painting</button>
                 </form>
 <?php    //outputList($row);
@@ -71,7 +74,4 @@ try {
 // outputs the lists of the logged-in user's favourited paintings
 function outputList($row)
 {
-    echo "<li>";
-    echo "<a href='single-painting.php?id=" . $row['PaintingID'] . "'><img src='images/paintings/square-medium/" . $row['ImageFileName'] . ".jpg'/><p>" . $row['Title'] . "</p></a>";
-    echo "</li>";
 }
