@@ -19,7 +19,7 @@ if (!isset($_SESSION['favorites'])) {
 if (isset($_GET['delete'])) {
     echo "yes";
     foreach ($_SESSION['favorites'] as $key => $rmv) {
-        if ($rmv = $_GET['rmvP']) {
+        if ($rmv = $_GET['delete']) {
             echo "yes";
             unset($_SESSION['favorites'][$key]);
         }
