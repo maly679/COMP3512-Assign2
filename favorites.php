@@ -19,6 +19,7 @@ if (!isset($_SESSION['favorites'])) {
 if (isset($_GET['rmvP'])) {
     foreach ($_SESSION['favorites'] as $key => $rmv) {
         if ($rmv = $_GET['rmvP']) {
+            echo "yes";
             unset($_SESSION['favorites'][$key]);
         }
     }
@@ -32,7 +33,7 @@ try {
     if (isset($_SESSION['favorites'])) {
         foreach ($_SESSION['favorites'] as $key => $f) {
             //tryQuery($f, $conn);
-            echo $f;
+            //echo $f;
             $sql = "select PaintingID, Title, ImageFileName from paintings where PaintingID = ?";
             $result = DatabaseHelper::runQuery(
                 $conn,
