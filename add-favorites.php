@@ -12,13 +12,25 @@ if (!isset($_SESSION['favorites'])) {
 // retrieves existing favourites
 $fav = $_SESSION['favorites'];
 
-//check if passed a painting id
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-    // adds the passed painting id to the array
-    $fav[] = $id;
-    // reserve modified array back to the session state
+if (isset($_GET["id"])) {
+    //retrieve and add painting to favorites
+    $painting = getPainting($_GET["id"]);
+    $fav[] = $painting;
+    
+    //update session favorites 
     $_SESSION['favorites'] = $fav;
     header('Location: favorites.php');
+}
+
+function getPainting($id) {
+    try {
+        $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
+        $paintingGateway = new PaintingDB($conn);
+        $response = $paintingGateway->getForID($_GET["id"]);
+        return $response[0];
+    }
+    catch (Exception $e) {
+        die($e->getMessage());
+    }
 }
 ?>
