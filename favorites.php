@@ -23,7 +23,7 @@ try {
         DBPASS
     ));
     if (isset($_SESSION['favorites'])) {
-        foreach ($_SESSION['favorites'] as $f) {
+        foreach ($_SESSION['favorites'] as $key => $f) {
             tryQuery($f, $conn);
         }
     }
