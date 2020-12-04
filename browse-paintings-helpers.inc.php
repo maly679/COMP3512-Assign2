@@ -141,7 +141,7 @@ function bindValues($connection, $sql, $parameters = array())
 //$_SERVER["QUERY_STRING"]
 // . $_SESSION['sort'] = "artist" . '
 
-function outputPaintings($paintings)
+function outputPaintings($paintings, $loggedin)
 {
     echo '<table>';
     echo '<tr>';
@@ -153,7 +153,7 @@ function outputPaintings($paintings)
     echo '<th></th>';
     echo '</tr>';
     foreach ($paintings as $row) {
-        outputPainting($row);
+        outputPainting($row, $loggedin);
     }
     echo '</table';
 }
@@ -186,14 +186,18 @@ function addSort($addString)
 
 
 
-function outputPainting($row)
+function outputPainting($row, $loggedin)
 {
     echo '<tr>';
-    echo '<td><img src="images/paintings/square-medium/' . $row['ImageFileName'] . '.jpg"></td>';
+    echo '<td><img class="painting_image" src="images/paintings/square-medium/' . $row['ImageFileName'] . '.jpg" height="75" width="75"></td>';
     echo '<td>' . $row['FirstName'] . " " . $row['LastName'] . '</td>';
     echo '<td><a href=single-painting.php?id=' . $row['PaintingID'] . '>' . $row['Title'] . '</a></td>';
     echo '<td>' . $row['YearOfWork'] .  '</td>';
-    echo '<td><a class="style_link" href=add-favorites.php?id=' . $row['PaintingID'] . '>Add Favorites</a></td>'; // Needs to link to other part + add Fav Data
+    // if [logged in] else dont print out favorite
+    // if [session exist] else dont 
+    // foreach (SESSION['favorites'] as $favorite)
+    // add if (SESSION['favorites']=>$id row[PaintingID]) = 
+    echo '<td><a class="style_link" href=add-favorites.php?id=' . $row['PaintingID'] . '>Favorite</a></td>'; // Needs to link to other part + add Fav Data
     echo '<td><a class="style_link" href=single-painting.php?id=' . $row['PaintingID'] . '>View</a></td>'; // Needs to link to other part
     echo '</tr>';
 }
@@ -261,32 +265,33 @@ function buildQuery($conn)
                 $newsql .= $addArray[$i];
             }
         }
-
-
-        // Add the order by statment
-        if (isset($_GET['sort'])) { // this is getting 
-            if ($_GET['sort'] == "byTitle") {
-                $newsql .= " ORDER BY Title";
-            } elseif ($_GET['sort'] == "byArtist") {
-                $newsql .=  " ORDER BY LastName";
-            } elseif ($_GET['sort'] == "byYear") {
-                $newsql .=  " ORDER BY YearOfWork";
-            }
-        } else {
-            $newsql .= " ORDER BY YearOfWork";
-        }
-
-        //PRINT OUT PARAMS FOR TROUBLESHOOTING
-        // foreach ($paramArray as $param) {
-        //     echo " Param " . $param . "<br/>";
-        // }
-        // echo $newsql . "<br/>";
-
-
-        //TEST PARAMETERS
-        // $testSql = "SELECT Title , PaintingID FROM paintings WHERE PaintingID = :test";
-        // $testParam = ['test' => "1"];
     }
+
+
+    // Add the order by statment
+    if (isset($_GET['sort'])) { // this is getting 
+        if ($_GET['sort'] == "byTitle") {
+            $newsql .= " ORDER BY Title";
+        } elseif ($_GET['sort'] == "byArtist") {
+            $newsql .=  " ORDER BY LastName";
+        } elseif ($_GET['sort'] == "byYear") {
+            $newsql .=  " ORDER BY YearOfWork";
+        }
+    } else {
+        $newsql .= " ORDER BY YearOfWork";
+    }
+
+    //PRINT OUT PARAMS FOR TROUBLESHOOTING
+    // foreach ($paramArray as $param) {
+    //     echo " Param " . $param . "<br/>";
+    // }
+    // echo $newsql . "<br/>";
+
+
+    //TEST PARAMETERS
+    // $testSql = "SELECT Title , PaintingID FROM paintings WHERE PaintingID = :test";
+    // $testParam = ['test' => "1"];
+
 
     //$statement = bindValues($conn, $testSql, $testParam);
     $statement = DatabaseHelper::runQuery($conn, $newsql, $paramArray);

@@ -9,13 +9,6 @@ ini_set('display_errors', 1);
 ini_set('diplay_startup_errors', 1);
 
 $msg = "";
-// 1. Connect to the database.
-// 2. Handle connection errors.
-// 3. Execute the SQL query.
-// 4. Process the results.
-// 5. Free resources and close connection.
-
-// SHOULD USE ONE CONNECTION TO GET ALL DATA ONCE THEN CLOSE??? When should i close connection?
 
 try {
     $conn = DatabaseHelper::createConnection(array(
@@ -41,7 +34,6 @@ try {
         DBCONNSTRING,
         DBUSER, DBPASS
     ));
-    session_start();
 
 
     $paintings = buildQuery($conn);
@@ -76,9 +68,11 @@ try {
 <head>
     <title>browse-paintings.php</title>
     <meta charset=utf-8>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'> -->
     <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" rel="stylesheet"> -->
+
     <link rel="stylesheet" href="css/browse-paintings.css" />
     <script src="js/browse-paintings.js"></script>
 </head>
@@ -144,28 +138,22 @@ try {
                 // }
 
                 if (count($paintings) > 0) {
-                    outputPaintings($paintings);
+                    if ($_SESSION['status'] = "loggedIn") {
+                        $loggedin = true;
+                    } else {
+                        $loggedin = false;
+                    }
+                    outputPaintings($paintings, $loggedin);
                 } else {
                     $msg = "No Paintings Found";
                 }
                 //}
 
-
                 ?>
-
-
-
-
                 <div><?= $msg  ?></div>
             </section>
         </div>
-
     </main>
-    <!-- <footer class="ui black inverted segment">
-        <div class="ui container">&copy; 2021 Fundamentals of Web Development</div>
-    </footer> -->
-
-    <!-- <script src="js/browse-paintings.js"></script> -->
 </body>
 
 </html>
