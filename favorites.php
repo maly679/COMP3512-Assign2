@@ -16,10 +16,7 @@ if (!isset($_SESSION['favorites'])) {
 //$fav = $_SESSION['favorites'];
 //print_r($_SESSION['favorites']);
 //print_r($fav);
-if (isset ($_GET['submit'])) {
-    echo "yes";
-}
-if (isset($_GET['rmvP'])) {
+if (isset($_GET['delete'])) {
     echo "yes";
     foreach ($_SESSION['favorites'] as $key => $rmv) {
         if ($rmv = $_GET['rmvP']) {
@@ -51,11 +48,11 @@ try {
             foreach ($data as $row) {
                 // echo $row['title'];
                 // echo $row['imagefilename'];
-?><form action="favorites.php?rmvP=" method="get">
+?><form action="favorites.php" method="get">
                     <?php echo "<li>";
                     echo "<a href='single-painting.php?id=" . $row['PaintingID'] . "'><img src='images/paintings/square-medium/" . $row['ImageFileName'] . ".jpg'/><p>" . $row['Title'] . "</p></a>";
                     echo "</li>"; ?>
-                    <button name="submit" type="submit" value="<?=$row['PaintingID']?>">Delete</button>
+                    <button name="delete" type="submit" value="<?= $row['PaintingID'] ?>">Delete</button>
                 </form>
 <?php    //outputList($row);
 
