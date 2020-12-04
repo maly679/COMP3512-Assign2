@@ -5,14 +5,13 @@ session_start();
 require_once 'config.inc.php';
 require_once 'db-classes.inc.php';
 
-
 //Function is invoked below in markup; this occurs only if the user entered an incorrect username and password combination.
 function checkIfError()
 {
     if (isset($_GET['redirect']))
     {      
 
-        if ($_GET['redirect'] == "'error'")
+        if ($_GET['redirect'] == 'error')
         {
 
             echo "<div class = 'error'> Incorrect username and password combination entered. Please try again. </div>";
@@ -32,8 +31,7 @@ if (isset($_GET['email']) && isset($_GET['pass']))
             DBPASS
         ));
         $customerGate = new CustomerLogon($conn);
-        $result = $customerGate->getByUserName($_GET['email']);
-        $data = $result->fetchAll(PDO::FETCH_ASSOC);
+        $data = $customerGate->getByUserName($_GET['email']);
         checkData($_GET['pass'], $data);
     }
     catch(PDOException $e)
