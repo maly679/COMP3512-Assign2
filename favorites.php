@@ -5,15 +5,6 @@ require_once 'db-classes.inc.php';
 require_once 'favorites-helpers.php';
 
 //NOTE: REMOVE DUPES
-
-/*
-// checks if there is an existing array of favourites
-if (!isset($_SESSION['favorites'])) {
-    // initializes the array if the check is true
-    $_SESSION['favorites'] = [];
-}
-*/
-
 if (isset($_GET['delete'])) {
     foreach ($_SESSION['favorites'] as $key => $rmv) {
         if ($rmv == $_GET['delete']) {
@@ -24,13 +15,7 @@ if (isset($_GET['delete'])) {
 if (isset($_GET['deleteAll'])) {
     unset($_SESSION['favorites']);
 }
-/*
-?>
-<form action="favorites.php" method="get">
-    <button name="deleteAll" type="submit" value="all">Delete All</button>
-</form>
-<?php
-*/
+
 outputDeleteAll();
 try {
     $conn = DatabaseHelper::createConnection(array(
@@ -43,11 +28,33 @@ try {
             $sql = "select PaintingID, Title, ImageFileName from paintings where PaintingID = ?";
             $result = DatabaseHelper::runQuery(
                 $conn,
-                $sql, 
+                $sql,
                 $f
             );
             $data = $result->fetchAll(PDO::FETCH_ASSOC);
             outputFavorites($data);
+        }
+    }
+} catch (PDOException $e) {
+    die($e->getMessage());
+}
+
+/*
+// checks if there is an existing array of favourites
+if (!isset($_SESSION['favorites'])) {
+    // initializes the array if the check is true
+    $_SESSION['favorites'] = [];
+}
+*/
+
+/*
+?>
+<form action="favorites.php" method="get">
+    <button name="deleteAll" type="submit" value="all">Delete All</button>
+</form>
+<?php
+*/
+
 /*             echo "<ul>";
             foreach ($data as $row) {
 ?><form action="favorites.php" method="get">
@@ -59,8 +66,3 @@ try {
 <?php  
             }
             echo "</ul>"; */
-        }
-    }
-} catch (PDOException $e) {
-    die($e->getMessage());
-}
