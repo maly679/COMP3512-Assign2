@@ -26,25 +26,26 @@ try {
         foreach ($_SESSION['favorites'] as $key => $f) {
             //tryQuery($f, $conn);
             echo $f;
-        }
-    }
-    function tryQuery($f, $conn)
-    {
-        $sql = "select title, imagefilename from paintings where PaintingID = ?";
-        $result = DatabaseHelper::runQuery(
-            $conn,
-            $sql, //array($_SESSION['favorites']
-            $f
-            //)
-        );
-        $data = $result->fetchAll(PDO::FETCH_ASSOC);
+            $sql = "select title, imagefilename from paintings where PaintingID = ?";
+            $result = DatabaseHelper::runQuery(
+                $conn,
+                $sql, //array($_SESSION['favorites']
+                $f
+                //)
+            );
+            $data = $result->fetchAll(PDO::FETCH_ASSOC);
 
-        foreach ($data as $row) {
-            echo $row['title'];
-            echo $row['imagefilename'];
-            //echo "<ul>";
-            //outputList($row);
-            echo "hello";
+            foreach ($data as $row) {
+                echo $row['title'];
+                echo $row['imagefilename'];
+                //echo "<ul>";
+                //outputList($row);
+                echo "hello";
+            }
+        }
+        function tryQuery($f, $conn)
+        {
+
             //echo "</ul>";
         }
     }
