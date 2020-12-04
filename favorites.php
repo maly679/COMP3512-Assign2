@@ -22,7 +22,7 @@ if (isset($_GET['delete'])) {
     echo "yes";
     foreach ($_SESSION['favorites'] as $key => $rmv) {
         echo $rmv;
-        if ($rmv = $_GET['delete']) {
+        if ($rmv == $_GET['delete']) {
             echo $rmv;
             echo "yes";
             echo $_GET['delete'];
