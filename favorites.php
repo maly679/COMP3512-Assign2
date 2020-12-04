@@ -24,7 +24,8 @@ try {
     ));
     if (isset($_SESSION['favorites'])) {
         foreach ($_SESSION['favorites'] as $key => $f) {
-            tryQuery($f, $conn);
+            //tryQuery($f, $conn);
+            echo $f;
         }
     }
     function tryQuery($f, $conn)
