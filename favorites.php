@@ -47,7 +47,7 @@ try {
             foreach ($data as $row) {
                 // echo $row['title'];
                 // echo $row['imagefilename'];
-?><form action="favorites.php?rmvP='<?= $row['PaintingID'] ?>''" method="get">
+?><form action="favorites.php?rmvP='<?= $row['PaintingID'] ?>'" method="get">
                     <?= outputList($row); ?>
                     <button type="submit">Delete Painting</button>
                     </div>
