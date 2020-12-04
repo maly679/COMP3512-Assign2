@@ -25,6 +25,11 @@
                 <li><a href='https://github.com/mari-rmrz'>Mariangel Ramirez</a></li>
                 <li><a href='https://github.com/Jwalker457'>Jordan Walker</a></li>
             </ul>
+            <span class="sub-heading">External References: </span>
+            <ul>
+                <li><a href='https://www.javatpoint.com/html-login-form'>Login Form</a></li>
+                <li><a href='https://developer.mozilla.org/en-US/docs/Web/API/URL/searchParams'>Search Parameters</a></li>
+            </ul>
         </div>
     </div>
 </body>
