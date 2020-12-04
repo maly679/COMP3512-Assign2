@@ -16,6 +16,13 @@ if (!isset($_SESSION['favorites'])) {
 //$fav = $_SESSION['favorites'];
 //print_r($_SESSION['favorites']);
 //print_r($fav);
+if (isset($_GET['rmvP'])) {
+    foreach($_SESSION['favorites'] as $key => $rmv) {
+        if ($rmv == $_GET['rmvP']) {
+            unset($_SESSION['favorites'][$key]);
+        }
+    }
+}
 try {
     $conn = DatabaseHelper::createConnection(array(
         DBCONNSTRING,
@@ -46,7 +53,7 @@ try {
         
                 </div>   
             </form>
-            <?php    outputList($row);
+            <?php    //outputList($row);
 
                 // echo "hello";
             }
