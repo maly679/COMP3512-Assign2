@@ -43,31 +43,3 @@ try {
 } catch (PDOException $e) {
     die($e->getMessage());
 }
-
-/*
-// checks if there is an existing array of favourites
-if (!isset($_SESSION['favorites'])) {
-    // initializes the array if the check is true
-    $_SESSION['favorites'] = [];
-}
-*/
-
-/*
-?>
-<form action="favorites.php" method="get">
-    <button name="deleteAll" type="submit" value="all">Delete All</button>
-</form>
-<?php
-*/
-
-/*             echo "<ul>";
-            foreach ($data as $row) {
-?><form action="favorites.php" method="get">
-                    <?php echo "<li>";
-                    echo "<a href='single-painting.php?id=" . $row['PaintingID'] . "'><img src='images/paintings/square-medium/" . $row['ImageFileName'] . ".jpg'/><p>" . $row['Title'] . "</p></a>";
-                    echo "</li>"; ?>
-                    <button name="delete" type="submit" value="<?= $row['PaintingID'] ?>">Delete</button>
-                </form>
-<?php  
-            }
-            echo "</ul>"; */
