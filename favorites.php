@@ -55,7 +55,7 @@ try {
                     <?php echo "<li>";
                     echo "<a href='single-painting.php?id=" . $row['PaintingID'] . "'><img src='images/paintings/square-medium/" . $row['ImageFileName'] . ".jpg'/><p>" . $row['Title'] . "</p></a>";
                     echo "</li>"; ?>
-                    <input name="submit" type="submit" value="<?=$row['PaintingID']?>">
+                    <button name="submit" type="submit" value="<?=$row['PaintingID']?>">Delete</button>
                 </form>
 <?php    //outputList($row);
 
