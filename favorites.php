@@ -19,17 +19,28 @@ if (!isset($_SESSION['favorites'])) {
 //print_r($_SESSION['favorites']);
 //print_r($fav);
 if (isset($_GET['delete'])) {
-    echo "yes";
-    foreach ($_SESSION['favorites'] as $key => $rmv) {
-        echo $rmv;
-        if ($rmv == $_GET['delete']) {
-            echo $rmv;
-            echo "yes";
-            echo $_GET['delete'];
-            unset($_SESSION['favorites'][$key]);
+    //echo "yes";
+    if ($_GET['delete'] != 'all') {
+
+
+        foreach ($_SESSION['favorites'] as $key => $rmv) {
+            //echo $rmv;
+            if ($rmv == $_GET['delete']) {
+                //echo $rmv;
+                //echo "yes";
+                //echo $_GET['delete'];
+                unset($_SESSION['favorites'][$key]);
+            }
         }
     }
+} else {
+    unset($_SESSION['favorites']);
 }
+?>
+<form action="favorites.php" method="get">
+    <button name="delete" type="submit" value="all">Delete All</button>
+</form>
+<?php
 try {
     $conn = DatabaseHelper::createConnection(array(
         DBCONNSTRING,
