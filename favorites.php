@@ -2,6 +2,7 @@
 session_start();
 require_once 'config.inc.php';
 require_once 'db-classes.inc.php';
+require_once 'favorites-helpers.php';
 
 //NOTE: REMOVE DUPES
 
@@ -13,21 +14,9 @@ if (!isset($_SESSION['favorites'])) {
 }
 */
 
-
-//foreach ($_SESSION['faorites'] as $s) {}
-//$fav = $_SESSION['favorites'];
-//print_r($_SESSION['favorites']);
-//print_r($fav);
 if (isset($_GET['delete'])) {
-    //echo "yes";
-
-
     foreach ($_SESSION['favorites'] as $key => $rmv) {
-        //echo $rmv;
         if ($rmv == $_GET['delete']) {
-            //echo $rmv;
-            //echo "yes";
-            //echo $_GET['delete'];
             unset($_SESSION['favorites'][$key]);
         }
     }
@@ -35,11 +24,14 @@ if (isset($_GET['delete'])) {
 if (isset($_GET['deleteAll'])) {
     unset($_SESSION['favorites']);
 }
+/*
 ?>
 <form action="favorites.php" method="get">
     <button name="deleteAll" type="submit" value="all">Delete All</button>
 </form>
 <?php
+*/
+outputDeleteAll();
 try {
     $conn = DatabaseHelper::createConnection(array(
         DBCONNSTRING,
@@ -48,45 +40,27 @@ try {
     ));
     if (isset($_SESSION['favorites'])) {
         foreach ($_SESSION['favorites'] as $key => $f) {
-            //tryQuery($f, $conn);
-            //echo $f;
             $sql = "select PaintingID, Title, ImageFileName from paintings where PaintingID = ?";
             $result = DatabaseHelper::runQuery(
                 $conn,
-                $sql, //array($_SESSION['favorites']
+                $sql, 
                 $f
-                //)
             );
             $data = $result->fetchAll(PDO::FETCH_ASSOC);
-
-            echo "<ul>";
+            outputFavorites($data);
+/*             echo "<ul>";
             foreach ($data as $row) {
-                // echo $row['title'];
-                // echo $row['imagefilename'];
 ?><form action="favorites.php" method="get">
                     <?php echo "<li>";
                     echo "<a href='single-painting.php?id=" . $row['PaintingID'] . "'><img src='images/paintings/square-medium/" . $row['ImageFileName'] . ".jpg'/><p>" . $row['Title'] . "</p></a>";
                     echo "</li>"; ?>
                     <button name="delete" type="submit" value="<?= $row['PaintingID'] ?>">Delete</button>
                 </form>
-<?php    //outputList($row);
-
-                // echo "hello";
+<?php  
             }
-            echo "</ul>";
+            echo "</ul>"; */
         }
-
-        // function tryQuery($f, $conn)
-        // {
-
-        //     //echo "</ul>";
-        // }
     }
 } catch (PDOException $e) {
     die($e->getMessage());
-}
-
-// outputs the lists of the logged-in user's favourited paintings
-function outputList($row)
-{
 }
