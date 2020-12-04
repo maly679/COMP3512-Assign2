@@ -22,12 +22,14 @@ try {
         DBUSER,
         DBPASS
     ));
-    foreach ($_SESSION['favorites'] as $f) {
-        tryQuery($f, $conn);
+    if (isset($_SESSION['favorites'])) {
+        foreach ($_SESSION['favorites'] as $f) {
+            tryQuery($f, $conn);
+        }
     }
     function tryQuery($f, $conn)
     {
-        $sql = "select title, imagefilename from paintings where paintingid = ?";
+        $sql = "select title, imagefilename from paintings where PaintingID = ?";
         $result = DatabaseHelper::runQuery(
             $conn,
             $sql, //array($_SESSION['favorites']
