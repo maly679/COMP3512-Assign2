@@ -3,6 +3,8 @@ session_start();
 require_once 'config.inc.php';
 require_once 'db-classes.inc.php';
 
+//NOTE: REMOVE DUPES
+
 /*
 // checks if there is an existing array of favourites
 if (!isset($_SESSION['favorites'])) {
@@ -19,7 +21,9 @@ if (!isset($_SESSION['favorites'])) {
 if (isset($_GET['delete'])) {
     echo "yes";
     foreach ($_SESSION['favorites'] as $key => $rmv) {
+        echo $rmv;
         if ($rmv = $_GET['delete']) {
+            echo $rmv;
             echo "yes";
             echo $_GET['delete'];
             unset($_SESSION['favorites'][$key]);
