@@ -34,11 +34,11 @@ try {
                 //)
             );
             $data = $result->fetchAll(PDO::FETCH_ASSOC);
-
+            echo "<ul>";
             foreach ($data as $row) {
                 // echo $row['title'];
                 // echo $row['imagefilename'];
-                echo "<ul>";
+
                 outputList($row);
 
                 // echo "hello";
