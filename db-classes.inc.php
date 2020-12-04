@@ -53,7 +53,6 @@ class CustomerLogon {
         $sql = self::$baseSQL;
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, $userName);
         return $statement->fetchAll(PDO::FETCH_ASSOC);
-
     }
 }
 
