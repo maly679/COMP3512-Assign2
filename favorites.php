@@ -34,12 +34,19 @@ try {
                 //)
             );
             $data = $result->fetchAll(PDO::FETCH_ASSOC);
+
             echo "<ul>";
             foreach ($data as $row) {
                 // echo $row['title'];
                 // echo $row['imagefilename'];
-
-                outputList($row);
+              ?><form action="favorites.php?rmvP=<?=$removePainting?>" method="get">  
+                <?=outputList($row); ?>
+                    <button type="submit">Delete Painting</button>
+                </div>
+        
+                </div>   
+            </form>
+            <?php    outputList($row);
 
                 // echo "hello";
             }
