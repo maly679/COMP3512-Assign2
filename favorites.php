@@ -12,7 +12,8 @@ if (!isset($_SESSION['favorites'])) {
 */
 
 
-$fav = $_SESSION['favorites'];
+//foreach ($_SESSION['faorites'] as $s) {}
+//$fav = $_SESSION['favorites'];
 //print_r($_SESSION['favorites']);
 //print_r($fav);
 try {
@@ -21,22 +22,28 @@ try {
         DBUSER,
         DBPASS
     ));
-    $sql = "select title, imagefilename from paintings where paintingid = ?";
-    $result = DatabaseHelper::runQuery(
-        $conn,
-        $sql, //array($_SESSION['favorites']
-        $fav
-        //)
-    );
-    $data = $result->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($_SESSION['favorites'] as $f) {
+        tryQuery($f, $conn);
+    }
+    function tryQuery($f, $conn)
+    {
+        $sql = "select title, imagefilename from paintings where paintingid = ?";
+        $result = DatabaseHelper::runQuery(
+            $conn,
+            $sql, //array($_SESSION['favorites']
+            $f
+            //)
+        );
+        $data = $result->fetchAll(PDO::FETCH_ASSOC);
 
-    foreach ($data as $row) {
-        echo $row['title'];
-        echo $row['imagefilename'];
-        //echo "<ul>";
-        //outputList($row);
-        echo "hello";
-        //echo "</ul>";
+        foreach ($data as $row) {
+            echo $row['title'];
+            echo $row['imagefilename'];
+            //echo "<ul>";
+            //outputList($row);
+            echo "hello";
+            //echo "</ul>";
+        }
     }
 } catch (PDOException $e) {
     die($e->getMessage());
@@ -46,6 +53,6 @@ try {
 function outputList($row)
 {
     echo "<li>";
-    echo "<a href='single-painting.php?id=" . $row . "'><img src=''/><p>" . $row . "</p></a>";
+    echo "<a href='single-painting.php?id=" . $row . "'><img src=''/><p>" . $row['title'] . "</p></a>";
     echo "</li>";
 }
