@@ -36,58 +36,58 @@ if (isset($_GET['delete'])) {
 } else {
     unset($_SESSION['favorites']);
 }
-?>
-<form action="favorites.php" method="get">
-    <button name="delete" type="submit" value="all">Delete All</button>
-</form>
-<?php
+
+
+
 try {
     $conn = DatabaseHelper::createConnection(array(
         DBCONNSTRING,
         DBUSER,
         DBPASS
     ));
-    if (isset($_SESSION['favorites'])) {
-        foreach ($_SESSION['favorites'] as $key => $f) {
-            //tryQuery($f, $conn);
-            //echo $f;
-            $sql = "select PaintingID, Title, ImageFileName from paintings where PaintingID = ?";
-            $result = DatabaseHelper::runQuery(
-                $conn,
-                $sql, //array($_SESSION['favorites']
-                $f
-                //)
-            );
-            $data = $result->fetchAll(PDO::FETCH_ASSOC);
+    if (isset($_SESSION['favorites'])) { ?><form action="favorites.php" method="get">
+            <button name="delete" type="submit" value="all">Delete All</button>
+        </form><?php
+                foreach ($_SESSION['favorites'] as $key => $f) {
+                    //tryQuery($f, $conn);
+                    //echo $f;
+                    $sql = "select PaintingID, Title, ImageFileName from paintings where PaintingID = ?";
+                    $result = DatabaseHelper::runQuery(
+                        $conn,
+                        $sql, //array($_SESSION['favorites']
+                        $f
+                        //)
+                    );
+                    $data = $result->fetchAll(PDO::FETCH_ASSOC);
 
-            echo "<ul>";
-            foreach ($data as $row) {
-                // echo $row['title'];
-                // echo $row['imagefilename'];
-?><form action="favorites.php" method="get">
+                    echo "<ul>";
+                    foreach ($data as $row) {
+                        // echo $row['title'];
+                        // echo $row['imagefilename'];
+                ?><form action="favorites.php" method="get">
                     <?php echo "<li>";
-                    echo "<a href='single-painting.php?id=" . $row['PaintingID'] . "'><img src='images/paintings/square-medium/" . $row['ImageFileName'] . ".jpg'/><p>" . $row['Title'] . "</p></a>";
-                    echo "</li>"; ?>
+                        echo "<a href='single-painting.php?id=" . $row['PaintingID'] . "'><img src='images/paintings/square-medium/" . $row['ImageFileName'] . ".jpg'/><p>" . $row['Title'] . "</p></a>";
+                        echo "</li>"; ?>
                     <button name="delete" type="submit" value="<?= $row['PaintingID'] ?>">Delete</button>
                 </form>
 <?php    //outputList($row);
 
-                // echo "hello";
+                        // echo "hello";
+                    }
+                    echo "</ul>";
+                }
+
+                // function tryQuery($f, $conn)
+                // {
+
+                //     //echo "</ul>";
+                // }
             }
-            echo "</ul>";
+        } catch (PDOException $e) {
+            die($e->getMessage());
         }
 
-        // function tryQuery($f, $conn)
-        // {
-
-        //     //echo "</ul>";
-        // }
-    }
-} catch (PDOException $e) {
-    die($e->getMessage());
-}
-
-// outputs the lists of the logged-in user's favourited paintings
-function outputList($row)
-{
-}
+        // outputs the lists of the logged-in user's favourited paintings
+        function outputList($row)
+        {
+        }
