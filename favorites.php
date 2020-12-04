@@ -17,7 +17,7 @@ if (!isset($_SESSION['favorites'])) {
 //print_r($_SESSION['favorites']);
 //print_r($fav);
 if (isset($_GET['rmvP'])) {
-    foreach($_SESSION['favorites'] as $key => $rmv) {
+    foreach ($_SESSION['favorites'] as $key => $rmv) {
         if ($rmv == $_GET['rmvP']) {
             unset($_SESSION['favorites'][$key]);
         }
@@ -46,19 +46,20 @@ try {
             foreach ($data as $row) {
                 // echo $row['title'];
                 // echo $row['imagefilename'];
-              ?><form action="favorites.php?rmvP=<?=$row['PaintingID']?>" method="get">  
-                <?=outputList($row); ?>
+?><form action="favorites.php?rmvP=<?= $row['PaintingID'] ?>" method="get">
+                    <?= outputList($row); ?>
                     <button type="submit">Delete Painting</button>
-                </div>
-        
-                </div>   
-            </form>
-            <?php    //outputList($row);
+                    </div>
+
+                    </div>
+                </form>
+<?php    //outputList($row);
 
                 // echo "hello";
             }
+            echo "</ul>";
         }
-        echo "</ul>";
+
         // function tryQuery($f, $conn)
         // {
 
