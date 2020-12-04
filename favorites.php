@@ -50,9 +50,6 @@ try {
 ?><form action="favorites.php?rmvP=5" method="get">
                     <?= outputList($row); ?>
                     <button type="submit">Delete Painting</button>
-                    </div>
-
-                    </div>
                 </form>
 <?php    //outputList($row);
 
