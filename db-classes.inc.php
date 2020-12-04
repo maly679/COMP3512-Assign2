@@ -40,6 +40,23 @@ class DatabaseHelper
     }
 }
 
+class CustomerLogon {
+
+    private static $baseSQL =  "SELECT UserName, CustomerID, Pass FROM customerlogon WHERE UserName = ?";
+
+    public function __construct($connection)
+    {
+        $this->pdo = $connection;
+    }
+    public function getByUserName($userName) {
+
+        $sql = self::$baseSQL;
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, $userName);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+}
+
 class ArtistDB
 {
     private static $baseSQL = "SELECT * FROM artists ORDER BY LastName";
