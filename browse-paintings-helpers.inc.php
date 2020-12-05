@@ -193,14 +193,36 @@ function outputPainting($row, $loggedin)
     echo '<td>' . $row['FirstName'] . " " . $row['LastName'] . '</td>';
     echo '<td><a href=single-painting.php?id=' . $row['PaintingID'] . '>' . $row['Title'] . '</a></td>';
     echo '<td>' . $row['YearOfWork'] .  '</td>';
-    // if [logged in] else dont print out favorite
-    // if [session exist] else dont 
-    // foreach (SESSION['favorites'] as $favorite)
-    // add if (SESSION['favorites']=>$id row[PaintingID]) = 
-    echo '<td><a class="style_link" href=add-favorites.php?id=' . $row['PaintingID'] . '>Favorite</a></td>'; // Needs to link to other part + add Fav Data
+    if ($loggedin) {
+
+        if (!findFavorite($row['PaintingID'])) {
+            echo '<td><a class="style_link" href=add-favorites.php?id=' . $row['PaintingID'] . '>Favorite</a></td>';
+        }
+
+        // foreach ($_SESSION['favorites'] as $painting) {
+        //     if ($painting['PaintingID'] == $row['PaintingID']) {
+        //         echo '<td><a class="style_link" href=add-favorites.php?id=' . $row['PaintingID'] . '>Favorite</a></td>'; // Needs to link to other part + add Fav Data
+        //     }
+        // }
+    }
+
+
+    //echo '<td><a class="style_link" href=add-favorites.php?id=' . $row['PaintingID'] . '>Favorite</a></td>'; // Needs to link to other part + add Fav Data
     echo '<td><a class="style_link" href=single-painting.php?id=' . $row['PaintingID'] . '>View</a></td>'; // Needs to link to other part
     echo '</tr>';
 }
+
+function findFavorite($id)
+{
+    $found = false;
+    foreach ($_SESSION['favorites'] as $painting) {
+        if ($painting['PaintingID'] == $id) {
+            $found = true;
+        }
+    }
+    return $found;
+}
+
 
 function buildQuery($conn)
 {

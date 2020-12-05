@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once 'config.inc.php';
 require_once 'browse-paintings-helpers.inc.php';
 require_once 'db-classes.inc.php';
@@ -34,6 +34,14 @@ try {
         DBCONNSTRING,
         DBUSER, DBPASS
     ));
+
+    if (!isset($_SESSION['favorites'])) {
+        $_SESSION['favorites'] = [];
+    }
+
+    //$_SESSION['favorites'] = [];
+
+    $_SESSION['status'] = true;
 
 
     $paintings = buildQuery($conn);
@@ -138,7 +146,8 @@ try {
                 // }
 
                 if (count($paintings) > 0) {
-                    if ($_SESSION['status'] = "loggedIn") {
+                    $loggedin = false;
+                    if (isset($_SESSION['status'])) {
                         $loggedin = true;
                     } else {
                         $loggedin = false;
