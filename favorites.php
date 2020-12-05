@@ -46,6 +46,6 @@ outputDeleteAll();
 
 if (isset($_SESSION['favorites'])) {
     foreach ($_SESSION['favorites'] as $key) {
-        outputFavorites($key);
+        outputFavorites($fav);
     }
 }
