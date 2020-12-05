@@ -4,7 +4,7 @@ require_once 'config.inc.php';
 require_once 'db-classes.inc.php';
 
 function getfavoritesButton() {
-    if (isset($_SESSION['id']) && isset($_SESSION['status'])) {
+    if (isset($_SESSION['ID']) && isset($_SESSION['status'])) {
         // checks if there is an existing array of favorites
         if (!isset($_SESSION['favorites'])) {
             // initializes the array if the check is true
