@@ -27,9 +27,7 @@ function getPainting($id) {
         $conn = DatabaseHelper::createConnection(array(DBCONNSTRING, DBUSER, DBPASS));
         $paintingGateway = new PaintingDB($conn);
         $response = $paintingGateway->getForID($_GET["id"]);
-        print_r($response);
         return $response[0];
-        print_r($response[0]);
     }
     catch (Exception $e) {
         die($e->getMessage());
