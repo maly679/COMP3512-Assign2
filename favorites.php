@@ -22,24 +22,30 @@ if (isset($_GET['deleteAll'])) {
 
 outputDeleteAll();
 
-try {
-    $conn = DatabaseHelper::createConnection(array(
-        DBCONNSTRING,
-        DBUSER,
-        DBPASS
-    ));
-    if (isset($_SESSION['favorites'])) {
-        foreach ($_SESSION['favorites'] as $key => $f) {
-            $sql = "select PaintingID, Title, ImageFileName from paintings where PaintingID = ?";
-            $result = DatabaseHelper::runQuery(
-                $conn,
-                $sql,
-                $f
-            );
-            $data = $result->fetchAll(PDO::FETCH_ASSOC);
-            outputFavorites($data);
-        }
+// try {
+//     $conn = DatabaseHelper::createConnection(array(
+//         DBCONNSTRING,
+//         DBUSER,
+//         DBPASS
+//     ));
+//     if (isset($_SESSION['favorites'])) {
+//         foreach ($_SESSION['favorites'] as $key => $f) {
+//             $sql = "select PaintingID, Title, ImageFileName from paintings where PaintingID = ?";
+//             $result = DatabaseHelper::runQuery(
+//                 $conn,
+//                 $sql,
+//                 $f
+//             );
+//             $data = $result->fetchAll(PDO::FETCH_ASSOC);
+//             outputFavorites($data);
+//         }
+//     }
+// } catch (PDOException $e) {
+//     die($e->getMessage());
+// }
+
+if (isset($_SESSION['favorites'])) {
+    foreach ($_SESSION['favorites'] as $key) {
+        outputFavorites($_SESSION['favorites'][$key]);
     }
-} catch (PDOException $e) {
-    die($e->getMessage());
 }
