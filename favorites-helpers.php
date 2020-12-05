@@ -25,6 +25,7 @@ function outputFavorites($data)
 // outputs the li 
 function outputList($row)
 {
+    echo "<li>";
     echo "<a href='single-painting.php?id=" . $row['PaintingID'] . "'><img src='images/paintings/square-medium/" . $row['ImageFileName'] . ".jpg'/><p>" . $row['Title'] . "</p></a>";
     echo "</li>";
 }
