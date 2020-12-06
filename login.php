@@ -22,6 +22,7 @@ function checkIfError()
 // checks email and password generated upon login attempt of user, and processes check with database to verify.
 if (isset($_GET['email']) && isset($_GET['pass']))
 {
+
     try
     {
         $conn = DatabaseHelper::createConnection(array(
@@ -32,16 +33,19 @@ if (isset($_GET['email']) && isset($_GET['pass']))
         $customerGate = new CustomerLogon($conn);
         $data = $customerGate->getByUserName($_GET['email']);
         checkData($_GET['pass'], $data);
+        $conn = null;
     }
     catch(PDOException $e)
     {
         die($e->getMessage());
     }
+
 }
 
 // Checks if the data is retrieved form database, and if the password matches that of the database's.
 function checkData($pass, $data)
 {
+
     if (isset($data) && count($data) > 0)
     {
         foreach ($data as $row)
@@ -57,6 +61,7 @@ function checkData($pass, $data)
 
                 //redirect to error page if incorrect user entry detected.
                 header("location:login.php?redirect=error");
+
             }
         }
     }
@@ -64,6 +69,7 @@ function checkData($pass, $data)
     {
         //redirect to error page if incorrect user entry detected.
         header("location:login.php?redirect=error");
+
     }
 }
 ?>

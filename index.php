@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['name'])) {
    header("Location: login.php");
-} else if (isset($_POST['search'])) {
+} else if (isset($_POST['title'])) {
    header("Location: browse-painting.php");
 }
 ?>
@@ -13,8 +13,8 @@ if (isset($_POST['name'])) {
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Galleries Login</title>
    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,800" rel="stylesheet" />
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    <link rel="stylesheet" href="css/index.css" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body class="container">
@@ -50,7 +50,7 @@ if (isset($_POST['name'])) {
 
    <div class="searchContainer">
       <form name="search" method="GET" action="browse-paintings.php?">
-         <input class="searchBar" type="text" placeholder="Search painting or gallery.." name="search">
+         <input class="searchBar" type="text" placeholder="Search painting or gallery.." name="title">
          <!-- Result of this should filter -->
       </form>
    </div>

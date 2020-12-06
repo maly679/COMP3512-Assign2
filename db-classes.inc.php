@@ -20,17 +20,24 @@ class DatabaseHelper
     public static function runQuery($connection, $sql, $parameters = array())
     {
         // Ensure parameters are in an array
-        if (!is_array($parameters)) {
-            $parameters = array($parameters);
+        if (!is_array($parameters))
+        {
+            $parameters = array(
+                $parameters
+            );
         }
 
         $statement = null;
-        if (count($parameters) > 0) {
+        if (count($parameters) > 0)
+        {
             // Use a prepared statement if parameters
             $statement = $connection->prepare($sql);
             $executedOk = $statement->execute($parameters);
+
             if (!$executedOk) throw new PDOException;
-        } else {
+        }
+        else
+        {
             // Execute a normal query
             $statement = $connection->query($sql);
             if (!$statement) throw new PDOException;
@@ -40,15 +47,17 @@ class DatabaseHelper
     }
 }
 
-class CustomerLogon {
+class CustomerLogon
+{
 
-    private static $baseSQL =  "SELECT UserName, CustomerID, Pass FROM customerlogon WHERE UserName = ?";
+    private static $baseSQL = "SELECT UserName, CustomerID, Pass FROM customerlogon WHERE UserName = ?";
 
     public function __construct($connection)
     {
         $this->pdo = $connection;
     }
-    public function getByUserName($userName) {
+    public function getByUserName($userName)
+    {
 
         $sql = self::$baseSQL;
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, $userName);
@@ -57,25 +66,23 @@ class CustomerLogon {
 
 }
 
+class Customer
+{
 
-
-
-class Customer {
-
-    private static $baseSQL =  "SELECT firstname, lastname, city, country FROM customers WHERE CustomerID = ?";
+    private static $baseSQL = "SELECT firstname, lastname, city, country FROM customers WHERE CustomerID = ?";
 
     public function __construct($connection)
     {
         $this->pdo = $connection;
     }
 
+    public function getByID($userID)
+    {
+        $sql = self::$baseSQL;
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, $userID);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
 
-public function getByID($userID) {
-    $sql = self::$baseSQL;
-    $statement = DatabaseHelper::runQuery($this->pdo, $sql, $userID);
-    return $statement->fetchAll(PDO::FETCH_ASSOC);
-
-}
+    }
 
 }
 class ArtistDB
@@ -114,43 +121,59 @@ class PaintingDB
     public function getForID($paintingID)
     {
         $sql = self::$baseSQL . " WHERE paintings.PaintingID=?";
-        $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($paintingID));
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, array(
+            $paintingID
+        ));
         return $statement->fetchAll();
     }
 
     public function getAllForArtist($artistID)
     {
         $sql = self::$baseSQL . " WHERE paintings.ArtistID=?";
-        $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($artistID));
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, array(
+            $artistID
+        ));
         return $statement->fetchAll();
     }
 
     public function getAllForGallery($galleryID)
     {
         $sql = self::$baseSQL . " WHERE paintings.GalleryID=?";
-        $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($galleryID));
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, array(
+            $galleryID
+        ));
         return $statement->fetchAll();
     }
-
+    public function getTop15()
+    {
+        $sql = self::$baseSQL . " ORDER BY YearOfWork LIMIT 15";
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
+        return $statement->fetchAll();
+    }
     public function getTop20()
     {
         $sql = self::$baseSQL . " ORDER BY YearOfWork LIMIT 20";
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
         return $statement->fetchAll();
     }
-    public function getforTitle($paintingTitle) 
+    public function getforTitle($paintingTitle)
     {
-            $sql = self::$baseSQL . " WHERE paintings.Title=?";
-            $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($paintingTitle));
-            return $statement->fetchAll();
-
-    }
-    public function getAllForArtistandEraMayLike ($artistID, $paintingID) {
-        $sql = self::$baseSQL . " WHERE paintings.ArtistID=? AND paintings.PaintingID NOT LIKE ?";
-        $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($artistID, $paintingID));
+        $sql = self::$baseSQL . " WHERE paintings.Title=?";
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, array(
+            $paintingTitle
+        ));
         return $statement->fetchAll();
     }
-
+    public function getAllForArtistandEraMayLike($artistID, $yearStart, $yearEnd)
+    {
+        $sql = self::$baseSQL . " WHERE paintings.ArtistID = ? OR (paintings.YearOfWork > ? AND paintings.YearOfWork < ?) LIMIT 15";
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, array(
+            $artistID,
+            $yearStart,
+            $yearEnd
+        ));
+        return $statement->fetchAll();
+    }
 }
 
 class GalleryDB
@@ -171,8 +194,11 @@ class GalleryDB
 
     public function getForID($galleryID)
     {
-        $sql = self::$baseSQL . " WHERE GalleryID=?"; 
-        $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($galleryID));
+        $sql = self::$baseSQL . " WHERE GalleryID=?";
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, array(
+            $galleryID
+        ));
         return $statement->fetchAll();
     }
 }
+
