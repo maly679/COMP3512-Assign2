@@ -45,10 +45,5 @@ outputDeleteAll();
 // }
 
 if (isset($_SESSION['favorites'])) {
-    foreach ($_SESSION['favorites'] as $key => $value) {
-        echo $_SESSION['favorites'];
-        echo $key;
-        echo $value;
-        outputFavorites($value);
-    }
+        outputFavorites($_SESSION['favorites']);
 }
