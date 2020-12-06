@@ -7,6 +7,32 @@ require_once 'db-classes.inc.php';
 //function definitions
 
 
+function outputFormattedPainting($data) {
+
+for ($i = 0;$i < count($data);$i++)
+    {
+        if ($i == 0)
+        {
+            echo "<div class = 'middle'> <img src='images/paintings/square-medium/" . $data[$i]['ImageFileName'] . ".jpg'/> 
+                        " . "<br>" . $data[$i]['Title'] . "</div>";
+        }
+        if ($i % 2 && $i != 0)
+        {
+
+            echo "<div class = 'odd'> <img src='images/paintings/square-medium/" . $data[$i]['ImageFileName'] . ".jpg'/> 
+                        " . "<br>" . $data[$i]['Title'] . "</div>";
+        }
+        else
+        {
+            if ($i != 0)
+            {
+                echo "<div class = 'even'> <img src='images/paintings/square-medium/" . $data[$i]['ImageFileName'] . ".jpg'/> 
+                            " . "<br>" . $data[$i]['Title'] . "</div>";
+            }
+        }
+    }
+ }
+
 //outputting first 15 values when no favorites are present.
 function processOutputtingFirst15($dataFirst15)
 {
@@ -14,28 +40,7 @@ function processOutputtingFirst15($dataFirst15)
     echo "<h2> Sample Panintings </h2>";
     echo "<div class = 'showPaintings'>";
 
-    for ($i = 0;$i < count($dataFirst15);$i++)
-    {
-        if ($i == 0)
-        {
-            echo "<div class = 'middle'> <img src='images/paintings/square-medium/" . $dataFirst15[$i]['ImageFileName'] . ".jpg'/> 
-                        " . "<br>" . $dataFirst15[$i]['Title'] . "</div>";
-        }
-        if ($i % 2 && $i != 0)
-        {
-
-            echo "<div class = 'odd'> <img src='images/paintings/square-medium/" . $dataFirst15[$i]['ImageFileName'] . ".jpg'/> 
-                        " . "<br>" . $dataFirst15[$i]['Title'] . "</div>";
-        }
-        else
-        {
-            if ($i != 0)
-            {
-                echo "<div class = 'even'> <img src='images/paintings/square-medium/" . $dataFirst15[$i]['ImageFileName'] . ".jpg'/> 
-                            " . "<br>" . $dataFirst15[$i]['Title'] . "</div>";
-            }
-        }
-    }
+    outputFormattedPainting($dataFirst15);
 }
 
 //obtain the threshhold of start date
@@ -258,28 +263,7 @@ if (isset($_SESSION['favorites']) && !empty($_SESSION['favorites']))
         $conn = null;
 //Process the display pattern (odd even, or 0) pertaining to the paintings in order to display the first painting in the middle, $i = odd number paintings on the right column of the showPaintings grid
 //and $i = even number paintings on the left, for formatting purposes
-        for ($i = 0;$i < count($dataPaintingsMayLike);$i++)
-        {
-            if ($i == 0)
-            {
-                echo "<div class = 'middle'> <img src='images/paintings/square-medium/" . $dataPaintingsMayLike[$i]['ImageFileName'] . ".jpg'/> 
-                                " . "<br>" . $dataPaintingsMayLike[$i]['Title'] . "</div>";
-            }
-            if ($i % 2 && $i != 0)
-            {
-
-                echo "<div class = 'odd'> <img src='images/paintings/square-medium/" . $dataPaintingsMayLike[$i]['ImageFileName'] . ".jpg'/> 
-                            " . "<br>" . $dataPaintingsMayLike[$i]['Title'] . "</div>";
-            }
-            else
-            {
-                if ($i != 0)
-                {
-                    echo "<div class = 'even'> <img src='images/paintings/square-medium/" . $dataPaintingsMayLike[$i]['ImageFileName'] . ".jpg'/> 
-                                " . "<br>" . $dataPaintingsMayLike[$i]['Title'] . "</div>";
-                }
-            }
-        }
+        outputFormattedPainting($dataPaintingsMayLike);
 
         echo "</div>";
     }
@@ -339,30 +323,7 @@ else
         echo "<h2>Your Favorites</h2>";
         echo "<div class = 'showPaintings'>";
 
-        for ($i = 0;$i < count($_SESSION['favorites']);$i++)
-        {
-        //Process the display pattern (odd even, or 0) pertaining to the paintings in order to display the first painting in the middle, $i = odd number paintings on the right column of the showPaintings grid
-        //and $i = even number paintings on the left, for formatting purposes
-            if ($i == 0)
-            {
-                echo "<div class = 'middle'> <img src='images/paintings/square-medium/" . $_SESSION['favorites'][$i]['ImageFileName'] . ".jpg'/> 
-                            " . "<br>" . $_SESSION['favorites'][$i]['Title'] . "</div>";
-            }
-            if ($i % 2 && $i != 0)
-            {
-
-                echo "<div class = 'odd'> <img src='images/paintings/square-medium/" . $_SESSION['favorites'][$i]['ImageFileName'] . ".jpg'/> 
-                            " . "<br>" . $_SESSION['favorites'][$i]['Title'] . "</div>";
-            }
-            else
-            {
-                if ($i != 0)
-                {
-                    echo "<div class = 'even'> <img src='images/paintings/square-medium/" . $_SESSION['favorites'][$i]['ImageFileName'] . ".jpg'/> 
-                                " . "<br>" . $_SESSION['favorites'][$i]['Title'] . "</div>";
-                }
-            }
-        }
+        outputFormattedPainting($_SESSION['favorites);
     }
     else
     {
