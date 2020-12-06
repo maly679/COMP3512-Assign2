@@ -8,7 +8,6 @@ require_once 'favorites-helpers.php';
 if (isset($_GET['delete'])) {
     foreach ($_SESSION['favorites'] as $key => $rmv) {
         if ($rmv == $_GET['delete']) {
-            echo $_SESSION['favorites'][$key];
             unset($_SESSION['favorites'][$key]);
         }
     }
