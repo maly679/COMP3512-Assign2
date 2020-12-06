@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['name'])) {
    header("Location: login.php");
-} else if (isset($_POST['search'])) {
+} else if (isset($_POST['title'])) {
    header("Location: browse-painting.php");
 }
 ?>
@@ -50,7 +50,7 @@ if (isset($_POST['name'])) {
 
    <div class="searchContainer">
       <form name="search" method="GET" action="browse-paintings.php?">
-         <input class="searchBar" type="text" placeholder="Search painting or gallery.." name="search">
+         <input class="searchBar" type="text" placeholder="Search painting or gallery.." name="title">
          <!-- Result of this should filter -->
       </form>
    </div>
