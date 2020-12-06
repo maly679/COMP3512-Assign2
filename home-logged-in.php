@@ -135,10 +135,11 @@ function getThreshholdEnd($yow)
 //process user info
 function displayUserData($dataID)
 {
+    $comma= ',';
     if (isset($dataID))
     {
         echo "<h2> Welcome " . $dataID[0]['firstname'] . "</h2>";
-        echo ("<p>" . $dataID[0]['firstname'] . " " . $dataID[0]['lastname'] . "</p>" . "<p>" . $dataID[0]['city'] . "," . "</p>" . "<p>" . $dataID[0]['country'] . "</p>");
+        echo ("<p>" . $dataID[0]['firstname'] . " " . $dataID[0]['lastname'] . $comma . "</p>" . "<p>" . $dataID[0]['city'] . "</p>" . "<p>" . $dataID[0]['country'] . "</p>");
     }
 }
 ?>
