@@ -41,7 +41,7 @@ try {
 
     //$_SESSION['favorites'] = [];
 
-    $_SESSION['status'] = true;
+    //$_SESSION['status'] = true;
 
 
     $paintings = buildQuery($conn);
