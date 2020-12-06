@@ -40,6 +40,44 @@ class DatabaseHelper
     }
 }
 
+class CustomerLogon {
+
+    private static $baseSQL =  "SELECT UserName, CustomerID, Pass FROM customerlogon WHERE UserName = ?";
+
+    public function __construct($connection)
+    {
+        $this->pdo = $connection;
+    }
+    public function getByUserName($userName) {
+
+        $sql = self::$baseSQL;
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, $userName);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+}
+
+
+
+
+class Customer {
+
+    private static $baseSQL =  "SELECT firstname, lastname, city, country FROM customers WHERE CustomerID = ?";
+
+    public function __construct($connection)
+    {
+        $this->pdo = $connection;
+    }
+
+
+public function getByID($userID) {
+    $sql = self::$baseSQL;
+    $statement = DatabaseHelper::runQuery($this->pdo, $sql, $userID);
+    return $statement->fetchAll(PDO::FETCH_ASSOC);
+
+}
+
+}
 class ArtistDB
 {
     private static $baseSQL = "SELECT * FROM artists ORDER BY LastName";
@@ -100,6 +138,19 @@ class PaintingDB
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
         return $statement->fetchAll();
     }
+    public function getforTitle($paintingTitle) 
+    {
+            $sql = self::$baseSQL . " WHERE paintings.Title=?";
+            $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($paintingTitle));
+            return $statement->fetchAll();
+
+    }
+    public function getAllForArtistandEraMayLike ($artistID, $paintingID) {
+        $sql = self::$baseSQL . " WHERE paintings.ArtistID=? AND paintings.PaintingID NOT LIKE ?";
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($artistID, $paintingID));
+        return $statement->fetchAll();
+    }
+
 }
 
 class GalleryDB
