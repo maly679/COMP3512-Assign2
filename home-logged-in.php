@@ -254,29 +254,29 @@ if (isset($_SESSION['favorites']) && !empty($_SESSION['favorites']))
 
         $paintingGate = new PaintingDB($conn);
 //obtain necessary paintings user may like, based on above set values obtained from favorite
-        $dataPaitingsMayLike = $paintingGate->getAllForArtistandEraMayLike($ArtistID, $YoWStart, $YoWEnd);
+        $dataPaintingsMayLike = $paintingGate->getAllForArtistandEraMayLike($ArtistID, $YoWStart, $YoWEnd);
         $conn = null;
 //Process the display pattern (odd even, or 0) pertaining to the paintings in order to display the first painting in the middle, $i = odd number paintings on the right column of the showPaintings grid
 //and $i = even number paintings on the left, for formatting purposes
-        for ($i = 0;$i < count($dataPaitingsMayLike);$i++)
+        for ($i = 0;$i < count($dataPaintingsMayLike);$i++)
         {
             if ($i == 0)
             {
-                echo "<div class = 'middle'> <img src='images/paintings/square-medium/" . $dataPaitingsMayLike[$i]['ImageFileName'] . ".jpg'/> 
-                                " . "<br>" . $dataPaitingsMayLike[$i]['Title'] . "</div>";
+                echo "<div class = 'middle'> <img src='images/paintings/square-medium/" . $dataPaintingsMayLike[$i]['ImageFileName'] . ".jpg'/> 
+                                " . "<br>" . $dataPaintingsMayLike[$i]['Title'] . "</div>";
             }
             if ($i % 2 && $i != 0)
             {
 
-                echo "<div class = 'odd'> <img src='images/paintings/square-medium/" . $dataPaitingsMayLike[$i]['ImageFileName'] . ".jpg'/> 
-                            " . "<br>" . $dataPaitingsMayLike[$i]['Title'] . "</div>";
+                echo "<div class = 'odd'> <img src='images/paintings/square-medium/" . $dataPaintingsMayLike[$i]['ImageFileName'] . ".jpg'/> 
+                            " . "<br>" . $dataPaintingsMayLike[$i]['Title'] . "</div>";
             }
             else
             {
                 if ($i != 0)
                 {
-                    echo "<div class = 'even'> <img src='images/paintings/square-medium/" . $dataPaitingsMayLike[$i]['ImageFileName'] . ".jpg'/> 
-                                " . "<br>" . $dataPaitingsMayLike[$i]['Title'] . "</div>";
+                    echo "<div class = 'even'> <img src='images/paintings/square-medium/" . $dataPaintingsMayLike[$i]['ImageFileName'] . ".jpg'/> 
+                                " . "<br>" . $dataPaintingsMayLike[$i]['Title'] . "</div>";
                 }
             }
         }
