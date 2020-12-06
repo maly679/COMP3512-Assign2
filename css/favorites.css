@@ -1,0 +1,67 @@
+body {
+  background-color: steelblue;
+  font-family: Open Sans, sans-serif;
+  font-size: 0.8rem;
+}
+
+.container {
+  display: grid;
+  padding: 40px;
+  grid-gap: 10px;
+  color: #444;
+  grid-template-areas:
+    "header"
+    "form ";
+  grid-template-columns: 1fr;
+  grid-template-rows: 10rem auto;
+}
+
+.navContainer {
+  grid-area: header;
+}
+
+.contentContainer {
+  grid-area: form;
+}
+
+.box {
+  background-color: lightsteelblue;
+  color: black;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 150%;
+}
+
+.navBtn {
+  float: left;
+  display: block;
+  color: white;
+  text-decoration: none;
+  list-style: none;
+  cursor: pointer;
+  padding: 20px;
+}
+
+.navItems > div > div > ul > li {
+  color: white;
+  list-style: none;
+}
+
+#logo {
+  float: right;
+  width: 20%;
+}
+
+.navItems > div > div > ul {
+  padding: 0;
+  margin: 0;
+}
+
+.navBtn:hover {
+  background-color: orange;
+}
+
+#menuIcon,
+.toggler {
+  display: none;
+}
