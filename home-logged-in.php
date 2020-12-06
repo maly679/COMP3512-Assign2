@@ -323,7 +323,7 @@ else
         echo "<h2>Your Favorites</h2>";
         echo "<div class = 'showPaintings'>";
 
-        outputFormattedPainting($_SESSION['favorites);
+        outputFormattedPainting($_SESSION['favorites']);
     }
     else
     {
