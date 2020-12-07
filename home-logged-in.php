@@ -70,7 +70,7 @@ else
     if (isset($dataFirst15))
     {
 
-        processOutputtingFirst15($dataFirst15);
+        outputFormattedPainting($dataFirst15);
         echo "</div>";
 
     }
