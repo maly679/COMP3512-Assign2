@@ -46,10 +46,10 @@ include 'home-logged-in-helpers.php';
 // Ensure session favorites are present, and retrieve required values to process for query.
 if (isset($_SESSION['favorites']) && !empty($_SESSION['favorites']))
 {
-    //Begin processing for the Results section, which consists of either a searched result, or if nothing was searched, the recommended paintings.
-    //Assign the Artist ID of the first favorite
+
+    //Assign the Artist ID of the first favorite in list
     $ArtistID = $_SESSION['favorites'][0]['ArtistID'];
-    //Obtain the threshhold pertaining to painting years, in order to process recommended paintings query
+    //Obtain the threshhold pertaining to the painting years, in order to process recommended paintings query
     $YoWStart = getThreshholdStart($_SESSION['favorites'][0]['YearOfWork']);
     $YoWEnd = getThreshholdEnd($_SESSION['favorites'][0]['YearOfWork']);
 
