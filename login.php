@@ -54,7 +54,7 @@ function checkData($pass, $data)
             {
                 $_SESSION['ID'] = $row['CustomerID'];
                 $_SESSION['status'] = "loggedIn";
-                header('location: single-painting.php');
+                header('location: home-logged-in.php');
             }
             else
             {
