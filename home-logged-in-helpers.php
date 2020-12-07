@@ -52,12 +52,6 @@ function outputFormattedPainting($data)
     echo "</ul>";
 }
 
-// Outputting first 15 values when no favorites are present.
-function processOutputtingFirst15($dataFirst15)
-{
-    outputFormattedPainting($dataFirst15);
-}
-
 // Obtain the threshhold of start date
 function getThreshholdStart($yow)
 {
