@@ -65,7 +65,7 @@ function checkMsgContent($msg)
 
     if (empty($msg))
     {
-        echo "<div class = 'error'> Please enter a valid email and password. </div>";
+        echo "<div class = 'error'> Please enter a valid email. </div>";
 
     }
     else
