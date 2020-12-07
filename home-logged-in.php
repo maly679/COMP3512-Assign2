@@ -6,10 +6,63 @@ require_once 'db-classes.inc.php';
 
 //function definitions
 
-//output paintings in a formatted manner
-function outputFormattedPainting($data) {
 
-for ($i = 0;$i < count($data);$i++)
+//retrieve the count of object data
+function getCountofObject($data)
+{
+    $count = 0;
+    foreach ($data as $key => $value)
+    {
+        $count++;
+    }
+    return $count;
+}
+
+//retrieve the list of paintings that contains 15, if there aren't 15 recommended paintings generated
+function consolidateDataPaintingsMayLike($dataFirst15, $dataPaintingsMayLike)
+{
+
+    if (isset($dataPaintingsMayLike) && isset($dataFirst15))
+    {
+        $dataPaintingsCount = getCountofObject($dataPaintingsMayLike);
+        $countPaintings = $dataPaintingsCount;
+        $regCount = 0;
+        while ($countPaintings < 15)
+        {
+
+            $dataPaintingsMayLike[] = $dataFirst15[$regCount];
+            $countPaintings++;
+            $regCount++;
+        }
+        return $dataPaintingsMayLike;
+
+    }
+}
+
+// Get the first 15 paintings from the table to use for various scenarios
+try
+{
+    $conn = DatabaseHelper::createConnection(array(
+        DBCONNSTRING,
+        DBUSER,
+        DBPASS
+    ));
+
+    $paintingGate = new PaintingDB($conn);
+
+    $dataFirst15 = $paintingGate->getTop15();
+    $conn = null;
+}
+catch(PDOException $e)
+{
+    die($e->getMessage());
+}
+
+//Output paintings in a formatted manner
+function outputFormattedPainting($data)
+{
+
+    for ($i = 0;$i < count($data);$i++)
     {
         if ($i == 0)
         {
@@ -31,19 +84,18 @@ for ($i = 0;$i < count($data);$i++)
             }
         }
     }
- }
-
-//outputting first 15 values when no favorites are present.
-function processOutputtingFirst15($dataFirst15)
-{
-    echo "<div class='box' id = 'Favorites'>";
-    echo "<h2> Sample Panintings </h2>";
-    echo "<div class = 'showPaintings'>";
-
-    outputFormattedPainting($dataFirst15);
 }
 
-//obtain the threshhold of start date
+// Outputting first 15 values when no favorites are present.
+function processOutputtingFirst15($dataFirst15)
+{
+    echo "<h2> Sample Paintings </h2>";
+    echo "<div class = 'showPaintings'>";
+    outputFormattedPainting($dataFirst15);
+    echo "</div>";
+}
+
+// Obtain the threshhold of start date
 function getThreshholdStart($yow)
 {
 
@@ -87,8 +139,7 @@ function getThreshholdStart($yow)
     }
 }
 
-//obtain the threshhold of end date
-
+// Obtain the threshhold of end date
 function getThreshholdEnd($yow)
 {
 
@@ -132,7 +183,7 @@ function getThreshholdEnd($yow)
     }
 }
 
-//process user info
+// Process user info
 function displayUserData($dataID)
 {
     if (isset($dataID))
@@ -168,7 +219,7 @@ function displayUserData($dataID)
             <section>
 
                <?php
-//verify user logged in
+// Verify user logged in
 if (isset($_SESSION['ID']))
 {
 
@@ -207,47 +258,25 @@ if (isset($_SESSION['ID']))
          </div>
          <div class = "box Results">
              <?php
-
-// ensure session favorites are present, and retrieve required values to process for query.
+// Ensure session favorites are present, and retrieve required values to process for query.
 if (isset($_SESSION['favorites']) && !empty($_SESSION['favorites']))
 {
-    //begin processing for the Results section, which consists of either a searched result, or if nothing was searched, the recommended paintings.
+    //Begin processing for the Results section, which consists of either a searched result, or if nothing was searched, the recommended paintings.
     //Assign the Artist ID of the first favorite
     $ArtistID = $_SESSION['favorites'][0]['ArtistID'];
-    //obtain the threshhold pertaining to painting years, in order to process recommended paintings query
+    //Obtain the threshhold pertaining to painting years, in order to process recommended paintings query
     $YoWStart = getThreshholdStart($_SESSION['favorites'][0]['YearOfWork']);
     $YoWEnd = getThreshholdEnd($_SESSION['favorites'][0]['YearOfWork']);
 
-} else {
-
-//proceed with obtaining the first 15 paintings to display in lieu of the favorites
-try
-{
-    $conn = DatabaseHelper::createConnection(array(
-        DBCONNSTRING,
-        DBUSER,
-        DBPASS
-    ));
-
-    $paintingGate = new PaintingDB($conn);
-
-    $dataFirst15 = $paintingGate->getTop15();
-    $conn = null;
-}
-catch(PDOException $e)
-{
-    die($e->getMessage());
-}
 }
 
-
-//Verify session favorites is set and display the paintings user may like
+// Verify session favorites is set and display the paintings user may like
 if (isset($_SESSION['favorites']) && !empty($_SESSION['favorites']))
 {
 
     echo "<h2>Paintings You May Like</h2>";
 
-    //obtain the paintings that user may like, based on first favorite Artist ID and threshhold identified above.
+    // Obtain the paintings that user may like, based on first favorite Artist ID and threshhold identified above.
     try
     {
         $conn = DatabaseHelper::createConnection(array(
@@ -258,11 +287,17 @@ if (isset($_SESSION['favorites']) && !empty($_SESSION['favorites']))
         echo "<div class = 'showPaintings'>";
 
         $paintingGate = new PaintingDB($conn);
-//obtain necessary paintings user may like, based on above set values obtained from favorite
+        // Obtain necessary paintings user may like, based on above set values obtained from favorite
         $dataPaintingsMayLike = $paintingGate->getAllForArtistandEraMayLike($ArtistID, $YoWStart, $YoWEnd);
+        $countPaintings = getCountofObject($dataPaintingsMayLike);
+        // If the paintings count is less than 10, process the outputting to retrieve values from the first 15 in table, to make it meet the threshhol.
+        if (isset($dataPaintingsMayLike) && $countPaintings < 10)
+        {
+            $dataPaintingsMayLike = consolidateDataPaintingsMayLike($dataFirst15, $dataPaintingsMayLike);
+        }
         $conn = null;
-//Process the display pattern (odd even, or 0) pertaining to the paintings in order to display the first painting in the middle, $i = odd number paintings on the right column of the showPaintings grid
-//and $i = even number paintings on the left, for formatting purposes
+        // Process the display pattern (odd even, or 0) pertaining to the paintings in order to display the first painting in the middle, $i = odd number paintings on the right column of the showPaintings grid
+        //and $i = even number paintings on the left, for formatting purposes
         outputFormattedPainting($dataPaintingsMayLike);
 
         echo "</div>";
@@ -270,6 +305,17 @@ if (isset($_SESSION['favorites']) && !empty($_SESSION['favorites']))
     catch(PDOException $e)
     {
         die($e->getMessage());
+    }
+}
+else
+{
+    // Process displaying of first 15 paintings, if no favorites are set
+    if (isset($dataFirst15))
+    {
+
+        processOutputtingFirst15($dataFirst15);
+        echo "</div>";
+
     }
 }
 ?>
@@ -304,38 +350,25 @@ if (isset($_GET["checkSearch"]))
 
         }
     }
-    else
-    {
-        echo "<div class='box' id ='Favorites'>";
-        echo "<h2> <i> You have no favorites <br>  Please Add to Favorites to use this feature! </i> </h2>";
-    }
 
-    
 }
 else
 {
-//If no search entered, display favorites if present
-
+    // If no search entered, display favorites if present
+    echo "<div class='box' id ='Favorites'>";
+    echo "<h2>Your Favorites</h2>";
     if (isset($_SESSION['favorites']) && !empty($_SESSION['favorites']))
     {
-
-        echo "<div class='box' id ='Favorites'>";
-        echo "<h2>Your Favorites</h2>";
         echo "<div class = 'showPaintings'>";
 
         outputFormattedPainting($_SESSION['favorites']);
-    }
-    else
-    {
-        //Process displaying of first 15 paintings, if no favorites are set
-        if (isset($dataFirst15))
-        {
-            processOutputtingFirst15($dataFirst15);
-        }
+        echo "</div>";
+
     }
 
     echo "</div>";
     echo "</div>";
+
 }
 
 ?>

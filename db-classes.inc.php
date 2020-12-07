@@ -166,7 +166,7 @@ class PaintingDB
     }
     public function getAllForArtistandEraMayLike($artistID, $yearStart, $yearEnd)
     {
-        $sql = self::$baseSQL . " WHERE paintings.ArtistID = ? OR (paintings.YearOfWork > ? AND paintings.YearOfWork < ?) LIMIT 15";
+        $sql = self::$baseSQL . " WHERE paintings.ArtistID = ? AND (paintings.YearOfWork > ? AND paintings.YearOfWork < ?) LIMIT 15";
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, array(
             $artistID,
             $yearStart,
@@ -201,4 +201,3 @@ class GalleryDB
         return $statement->fetchAll();
     }
 }
-
