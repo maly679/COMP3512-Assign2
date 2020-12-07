@@ -6,14 +6,23 @@ require_once 'favorites-helpers.php';
 
 $msg = "";
 
+if (isset($_SESSION['status'])) {
+    // do code
+} else {
+    $msg = "You are not logged in";
+}
+
+
 // if the get of delete is set then deletes the selected painting from favorites
 if (isset($_GET['delete'])) {
-    foreach ($_SESSION['favorites'] as $key => $rmv) {
-        if ($rmv == $_GET['delete']) {
+    foreach ($_SESSION['favorites'] as $key => $value) {
+        if ($value['PaintingID'] == $_GET['delete']) {
             unset($_SESSION['favorites'][$key]);
         }
     }
 }
+
+
 
 // if deleteAll is set then delete all from favorites
 if (isset($_GET['deleteAll'])) {
@@ -72,6 +81,7 @@ outputDeleteAll();
             } else {
                 $msg = "There are no Favorites";
             }
+            //print_r($_SESSION['favorites']);
             ?>
             <div>
                 <? $msg  ?>
