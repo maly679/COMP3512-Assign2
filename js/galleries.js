@@ -178,8 +178,8 @@ document.addEventListener("DOMContentLoaded", function () {
         paintings.forEach((painting) => {
             let paintingsListItem = document.createElement("tr");
             var html = "";
-            html += "<td><img src='" + paintingImagesEndpoint + painting.ImageFileName +"'></img></td>";
-            html += "<td>" + painting.LastName + "/td>";
+            html += "<td><img id='listPainting' src='" + paintingImagesEndpoint + getFileName(painting.ImageFileName) + "'/></td>";
+            html += "<td>" + painting.LastName + "</td>";
             html += "<td>" + painting.Title + "</td>";
             html += "<td>" + painting.YearOfWork + "</td>";
             paintingsListItem.innerHTML = html;
