@@ -32,6 +32,9 @@ body {
   font-size: 150%;
 }
 
+.contentContainer {
+}
+
 .navBtn {
   float: left;
   display: block;
@@ -64,4 +67,20 @@ body {
 #menuIcon,
 .toggler {
   display: none;
+}
+
+#paintings_ul {
+  /* display: flex; */
+  list-style-type: none;
+}
+
+#paintings_ul li {
+  align-content: center;
+  display: inline-block;
+  padding: 10px;
+}
+
+#paintings_ul li p {
+  font-size: small;
+  /* max-width: 150px; */
 }

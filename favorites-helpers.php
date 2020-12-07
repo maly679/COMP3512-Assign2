@@ -12,11 +12,11 @@ function outputDeleteAll()
 // outputs the lists of the logged-in user's favourited paintings
 function outputFavorites($data)
 {
-    echo "<ul>";
+    echo "<ul id=paintings_ul>";
     foreach ($data as $row) {
-        echo "<form action ='favorites.php' method='get'>";
+        //echo "<form action ='favorites.php' method='get'>";
         outputList($row);
-        echo "</form>";
+        // echo "</form>";
     }
     echo "</ul>";
 }

@@ -350,27 +350,3 @@ function buildQuery($conn)
 
     return $paintings;
 }
-
-
-// REFERENCE CODE FROM LABS
-// public static function runQuery($connection, $sql, $parameters = array())
-// {
-//     // Ensure parameters are in an array
-//     if (!is_array($parameters)) {
-//         $parameters = array($parameters);
-//     }
-
-//     $statement = null;
-//     if (count($parameters) > 0) {
-//         // Use a prepared statement if parameters
-//         $statement = $connection->prepare($sql);
-//         $executedOk = $statement->execute($parameters);
-//         if (!$executedOk) throw new PDOException;
-//     } else {
-//         // Execute a normal query
-//         $statement = $connection->query($sql);
-//         if (!$statement) throw new PDOException;
-//     }
-
-//     return $statement;
-// }

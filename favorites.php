@@ -6,12 +6,6 @@ require_once 'favorites-helpers.php';
 
 $msg = "";
 
-if (isset($_SESSION['status'])) {
-    // do code
-} else {
-    $msg = "You are not logged in";
-}
-
 
 // if the get of delete is set then deletes the selected painting from favorites
 if (isset($_GET['delete'])) {
@@ -22,14 +16,10 @@ if (isset($_GET['delete'])) {
     }
 }
 
-
-
 // if deleteAll is set then delete all from favorites
 if (isset($_GET['deleteAll'])) {
     unset($_SESSION['favorites']);
 }
-
-outputDeleteAll();
 
 // checks if the sesson is set then outputs the favorites
 // if (isset($_SESSION['favorites'])) {
@@ -76,12 +66,17 @@ outputDeleteAll();
         <div class="contentContainer box">
             <h3>Favorite Paintings</h3>
             <?php
+            outputDeleteAll();
+
+            //if (isset($_SESSION['status']) && isset($_SESSION['ID'])) {
             if (isset($_SESSION['favorites'])) {
                 outputFavorites($_SESSION['favorites']);
             } else {
                 $msg = "There are no Favorites";
             }
-            //print_r($_SESSION['favorites']);
+            // } else {
+            //     $msg = "You are not logged in";
+            // }
             ?>
             <div>
                 <? $msg  ?>

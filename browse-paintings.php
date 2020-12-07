@@ -147,7 +147,7 @@ try {
 
                 if (count($paintings) > 0) {
                     $loggedin = false;
-                    if (isset($_SESSION['status'])) {
+                    if (isset($_SESSION['status']) && isset($_SESSION['ID'])) {
                         $loggedin = true;
                     } else {
                         $loggedin = false;
