@@ -10,6 +10,6 @@ if (isset($_SESSION['ID']) && isset($_SESSION['status']))
     unset($_SESSION['status']);
     unset($_SESSION['favorites']);
     //redirect user to home page when logout is clicked
-    header('location:index.php');
+    header('location: index.php');
 }
 
