@@ -8,8 +8,8 @@ $msg = "";
 
 // if the get of delete is set then deletes the selected painting from favorites
 if (isset($_GET['delete'])) {
-    foreach ($_SESSION['favorites'] as $key => $rmv) {
-        if ($rmv == $_GET['delete']) {
+    foreach ($_SESSION['favorites'] as $key => $value) {
+        if ($value['PaintingID'] == $_GET['delete']) {
             unset($_SESSION['favorites'][$key]);
         }
     }
