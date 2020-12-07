@@ -26,7 +26,7 @@ function outputList($row)
 {
     echo "<li>";
     echo "<a href='single-painting.php?id=" . $row['PaintingID'] . "'><img src='images/paintings/square-medium/" . $row['ImageFileName'] . ".jpg'/><p>" . $row['Title'] . "</p></a>";
-    echo "<button name='delete' type='submit' value='" . $row['PaintingID'] . "'>Delete</button>";
+    echo "<form action ='favorites.php' method='get'><button name='delete' type='submit' value='" . $row['PaintingID'] . "'>Delete</button></form>";
     echo "</li>";
 }
 
