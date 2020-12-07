@@ -2,7 +2,7 @@
 session_start();
 require_once 'config.inc.php';
 require_once 'db-classes.inc.php';
-include 'home-logged-in-helper.php';
+include 'home-logged-in-helpers.php';
 ?>
 
 <!DOCTYPE html>
