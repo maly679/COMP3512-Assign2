@@ -1,9 +1,33 @@
 <?php
+
+require_once 'config.inc.php';
+require_once 'browse-paintings-helpers.inc.php';
+require_once 'db-classes.inc.php';
+
 if (isset($_POST['name'])) {
    header("Location: login.php");
-} else if (isset($_POST['title'])) {
+} 
+else if (isset($_POST['title']) || isset($_POST['gallery'])) {
    header("Location: browse-painting.php");
 }
+
+// try {
+//    $conn = DatabaseHelper::createConnection(array(DBCONNSTRING,DBUSER, DBPASS));
+//    $searchGateway = new TemporaryDB($conn);
+//    $results = $searchGateway->getAllPaintingsAndGalleries($galleryID);
+
+//    $paintingGateway = new PaintingDB($conn);
+//   if (isset($_GET['museum'])) {
+//     $paintings = $paintingGateway->getAllForGallery($_GET['museum']);
+//   } else {
+//     $paintings = $paintingGateway->Top20Paintings();
+//   }
+
+//    $conn = null;
+// } catch (Exception $e) {
+//    die($e->getMessage());
+// }
+
 ?>
 <!DOCTYPE html>
 <html lang=en>
@@ -50,8 +74,8 @@ if (isset($_POST['name'])) {
 
    <div class="searchContainer">
       <form name="search" method="GET" action="browse-paintings.php?">
-         <input class="searchBar" type="text" placeholder="Search painting or gallery.." name="title">
-         <!-- Result of this should filter -->
+         <input class="searchBar" type="text" placeholder="Search painting or gallery.." name="search">
+         <!-- Result of this should filter by painting (title) and gallery name -->
       </form>
    </div>
 
@@ -59,7 +83,7 @@ if (isset($_POST['name'])) {
       <p>Image from Unsplash by Darya Tryfanava</p>
    </div>
 
-   <script src="js/index.js"></script>
+   <!-- <script src="js/index.js"></script> -->
 </body>
 
 </html>

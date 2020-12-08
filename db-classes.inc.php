@@ -40,7 +40,8 @@ class DatabaseHelper
     }
 }
 
-class CustomerLogon {
+class CustomerLogon 
+{
 
     private static $baseSQL =  "SELECT UserName, CustomerID, Pass FROM customerlogon WHERE UserName = ?";
 
@@ -57,10 +58,8 @@ class CustomerLogon {
 
 }
 
-
-
-
-class Customer {
+class Customer 
+{
 
     private static $baseSQL =  "SELECT firstname, lastname, city, country FROM customers WHERE CustomerID = ?";
 
@@ -172,6 +171,40 @@ class GalleryDB
     public function getForID($galleryID)
     {
         $sql = self::$baseSQL . " WHERE GalleryID=?"; 
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($galleryID));
+        return $statement->fetchAll();
+    }
+}
+
+/* 
+    Setting up a temporary database that accesses the galleries and paintings tables to fetch the 
+    painting titles and gallery names that the user will be searching for in the search bar.
+    The results from this search will be shown in browse-paintings.php 
+*/
+
+class TemporaryDB 
+{
+    private static $baseSQL = "SELECT Title, galleries.GalleryName, galleries.GalleryID 
+                                FROM paintings 
+                                INNER JOIN galleries 
+                                ON (galleries.GalleryID = paintings.GalleryID)";
+    
+    public function __construct($connection)
+    {
+        $this->pdo = $connection;
+    }
+
+    public function getAllTitles()
+    {
+        $sql = self::$baseSQL . "  WHERE Title LIKE=?";
+        $statement = DatabaseHelper::runQuery($this->pdo, $sql, null);
+        return $statement->fetchAll();
+    }
+
+    // return galleryID not galleryName? 
+    public function getAllGalleryName($galleryID)
+    {
+        $sql = self::$baseSQL . "  WHERE GalleryID LIKE=?";
         $statement = DatabaseHelper::runQuery($this->pdo, $sql, array($galleryID));
         return $statement->fetchAll();
     }
