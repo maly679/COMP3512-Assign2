@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 require_once 'config.inc.php';
@@ -8,19 +7,40 @@ require_once 'db-classes.inc.php';
 //Function is invoked below in markup; this occurs only if the user entered an incorrect username and password combination.
 function checkIfError()
 {
-    if (isset($_GET['redirect']))
-    {      
+    if (isset($_GET['email']) && isset($_GET['pass']))
+    {
 
-        if ($_GET['redirect'] == 'error')
+        if (!empty($_GET['email']) && empty($_GET['pass']))
         {
+            echo "<div class = 'error'> Please enter a password. </div>";
 
-            echo "<div class = 'error'> Incorrect username and password combination entered. Please try again. </div>";
+        }
+        else
+        {
+            if (empty($_GET['email']) && !empty($_GET['pass']))
+            {
+                echo "<div class = 'error'> Please enter an email. </div>";
+            }
+            else
+            {
+                if (empty($_GET['email']) && empty($_GET['pass']))
+                {
+
+                    echo "<div class = 'error'> Please enter an email and password. </div>";
+
+                }
+            }
+        }
+        if (!empty($_GET['email']) && !empty($_GET['pass']))
+        {
+            establishConnection();
+
         }
     }
+
 }
 
-// checks email and password generated upon login attempt of user, and processes check with database to verify.
-if (isset($_GET['email']) && isset($_GET['pass']))
+function establishConnection()
 {
     try
     {
@@ -31,7 +51,8 @@ if (isset($_GET['email']) && isset($_GET['pass']))
         ));
         $customerGate = new CustomerLogon($conn);
         $data = $customerGate->getByUserName($_GET['email']);
-        checkData($_GET['pass'], $data);
+        checkData($_GET['email'], $_GET['pass'], $data);
+        $conn = null;
     }
     catch(PDOException $e)
     {
@@ -39,33 +60,62 @@ if (isset($_GET['email']) && isset($_GET['pass']))
     }
 }
 
-// Checks if the data is retrieved form database, and if the password matches that of the database's.
-function checkData($pass, $data)
+function checkMsgContent($msg)
 {
+
+    if (empty($msg))
+    {
+        echo "<div class = 'error'> Please enter a valid email. </div>";
+
+    }
+    else
+    {
+        echo $msg;
+    }
+}
+
+// Checks if the data is retrieved form database, and if the password matches that of the database's.
+function checkData($email, $pass, $data)
+{
+    $msg = '';
     if (isset($data) && count($data) > 0)
     {
         foreach ($data as $row)
         {
-            if (password_verify($pass, $row['Pass']))
+
+            if ($email == $row['UserName'])
+            {
+                $emailFound = true;
+            }
+
+            if ($emailFound && password_verify($pass, $row['Pass']))
             {
                 $_SESSION['ID'] = $row['CustomerID'];
                 $_SESSION['status'] = "loggedIn";
-                header('location: single-painting.php');
+                header('location: home-logged-in.php');
             }
-            else
-            {
 
-                //redirect to error page if incorrect user entry detected.
-                header("location:login.php?redirect=error");
+        }
+        if (!$emailFound)
+        {
+
+            $msg = "<div class = 'error'> Please enter a valid email. </div>";
+
+        }
+        else
+        {
+            if ($emailFound)
+            {
+                $msg = "<div class = 'error'> Please enter a valid password. </div>";
+
             }
+
         }
     }
-    else
-    {
-        //redirect to error page if incorrect user entry detected.
-        header("location:login.php?redirect=error");
-    }
+
+    checkMsgContent($msg);
 }
+
 ?>
 
 <!DOCTYPE html>   
@@ -81,15 +131,15 @@ function checkData($pass, $data)
         <div class="container">   
         <div class="loginBox">
         <!-- if error occurs, based on query string value, output error here. -->
-        <?=checkIfError();?>
+        <?=checkIfError(); ?>
             <label>
                 <p>Email</p>
             </label for="email">
-            <input type="text" placeholder="Enter Email" name="email" required>
+            <input type="text" placeholder="Enter Email" name="email">
             <label>
                 <p>Password</p>
             </label for="pass">
-            <input type="password" placeholder="Enter Password" name="pass" required>
+            <input type="password" placeholder="Enter Password" name="pass">
             <button type="Submit">Login</button>
             <button type="button">Sign up</button>
         </div>

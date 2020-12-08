@@ -91,7 +91,11 @@ function outputSingleGallery($row)
     echo '<option value=' . $row['GalleryID'] . '>' . $row['GalleryName'] . '</option>';
 }
 
-
+/**
+ * This function checks the querystring for any of the key fields that are needed and returns true
+ * if any of them are found. It returns false if nothing is found. 
+ * @return boolean
+ */
 function checkFormData()
 {
     if (
@@ -141,6 +145,11 @@ function bindValues($connection, $sql, $parameters = array())
 //$_SERVER["QUERY_STRING"]
 // . $_SESSION['sort'] = "artist" . '
 
+/**
+ * Prints out a table with paintings in them
+ * @param $paintings assosiative array with paintings information
+ * @param $loggedin boolean representing if a user is logged in.
+ */
 function outputPaintings($paintings, $loggedin)
 {
     echo '<table>';
@@ -161,6 +170,12 @@ function outputPaintings($paintings, $loggedin)
 //I used this to search for the strpos and str_replace manuals https://www.php.net/manual/en/function.strpos.php.
 // I used php.net for manuals.
 
+/**
+ * Changes the sort= in the querystring to match the string that is passed in by the user.
+ * 
+ * @param $addString String that determines what s
+ * @return $queryString Returns a string 
+ */
 function addSort($addString)
 {
 
@@ -185,7 +200,13 @@ function addSort($addString)
 }
 
 
-
+/**
+ * Takes in painting information associative array and a boolean.
+ * The associative array should contain paintings information. 
+ * The $logged should be a boolean to determine if the favorite link should be output.
+ * @param $row associative array
+ * @param $loggedin boolean
+ */
 function outputPainting($row, $loggedin)
 {
     echo '<tr>';
@@ -194,24 +215,21 @@ function outputPainting($row, $loggedin)
     echo '<td><a href=single-painting.php?id=' . $row['PaintingID'] . '>' . $row['Title'] . '</a></td>';
     echo '<td>' . $row['YearOfWork'] .  '</td>';
     if ($loggedin) {
-
         if (!findFavorite($row['PaintingID'])) {
             echo '<td><a class="style_link" href=add-favorites.php?id=' . $row['PaintingID'] . '>Favorite</a></td>';
         }
-
-        // foreach ($_SESSION['favorites'] as $painting) {
-        //     if ($painting['PaintingID'] == $row['PaintingID']) {
-        //         echo '<td><a class="style_link" href=add-favorites.php?id=' . $row['PaintingID'] . '>Favorite</a></td>'; // Needs to link to other part + add Fav Data
-        //     }
-        // }
     }
-
-
-    //echo '<td><a class="style_link" href=add-favorites.php?id=' . $row['PaintingID'] . '>Favorite</a></td>'; // Needs to link to other part + add Fav Data
-    echo '<td><a class="style_link" href=single-painting.php?id=' . $row['PaintingID'] . '>View</a></td>'; // Needs to link to other part
+    echo '<td><a class="style_link" href=single-painting.php?id=' . $row['PaintingID'] . '>View</a></td>';
     echo '</tr>';
 }
 
+
+/**
+ * Takes in an $id that is then used to compare to the 
+ * $_SESSIONS['favorites'][PaintingsID] then returns true
+ * if it is equal or false if it is unequal.
+ * @param $id 
+ */
 function findFavorite($id)
 {
     $found = false;
@@ -224,6 +242,15 @@ function findFavorite($id)
 }
 
 
+/** 
+ * 
+ * Takes in a connection to a database so a query can be run on it.
+ * checks the query string and adds the field values to a parameters array. 
+ * Uses $sql string and the parameters array to create pdo statment.
+ * Uses pdo fetchall function to create a array of information.
+ * @param $conn is a connection 
+ * @return $paintings array (array with paintings array) 
+ */
 function buildQuery($conn)
 {
 
@@ -233,7 +260,7 @@ function buildQuery($conn)
     $newsql = "SELECT PaintingID, FirstName, LastName, Title, YearOfWork, ImageFileName 
             FROM galleries INNER JOIN (artists INNER JOIN paintings ON artists.ArtistID = paintings.ArtistID) ON galleries.GalleryID = paintings.GalleryID";
 
-    //This checks the query string has any feilds set (with checkFormData()), the it finds the feilds and builds a query string.
+    //This checks the query string has any feilds set (with checkFormData()), then it finds the feilds and builds a query string from them.
     if (checkFormData()) {
         $newsql .= " WHERE";
 
@@ -323,27 +350,3 @@ function buildQuery($conn)
 
     return $paintings;
 }
-
-
-// REFERENCE CODE FROM LABS
-// public static function runQuery($connection, $sql, $parameters = array())
-// {
-//     // Ensure parameters are in an array
-//     if (!is_array($parameters)) {
-//         $parameters = array($parameters);
-//     }
-
-//     $statement = null;
-//     if (count($parameters) > 0) {
-//         // Use a prepared statement if parameters
-//         $statement = $connection->prepare($sql);
-//         $executedOk = $statement->execute($parameters);
-//         if (!$executedOk) throw new PDOException;
-//     } else {
-//         // Execute a normal query
-//         $statement = $connection->query($sql);
-//         if (!$statement) throw new PDOException;
-//     }
-
-//     return $statement;
-// }
