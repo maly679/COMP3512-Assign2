@@ -7,15 +7,17 @@ include 'home-logged-in-helpers.php';
 
 <!DOCTYPE html>
 <html>
-   <head>
-      <meta charset="utf-8"/>
-      <title>Assignment 1</title>
-      <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,800" rel="stylesheet">
-      <link rel="stylesheet" href="css/homeLoggedIn.css" >
-   </head>
-   <body>
-      <main class="container"> 
-         <div class = "box h">
+
+<head>
+   <meta charset="utf-8" />
+   <title>Assignment 1</title>
+   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,800" rel="stylesheet">
+   <link rel="stylesheet" href="css/home-logged-in.css">
+</head>
+
+<body>
+   <main class="container">
+      <!-- <div class = "box h">
             <header>
                <h1>
                   COMP 3512 Assign 2
@@ -23,76 +25,89 @@ include 'home-logged-in-helpers.php';
                <h2>
                   Group Member Names
                </h2>
+               
             </header>
+         </div> -->
+      <div class="box a navContainer">
+         <input type="checkbox" class="toggler">
+         <button id="menuIcon"><i class="fa fa-bars"></i></button>
+         <a href="about.php"><img id="logo" src="images/login-page/logo.png"></a>
+         <div class="navItems">
+            <div>
+               <div>
+                  <ul>
+                     <li><a class="navBtn" href="index.php">Home</a></li>
+                     <li><a class="navBtn" href="about.php">About</a></li>
+                     <li><a class="navBtn" href="galleries.php">Galleries</a></li>
+                     <li><a class="navBtn" href="browse-paintings.php">Browse</a></li>
+                     <li><a class="navBtn" href="favorites.php">Favorites</a></li>
+                     <?php
+                     if (isset($_SESSION['status']) && isset($_SESSION['ID'])) {
+                        echo '<li><a class="navBtn" href="logout.php">Logout</a></li>';
+                     } else {
+                        echo '<li><a class="navBtn" href="login.php">Login</a></li>';
+                     }
+                     ?>
+                  </ul>
+               </div>
+            </div>
          </div>
+      </div>
+      <div class="box b WelcomeUser">
+         <section>
+            <?= displayUserInfo(); ?>
+         </section>
+      </div>
+      <div class="box searchFavorite">
+         <form action="home-logged-in.php" method="get">
 
-         <div class="box WelcomeUser">
-            <section>
-            <?=displayUserInfo(); ?>
-            </section>
-         </div>
-         <div class="box searchFavorite">
-         <form action="home-logged-in.php" method="get">  
-   
-            <input type="text" name = "checkSearch" placeholder="Browse for a Favorite" class = 'searchFavoritesBox'>
+            <input type="text" name="checkSearch" placeholder="Browse for a Favorite" class='searchFavoritesBox'>
             <button type="Submit">Search</button>
-        </div>
+      </div>
 
-        </div>   
-    </form>     
-         </div>
-         <div class = "box Results">
-             <?php
-// Ensure session favorites are present, and retrieve required values to process for query.
-if (isset($_SESSION['favorites']) && !empty($_SESSION['favorites']))
-{
+      </div>
+      </form>
+      </div>
+      <div class="box Results">
+         <?php
+         // Ensure session favorites are present, and retrieve required values to process for query.
+         if (isset($_SESSION['favorites']) && !empty($_SESSION['favorites'])) {
 
-    //Assign the Artist ID of the first favorite in list
-    $ArtistID = $_SESSION['favorites'][0]['ArtistID'];
-    //Obtain the threshhold pertaining to the painting years, in order to process recommended paintings query
-    $YoWStart = getThreshholdStart($_SESSION['favorites'][0]['YearOfWork']);
-    $YoWEnd = getThreshholdEnd($_SESSION['favorites'][0]['YearOfWork']);
+            //Assign the Artist ID of the first favorite in list
+            $ArtistID = $_SESSION['favorites'][0]['ArtistID'];
+            //Obtain the threshhold pertaining to the painting years, in order to process recommended paintings query
+            $YoWStart = getThreshholdStart($_SESSION['favorites'][0]['YearOfWork']);
+            $YoWEnd = getThreshholdEnd($_SESSION['favorites'][0]['YearOfWork']);
+         }
 
-}
+         echo "<h2>Paintings You May Like</h2>";
 
-echo "<h2>Paintings You May Like</h2>";
+         // Verify session favorites is set and display the paintings user may like
+         if (isset($_SESSION['favorites']) && !empty($_SESSION['favorites'])) {
 
-// Verify session favorites is set and display the paintings user may like
-if (isset($_SESSION['favorites']) && !empty($_SESSION['favorites']))
-{
+            displayDataPaintingsMayLike($ArtistID, $YoWStart, $YoWEnd, $dataFirst15);
+         } else {
+            // Process displaying of first 15 paintings, if no favorites are set
+            if (isset($dataFirst15)) {
 
-    displayDataPaintingsMayLike($ArtistID, $YoWStart, $YoWEnd, $dataFirst15);
+               outputFormattedPainting($dataFirst15);
+               echo "</div>";
+            }
+         }
+         ?>
 
-}
-else
-{
-    // Process displaying of first 15 paintings, if no favorites are set
-    if (isset($dataFirst15))
-    {
+      </div>
+      <?php
+      // This is where the browser determines if the user has searched something; if they have, then the favorites are iterated through and displayed only if the full title is correct, otherwise it displays no result found.
+      if (isset($_GET["checkSearch"])) {
+         processCheckSearch($_GET["checkSearch"]);
+      } else {
+         processRegFavorites();
+      }
 
-        outputFormattedPainting($dataFirst15);
-        echo "</div>";
+      ?>
+      </div>
+   </main>
+</body>
 
-    }
-}
-?>
-
-        </div>
-             <?php
-// This is where the browser determines if the user has searched something; if they have, then the favorites are iterated through and displayed only if the full title is correct, otherwise it displays no result found.
-if (isset($_GET["checkSearch"]))
-{
-    processCheckSearch($_GET["checkSearch"]);
-
-}
-else
-{
-    processRegFavorites();
-
-}
-
-?>
-         </div>
-      </main>
-   </body>
 </html>
