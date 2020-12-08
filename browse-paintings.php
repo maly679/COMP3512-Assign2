@@ -29,7 +29,6 @@ try {
 
 //if (checkFormData()) {
 try {
-    // conn = pdo
     $conn = DatabaseHelper::createConnection(array(
         DBCONNSTRING,
         DBUSER, DBPASS
@@ -80,7 +79,7 @@ try {
     <!-- <link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'> -->
     <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" rel="stylesheet"> -->
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/browse-paintings.css" />
     <script src="js/browse-paintings.js"></script>
 </head>
@@ -90,9 +89,34 @@ try {
     <main class="container">
 
 
-        <div class="box a">
+        <!-- <div class="box a">
             <label>COMP 3512 Assignment 2</label>
             <span>Jordan Walker & Mariangel Ramirez & </span>
+        </div> -->
+        <div class="navContainer box">
+            <input type="checkbox" class="toggler">
+            <button id="menuIcon"><i class="fa fa-bars"></i></button>
+            <a href="about.php"><img id="logo" src="images/login-page/logo.png"></a>
+            <div class="navItems">
+                <div>
+                    <div>
+                        <ul>
+                            <li><a class="navBtn" href="index.php">Home</a></li>
+                            <li><a class="navBtn" href="about.php">About</a></li>
+                            <li><a class="navBtn" href="galleries.php">Galleries</a></li>
+                            <li><a class="navBtn" href="browse-paintings.php">Browse</a></li>
+                            <li><a class="navBtn" href="favorites.php">Favorites</a></li>
+                            <?php
+                            if (isset($_SESSION['status']) && isset($_SESSION['ID'])) {
+                                echo '<li><a class="navBtn" href="logout.php">Logout</a></li>';
+                            } else {
+                                echo '<li><a class="navBtn" href="login.php">Login</a></li>';
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="box b">
             <section class="two wide column">
@@ -159,7 +183,7 @@ try {
                 //}
 
                 ?>
-                <div><?= $msg  ?></div>
+                <div><?= $msg ?></div>
             </section>
         </div>
     </main>
