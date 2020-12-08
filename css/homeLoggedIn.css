@@ -4,6 +4,7 @@ body {
 	font-size: 0.8rem;
 	overflow-x: hidden;
 	margin-right: 29px;
+	font-style: italic;
 }
 
 .container {
@@ -78,30 +79,13 @@ button {
 	grid-row-end: 4;
 }
 
-.showPaintings {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-gap: 70px;
+li {
+	display: inline-block;
+	padding: 25px;
+	width: 250px;
+	align-items: center;
 }
 
 .italicStyle {
 	font-style: italic;
-}
-
-.odd {
-	grid-column-start: 1;
-	grid-column-end: 2;
-	text-align: left;
-}
-
-.even {
-	grid-column-start: 3;
-	grid-column-end: 4;
-	text-align: left;
-}
-
-.middle {
-	grid-column-start: 2;
-	grid-column-end: 3;
-	text-align: left;
 }
