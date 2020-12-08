@@ -5,6 +5,7 @@ body, div, span, h1, h2, h3, h4, aside, p, main, nav, ul, li {
 }
 
 body {
+    background-color: steelblue;
     font-family: 'Helvetica', 'Arial', sans-serif;
     padding: 15px;
 }
@@ -24,7 +25,7 @@ div.container {
 div.section {
     border-radius: 5px;
     padding: 15px;
-    background-color: lightgray;
+    background-color: lightsteelblue;
 }
 
 .section.header {
