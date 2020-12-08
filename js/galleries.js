@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     html += "<img id='listPainting' src='" + paintingImagesEndpoint + getFileName(painting.ImageFileName) + "'/>";
                     html += "</a></td>";
                     html += "<td>" + painting.LastName + "</td>";
-                    html += "<td>" + painting.Title + "</td>";
+                    html += "<td><a href='single-painting.php?id=" + painting.PaintingID + "'>" + painting.Title + "</a></td>";
                     html += "<td>" + painting.YearOfWork + "</td>";
                     paintingsListItem.innerHTML = html; 
                     document.querySelector("#paintingsList").appendChild(paintingsListItem);
@@ -172,15 +172,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function generatePaintingsList(paintings) {
+        
         let paintingsListHeader = document.createElement("tr");
         paintingsListHeader.innerHTML = `<th></th><th id="tableArtist">Artist</th><th id="tableTitle">Title</th><th id="tableYear">Year</th>`;
         document.querySelector("#paintingsList").appendChild(paintingsListHeader);
         paintings.forEach((painting) => {
             let paintingsListItem = document.createElement("tr");
             var html = "";
-            html += "<td><img id='listPainting' src='" + paintingImagesEndpoint + getFileName(painting.ImageFileName) + "'/></td>";
+            html += "<td><a href='single-painting.php?id=" + painting.PaintingID + "'>";
+            html += "<img id='listPainting' src='" + paintingImagesEndpoint + getFileName(painting.ImageFileName) + "'/>";
+            html += "</a></td>";
             html += "<td>" + painting.LastName + "</td>";
-            html += "<td>" + painting.Title + "</td>";
+            html += "<td><a href='single-painting.php?id=" + painting.PaintingID + "'>" + painting.Title + "</a></td>";
             html += "<td>" + painting.YearOfWork + "</td>";
             paintingsListItem.innerHTML = html;
             document.querySelector("#paintingsList").appendChild(paintingsListItem);
