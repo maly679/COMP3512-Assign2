@@ -58,6 +58,13 @@ if (isset($_GET['deleteAll'])) {
                             <li><a class="navBtn" href="galleries.php">Galleries</a></li>
                             <li><a class="navBtn" href="browse-paintings.php">Browse</a></li>
                             <li><a class="navBtn" href="favorites.php">Favorites</a></li>
+                            <?php
+                            if (isset($_SESSION['status']) && isset($_SESSION['ID'])) {
+                                echo '<li><a class="navBtn" href="logout.php">Logout</a></li>';
+                            } else {
+                                echo '<li><a class="navBtn" href="login.php">Login</a></li>';
+                            }
+                            ?>
                         </ul>
                     </div>
                 </div>
@@ -68,18 +75,18 @@ if (isset($_GET['deleteAll'])) {
             <?php
             outputDeleteAll();
 
-            //if (isset($_SESSION['status']) && isset($_SESSION['ID'])) {
-            if (isset($_SESSION['favorites'])) {
-                outputFavorites($_SESSION['favorites']);
+            if (isset($_SESSION['status']) && isset($_SESSION['ID'])) {
+                if (isset($_SESSION['favorites'])) {
+                    outputFavorites($_SESSION['favorites']);
+                } else {
+                    $msg = "There are no Favorites";
+                }
             } else {
-                $msg = "There are no Favorites";
+                $msg = "You are not logged in";
             }
-            // } else {
-            //     $msg = "You are not logged in";
-            // }
             ?>
-            <div>
-                <? $msg  ?>
+            <div id="output_message">
+                <?= $msg  ?>
             </div>
         </div>
     </main>
