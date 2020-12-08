@@ -56,6 +56,13 @@ else if (isset($_POST['title']) || isset($_POST['gallery'])) {
                   <li><a class="navBtn" href="galleries.php">Galleries</a></li>
                   <li><a class="navBtn" href="browse-paintings.php">Browse</a></li>
                   <li><a class="navBtn" href="favorites.php">Favorites</a></li>
+                  <?php
+                  if (isset($_SESSION['status']) && isset($_SESSION['ID'])) {
+                     echo '<li><a class="navBtn" href="logout.php">Logout</a></li>';
+                  } else {
+                     echo '<li><a class="navBtn" href="login.php">Login</a></li>';
+                  }
+                  ?>
                </ul>
             </div>
          </div>
