@@ -6,28 +6,9 @@ require_once 'db-classes.inc.php';
 
 if (isset($_POST['name'])) {
    header("Location: login.php");
-} 
-else if (isset($_POST['title']) || isset($_POST['gallery'])) {
+} else if (isset($_POST['title'])) {
    header("Location: browse-painting.php");
 }
-
-// try {
-//    $conn = DatabaseHelper::createConnection(array(DBCONNSTRING,DBUSER, DBPASS));
-//    $searchGateway = new TemporaryDB($conn);
-//    $results = $searchGateway->getAllPaintingsAndGalleries($galleryID);
-
-//    $paintingGateway = new PaintingDB($conn);
-//   if (isset($_GET['museum'])) {
-//     $paintings = $paintingGateway->getAllForGallery($_GET['museum']);
-//   } else {
-//     $paintings = $paintingGateway->Top20Paintings();
-//   }
-
-//    $conn = null;
-// } catch (Exception $e) {
-//    die($e->getMessage());
-// }
-
 ?>
 <!DOCTYPE html>
 <html lang=en>
@@ -43,7 +24,7 @@ else if (isset($_POST['title']) || isset($_POST['gallery'])) {
 
 <body class="container">
    <!-- For reference: https://www.w3schools.com/howto/howto_js_topnav_responsive.asp  -->
-   <div class="navContainer">
+   <header class="navContainer">
       <input type="checkbox" class="toggler">
       <button id="menuIcon"><i class="fa fa-bars"></i></button>
       <a href="about.php"><img id="logo" src="images/login-page/logo.png"></a>
@@ -67,7 +48,7 @@ else if (isset($_POST['title']) || isset($_POST['gallery'])) {
             </div>
          </div>
       </div>
-   </div>
+   </header>
    <div class="main">
       <div class="btnContainer">
          <button class="button" type="button" name="login" onClick="location.href='login.php'">LOGIN</button>
@@ -81,7 +62,7 @@ else if (isset($_POST['title']) || isset($_POST['gallery'])) {
 
    <div class="searchContainer">
       <form name="search" method="GET" action="browse-paintings.php?">
-         <input class="searchBar" type="text" placeholder="Search painting or gallery.." name="search">
+         <input class="searchBar" type="text" placeholder="Search painting or gallery.." name="title">
          <!-- Result of this should filter by painting (title) and gallery name -->
       </form>
    </div>

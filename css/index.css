@@ -180,7 +180,7 @@ https://www.youtube.com/watch?v=DZg6UfS5zYg&feature=youtu.be
         top: 0;
         left: 0;
         width: 100%;
-        height: 100%;
+        height: 0;
         overflow: hidden;
         display: flex;
         align-items: center;
@@ -220,6 +220,9 @@ https://www.youtube.com/watch?v=DZg6UfS5zYg&feature=youtu.be
     }
     .toggler:checked~.navItems>div {
         transform: scale(1);
+    }
+    .toggler:checked~.navItems {
+        height: 100%;
     }
     .toggler:checked~.navItems>div>div {
         opacity: 1;

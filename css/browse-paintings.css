@@ -1,7 +1,14 @@
 body {
-  background-color: steelblue;
+  /* background-color: steelblue; */
+  background-image: url("../images/unsplash-main.jpg");
   font-family: Open Sans, sans-serif;
-  font-size: 0.8rem;
+  background-position: center;
+  background-repeat: repeat-y;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  /* font-size: 1rem; */
 }
 
 .container {
@@ -9,11 +16,8 @@ body {
   padding: 40px;
   padding-top: 0;
   grid-gap: 10px;
-  color: #444;
-  grid-template-areas:
-    "header header header"
-    "form info info"
-    ".    info info";
+  /* color: #444; */
+  grid-template-areas: "header header header" "form info info" ".    info info";
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 10rem 25rem auto;
 }
@@ -32,125 +36,12 @@ body {
   overflow: auto;
 }
 
-@media screen and (max-width: 900px) {
-  .container {
-    display: grid;
-    padding: 0px;
-    grid-gap: 10px;
-    color: #444;
-    grid-template-areas:
-      "header"
-      "form"
-      "info";
-    grid-template-columns: 1fr;
-    grid-template-rows: 6.5rem 25rem auto;
-  }
-
-  .box {
-    padding: 0px;
-  }
-
-  .navContainer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-  }
-  .toggler {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    cursor: pointer;
-    width: 50px;
-    height: 50px;
-    opacity: 0;
-    display: block;
-  }
-  #menuIcon {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0;
-    cursor: pointer;
-    width: 50px;
-    height: 50px;
-    margin: 10px;
-  }
-  #logo {
-    float: right;
-    margin: 10px;
-    width: 50%;
-  }
-  .navItems {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .navItems > div {
-    background: rgba(0, 0, 0, 0.8);
-    width: 200vw;
-    height: 100%;
-    display: flex;
-    flex: none;
-    align-items: center;
-    justify-content: center;
-    transform: scale(0);
-    transition: all 0.4s ease;
-  }
-  .navItems > div > div {
-    text-align: center;
-    max-width: 90vw;
-    max-height: 100vh;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-  .navItems > div > div > ul > li {
-    list-style: none;
-    color: white;
-    padding: 1rem;
-  }
-  .navItems > div > div > ul > li > a {
-    color: inherit;
-    text-decoration: none;
-    transition: color 0.4s ease;
-  }
-  /* Show menu on toggle on*/
-  .navItems .toggler:checked {
-    visibility: visible;
-  }
-  .toggler:checked ~ .navItems > div {
-    transform: scale(1);
-  }
-  .toggler:checked ~ .navItems > div > div {
-    opacity: 1;
-    transition: opacity 0.4s ease;
-  }
-  .fa {
-    font-size: 20px;
-  }
-  .button {
-    width: 100px;
-  }
-  .searchContainer input[type="text"] {
-    width: 300px;
-  }
-}
-
 .box {
-  background-color: lightsteelblue;
+  background-color: steelblue;
   color: black;
   border-radius: 5px;
   padding: 20px;
-  font-size: 150%;
+  /* font-size: 150%; */
 }
 
 /* div.a section {
@@ -168,16 +59,7 @@ div.b section {
   display: grid;
   /* grid-template-columns: 12rem 1fr;
   grid-template-rows: 1em 1em 1em 1em 1em 1em 1em; */
-
-  grid-template-areas:
-    "label1 box1"
-    "label2 box2"
-    "label3 box3"
-    "label4 .   "
-    "label5 box4"
-    "label6 box5"
-    "label7 box6"
-    "label8 box7";
+  grid-template-areas: "label1 box1" "label2 box2" "label3 box3" "label4 .   " "label5 box4" "label6 box5" "label7 box6" "label8 box7";
   grid-template-columns: 12rem 1fr;
   grid-template-rows: 30px 30px 30px 30px 30px 30px 30px;
   /* grid-row-gap: 2em; */
@@ -186,27 +68,35 @@ div.b section {
 #row1 {
   grid-area: label1;
 }
+
 #row2 {
   grid-area: label2;
 }
+
 #row3 {
   grid-area: label3;
 }
+
 #row4 {
   grid-area: label4;
 }
+
 #row5 {
   grid-area: label5;
 }
+
 #row6 {
   grid-area: label6;
 }
+
 #row7 {
   grid-area: label7;
 }
+
 #row8 {
   grid-area: label8;
 }
+
 /* #row7 {
   grid-area: label7;
 } */
@@ -218,24 +108,28 @@ div.b section {
 #boxrow2 {
   grid-area: box2;
 }
+
 #boxrow3 {
   grid-area: box3;
 }
+
 #boxrow4 {
   grid-area: box4;
 }
+
 #boxrow5 {
   grid-area: box5;
 }
+
 #boxrow6 {
   grid-area: box6;
 }
+
 #boxrow7 {
   grid-area: box7;
 }
 
-.ui_form_row {
-}
+.ui_form_row {}
 
 .formLabels {
   grid-area: formLabels;
@@ -290,6 +184,7 @@ table td a {
 }
 
 /* https://stackoverflow.com/questions/2187008/styling-an-anchor-tag-to-look-like-a-submit-button */
+
 /* .likeabutton {
   text-decoration: none;
   font: menu;
@@ -306,6 +201,7 @@ table td a {
 } */
 
 /* https://www.w3schools.com/css/css3_borders */
+
 .style_link {
   font: menu;
   border-radius: 5px;
@@ -317,11 +213,20 @@ table td a {
   border-width: 1px;
   text-decoration: none;
 }
+
 /* .style_link {
   background-color: red;
 } */
 
+.footer {
+  display: flex;
+  justify-self: center;
+  align-items: flex-end;
+  color: white;
+}
+
 /*----------------- CSS FOR NAVBAR ---------------------*/
+
 .navBtn {
   float: left;
   display: block;
@@ -332,8 +237,9 @@ table td a {
   padding: 20px;
 }
 
-.navItems > div > div > ul > li {
+.navItems>ul>li {
   color: white;
+  /* Uncomment later */
   list-style: none;
 }
 
@@ -342,7 +248,7 @@ table td a {
   width: 20%;
 }
 
-.navItems > div > div > ul {
+.navItems>ul {
   padding: 0;
   margin: 0;
 }
@@ -351,7 +257,77 @@ table td a {
   background-color: orange;
 }
 
-#menuIcon,
-.toggler {
+.menuIcon, .toggler {
   display: none;
+}
+
+/* 
+For reference: CSS + HTML Menu Hamburger Button 
+https://www.youtube.com/watch?v=sjrp1FEHnyA
+*/
+
+@media screen and (max-width: 800px) {
+  .container {
+    display: grid;
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-areas: "header" "form" "info";
+    grid-template-columns: 1fr;
+  }
+  .navContainer {
+    background-color: #bbb;
+    box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    z-index: 3;
+    left: 0;
+  }
+  .navContainer ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+  }
+  .navContainer ul a {
+    display: block;
+    outline: 1px solid gray;
+    padding: 20px;
+    text-decoration: none;
+  }
+  .navContainer #logo {
+    float: right;
+    position: relative;
+    display: block;
+    /* padding: 10px 20px; */
+    width: 30%;
+  }
+  .navContainer .menu {
+    clear: both;
+    max-height: 0;
+    transition: max-height .2s ease-out;
+  }
+  .navContainer .menuIcon {
+    display: block;
+    position: relative;
+    float: left;
+    padding: 20px;
+    cursor: pointer;
+    border: none;
+  }
+  .navContainer .toggler {
+    display: none;
+  }
+  /* Expands menu */
+  .navContainer .toggler:checked~.menu {
+    max-height: 240px;
+  }
+  .navContainer .navBtn {
+    float: none;
+    padding: 0;
+  }
+  .fa {
+    font-size: 20px;
+  }
+  .button {
+    width: 100px;
+  }
 }
