@@ -4,14 +4,15 @@ body {
   font-size: 0.8rem;
 }
 
-#paintingDescription, #paintingMedium {
+#paintingDescription,
+#paintingMedium {
   font-style: italic;
   margin: 0;
 }
 
 #listPainting {
-    width: 100px;
-    height: 100px;
+  width: 100px;
+  height: 100px;
 }
 
 #paintingTitle {
@@ -274,5 +275,21 @@ div.i section {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    grid-template-areas:
+      "header header header"
+      "gallery gallery gallery"
+      "info info info"
+      "map map map"
+      "paintings paintings paintings";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 10em 40em auto 50em 40rem;
+  }
+  .box {
+    overflow: scroll;
   }
 }
