@@ -8,6 +8,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
+  color: black;
   /* font-size: 1rem; */
 }
 
@@ -17,9 +18,9 @@ body {
   padding-top: 0;
   grid-gap: 10px;
   /* color: #444; */
-  grid-template-areas: "header header header" "form info info" ".    info info";
+  grid-template-areas: "header header header" "form info info" ".    info info" "footer footer footer";
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 10rem 25rem auto;
+  grid-template-rows: 10rem 25rem auto 2rem;
 }
 
 .navContainer {
@@ -38,7 +39,7 @@ body {
 
 .box {
   background-color: steelblue;
-  color: black;
+  /* color: black; */
   border-radius: 5px;
   padding: 20px;
   /* font-size: 150%; */
@@ -219,10 +220,19 @@ table td a {
 } */
 
 .footer {
+  /* position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
   display: flex;
   justify-self: center;
   align-items: flex-end;
+  color: white; */
+  grid-area: footer;
+  text-align: center;
   color: white;
+  padding: 20px;
+  width: 100%;
 }
 
 /*----------------- CSS FOR NAVBAR ---------------------*/
@@ -237,9 +247,8 @@ table td a {
   padding: 20px;
 }
 
-.navItems>ul>li {
+.navItems>div>div>ul>li {
   color: white;
-  /* Uncomment later */
   list-style: none;
 }
 
@@ -248,16 +257,16 @@ table td a {
   width: 20%;
 }
 
-.navItems>ul {
+.navItems>div>div>ul {
   padding: 0;
   margin: 0;
 }
 
 .navBtn:hover {
-  background-color: orange;
+  background-color: steelblue;
 }
 
-.menuIcon, .toggler {
+#menuIcon, .toggler {
   display: none;
 }
 
@@ -265,69 +274,109 @@ table td a {
 For reference: CSS + HTML Menu Hamburger Button 
 https://www.youtube.com/watch?v=sjrp1FEHnyA
 */
-
+/* OLD CSS CODE FROM INDEX.CSS */
 @media screen and (max-width: 800px) {
   .container {
     display: grid;
     grid-template-rows: repeat(1, 1fr);
     grid-template-areas: "header" "form" "info";
     grid-template-columns: 1fr;
+    grid-gap: 10px;
   }
   .navContainer {
-    background-color: #bbb;
-    box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.1);
-    position: fixed;
-    width: 100%;
-    z-index: 3;
-    left: 0;
+      /* position: fixed; */
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1;
   }
-  .navContainer ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    overflow: hidden;
+  .toggler {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      cursor: pointer;
+      width: 50px;
+      height: 50px;
+      opacity: 0;
+      display: block;
   }
-  .navContainer ul a {
-    display: block;
-    outline: 1px solid gray;
-    padding: 20px;
-    text-decoration: none;
+  #menuIcon {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      cursor: pointer;
+      width: 50px;
+      height: 50px;
+      margin: 10px;
   }
-  .navContainer #logo {
-    float: right;
-    position: relative;
-    display: block;
-    /* padding: 10px 20px; */
-    width: 30%;
+  #logo {
+      float: right;
+      margin: 10px;
+      width: 50%;
   }
-  .navContainer .menu {
-    clear: both;
-    max-height: 0;
-    transition: max-height .2s ease-out;
+  .navItems {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
   }
-  .navContainer .menuIcon {
-    display: block;
-    position: relative;
-    float: left;
-    padding: 20px;
-    cursor: pointer;
-    border: none;
+  .navItems>div {
+      background: rgba(0, 0, 0, 0.8);
+      width: 200vw;
+      height: 100%;
+      display: flex;
+      flex: none;
+      align-items: center;
+      justify-content: center;
+      /* transform: scale(0);
+      transition: all 0.4s ease; */
   }
-  .navContainer .toggler {
-    display: none;
+  .navItems>div>div {
+      text-align: center;
+      max-width: 90vw;
+      max-height: 100vh;
+      opacity: 0;
+      transition: opacity 0.4s ease;
   }
-  /* Expands menu */
-  .navContainer .toggler:checked~.menu {
-    max-height: 240px;
+  .navItems>div>div>ul>li {
+      list-style: none;
+      color: white;
+      padding: 1rem;
   }
-  .navContainer .navBtn {
-    float: none;
-    padding: 0;
+  .navItems>div>div>ul>li>a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.4s ease;
+  }
+  /* Show menu on toggle on*/
+  .navItems .toggler:checked {
+      visibility: visible;
+  }
+  .toggler:checked~.navItems>div {
+      /* transform: scale(1); */
+  }
+  .toggler:checked~.navItems {
+      height: 100%;
+  }
+  .toggler:checked~.navItems>div>div {
+      opacity: 1;
+      transition: opacity 0.4s ease;
   }
   .fa {
-    font-size: 20px;
+      font-size: 20px;
   }
   .button {
-    width: 100px;
+      width: 100px;
+  }
+  .searchContainer input[type=text] {
+      width: 300px;
   }
 }
