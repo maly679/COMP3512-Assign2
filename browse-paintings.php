@@ -95,11 +95,27 @@ try {
                 <div>
                     <div>
                         <ul>
+                            <!-- 
+                                Makes sure that if the user is logged in then it will take them back to
+                                home (logged in). Otherwise it will take the user back to the landing page 
+                            -->
+                            <?php
+                            if (isset($_SESSION['status']) && isset($_SESSION['ID'])) {
+                                echo '<li><a class="navBtn" href="home-logged-in.php">Home</a></li>';
+                            } else {
+                                echo '<li><a class="navBtn" href="index.php">Home</a></li>';
+                            }
+                            ?>
                             <li><a class="navBtn" href="index.php">Home</a></li>
                             <li><a class="navBtn" href="about.php">About</a></li>
                             <li><a class="navBtn" href="galleries.php">Galleries</a></li>
                             <li><a class="navBtn" href="browse-paintings.php">Browse</a></li>
                             <li><a class="navBtn" href="favorites.php">Favorites</a></li>
+                            <!-- 
+                                Makes sure that if user is already logged in, then the button changes to
+                                allow them to logout. Otherwise, if the user is not logged in, it will 
+                                prompt them to login
+                             -->
                             <?php
                             if (isset($_SESSION['status']) && isset($_SESSION['ID'])) {
                                 echo '<li><a class="navBtn" href="logout.php">Logout</a></li>';
@@ -112,7 +128,7 @@ try {
                 </div>
             </div>
         </header>
-        
+
         <div class="box b">
             <section class="two wide column">
                 <h3 class="ui dividing header">Painting Filters</h3>
@@ -138,10 +154,10 @@ try {
                             outputGalleries($galleries);
                             ?>
                         </select></div>
-                    <div id="boxrow4"><input id="inputBefore" class="inputtext" type="text" name="Before" disabled placeholder="Enter Before Date"/></div>
-                    <div id="boxrow5"><input id="inputAfter" class="inputtext" type="text" name="After" disabled placeholder="Enter After Date"/></div>
-                    <div id="boxrow6"><input id="inputBetween1" class="inputtext" type="text" name="Between1" disabled placeholder="Enter First Date"/></div>
-                    <div id="boxrow7"><input id="inputBetween2" class="inputtext" type="text" name="Between2" disabled placeholder="Enter Second Date"/></div>
+                    <div id="boxrow4"><input id="inputBefore" class="inputtext" type="text" name="Before" disabled placeholder="Enter Before Date" /></div>
+                    <div id="boxrow5"><input id="inputAfter" class="inputtext" type="text" name="After" disabled placeholder="Enter After Date" /></div>
+                    <div id="boxrow6"><input id="inputBetween1" class="inputtext" type="text" name="Between1" disabled placeholder="Enter First Date" /></div>
+                    <div id="boxrow7"><input id="inputBetween2" class="inputtext" type="text" name="Between2" disabled placeholder="Enter Second Date" /></div>
 
                     <div id="row8">
                         <button class="filterButton" type="submit">
