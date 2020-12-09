@@ -17,18 +17,7 @@ include 'home-logged-in-helpers.php';
 
 <body>
    <main class="container">
-      <!-- <div class = "box h">
-            <header>
-               <h1>
-                  COMP 3512 Assign 2
-               </h1>
-               <h2>
-                  Group Member Names
-               </h2>
-               
-            </header>
-         </div> -->
-      <div class="box a navContainer">
+      <div class="box h navContainer">
          <input type="checkbox" class="toggler">
          <button id="menuIcon"><i class="fa fa-bars"></i></button>
          <a href="about.php"><img id="logo" src="images/login-page/logo.png"></a>
