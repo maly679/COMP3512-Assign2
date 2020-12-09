@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang=en>
+
 <head>
-    <title>About</title>
-    <meta charset=utf-8>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/about.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>About</title>
+  <meta charset=utf-8>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/about.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
-    <div class="container">
-        <!-- <div class="section header">
+  <div class="container">
+    <!-- <div class="section header">
             <h2>About</h2>
         </div> -->
-        <header class="section header navContainer"> 
+    <header class="section header navContainer">
       <input type="checkbox" class="toggler">
       <button id="menuIcon"><i class="fa fa-bars"></i></button>
       <a href="about.php"><img id="logo" src="images/login-page/logo.png"></a>
@@ -52,27 +54,31 @@
         </div>
       </div>
     </header>
-        <div class="section body">
-            <span class="sub-heading">Class Name: </span><span class="info">COMP 3512</span><br>
-            <span class="sub-heading">University: </span><span class="info">Mount Royal University</span><br>
-            <span class="sub-heading">Professor Name: </span><span class="info">Randy Connolly</span><br>
-            <span class="sub-heading">Semester: </span><span class="info">Fall 2020</span><br>
-            <span class="sub-heading">Technologies: </span><span class="info">Heroku API, Heroku CLI, Git, JAWSDB</span><br>
-            <span class="sub-heading">Assignment Repository: </span><a href='https://github.com/maly679/COMP3512-Assign2'>COMP3512-Assign2</a><br>
-            <span class="sub-heading">Group Members: </span>
-            <ul>
-                <li><a href='https://github.com/maly679'>Mohamed Aly</a></li>
-                <li><a href='https://github.com/batuh836'>Brian Atuh</a></li>
-                <li><a href='https://github.com/mbalu028'>Matthew Baluyot</a></li>
-                <li><a href='https://github.com/mari-rmrz'>Mariangel Ramirez</a></li>
-                <li><a href='https://github.com/Jwalker457'>Jordan Walker</a></li>
-            </ul>
-            <span class="sub-heading">External References: </span>
-            <ul>
-                <li><a href='https://www.javatpoint.com/html-login-form'>Login Form</a></li>
-                <li><a href='https://developer.mozilla.org/en-US/docs/Web/API/URL/searchParams'>Search Parameters</a></li>
-            </ul>
-        </div>
+    <div class="section body">
+      <span class="sub-heading">Class Name: </span><span class="info">COMP 3512</span><br>
+      <span class="sub-heading">University: </span><span class="info">Mount Royal University</span><br>
+      <span class="sub-heading">Professor Name: </span><span class="info">Randy Connolly</span><br>
+      <span class="sub-heading">Semester: </span><span class="info">Fall 2020</span><br>
+      <span class="sub-heading">Technologies: </span><span class="info">Heroku API, Heroku CLI, Git, JAWSDB</span><br>
+      <span class="sub-heading">Assignment Repository: </span><a href='https://github.com/maly679/COMP3512-Assign2'>COMP3512-Assign2</a><br>
+      <span class="sub-heading">Group Members: </span>
+      <ul>
+        <li><a href='https://github.com/maly679'>Mohamed Aly</a></li>
+        <li><a href='https://github.com/batuh836'>Brian Atuh</a></li>
+        <li><a href='https://github.com/mbalu028'>Matthew Baluyot</a></li>
+        <li><a href='https://github.com/mari-rmrz'>Mariangel Ramirez</a></li>
+        <li><a href='https://github.com/Jwalker457'>Jordan Walker</a></li>
+      </ul>
+      <span class="sub-heading">External References: </span>
+      <ul>
+        <li><a href='https://www.javatpoint.com/html-login-form'>Login Form</a></li>
+        <li><a href='https://developer.mozilla.org/en-US/docs/Web/API/URL/searchParams'>Search Parameters</a></li>
+      </ul>
     </div>
+  </div>
+  <div class="footer">
+    <p>Photo by Paweł Czerwiński on <a href="https://unsplash.com/photos/bX9B9c-YasY%22%3E">Unsplash</a></p>
+  </div>
 </body>
+
 </html>
