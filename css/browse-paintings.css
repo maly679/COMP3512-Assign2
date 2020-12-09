@@ -130,7 +130,8 @@ div.b section {
   grid-area: box7;
 }
 
-.ui_form_row {}
+.ui_form_row {
+}
 
 .formLabels {
   grid-area: formLabels;
@@ -153,7 +154,8 @@ div.b section {
   margin-bottom: 10px;
 }
 
-.resetButton, .filterButton {
+.resetButton,
+.filterButton {
   cursor: pointer;
 }
 
@@ -256,17 +258,17 @@ table td a {
   padding: 20px;
 }
 
-.navItems>div>div>ul>li {
+.navItems > div > div > ul > li {
   color: white;
   list-style: none;
 }
 
 #logo {
   float: right;
-  width: 20%;
+  width: 300px;
 }
 
-.navItems>div>div>ul {
+.navItems > div > div > ul {
   padding: 0;
   margin: 0;
 }
@@ -275,7 +277,8 @@ table td a {
   background-color: steelblue;
 }
 
-#menuIcon, .toggler {
+#menuIcon,
+.toggler {
   display: none;
 }
 
@@ -327,7 +330,7 @@ https://www.youtube.com/watch?v=DZg6UfS5zYg&feature=youtu.be
   #logo {
     float: right;
     margin: 10px;
-    width: 50%;
+    width: 200px;
   }
   .navItems {
     position: fixed;
@@ -340,7 +343,7 @@ https://www.youtube.com/watch?v=DZg6UfS5zYg&feature=youtu.be
     align-items: center;
     justify-content: center;
   }
-  .navItems>div {
+  .navItems > div {
     background: rgba(0, 0, 0, 0.8);
     width: 200vw;
     height: 100%;
@@ -349,19 +352,19 @@ https://www.youtube.com/watch?v=DZg6UfS5zYg&feature=youtu.be
     align-items: center;
     justify-content: center;
   }
-  .navItems>div>div {
+  .navItems > div > div {
     text-align: center;
     max-width: 90vw;
     max-height: 100vh;
     opacity: 0;
     transition: opacity 0.4s ease;
   }
-  .navItems>div>div>ul>li {
+  .navItems > div > div > ul > li {
     list-style: none;
     color: white;
     padding: 1rem;
   }
-  .navItems>div>div>ul>li>a {
+  .navItems > div > div > ul > li > a {
     color: inherit;
     text-decoration: none;
     transition: color 0.4s ease;
@@ -370,10 +373,10 @@ https://www.youtube.com/watch?v=DZg6UfS5zYg&feature=youtu.be
   .navItems .toggler:checked {
     visibility: visible;
   }
-  .toggler:checked~.navItems {
+  .toggler:checked ~ .navItems {
     height: 100%;
   }
-  .toggler:checked~.navItems>div>div {
+  .toggler:checked ~ .navItems > div > div {
     opacity: 1;
     transition: opacity 0.4s ease;
   }
@@ -383,7 +386,7 @@ https://www.youtube.com/watch?v=DZg6UfS5zYg&feature=youtu.be
   .button {
     width: 100px;
   }
-  .searchContainer input[type=text] {
+  .searchContainer input[type="text"] {
     width: 300px;
   }
 }
