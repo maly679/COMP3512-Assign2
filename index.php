@@ -32,7 +32,17 @@ if (isset($_POST['name'])) {
          <div>
             <div>
                <ul>
-                  <li><a class="navBtn" href="index.php">Home</a></li>
+                  <!-- 
+                                Makes sure that if the user is logged in then it will take them back to
+                                home (logged in). Otherwise it will take the user back to the landing page 
+                            -->
+                  <?php
+                  if (isset($_SESSION['status']) && isset($_SESSION['ID'])) {
+                     echo '<li><a class="navBtn" href="home-logged-in.php">Home</a></li>';
+                  } else {
+                     echo '<li><a class="navBtn" href="index.php">Home</a></li>';
+                  }
+                  ?>
                   <li><a class="navBtn" href="about.php">About</a></li>
                   <li><a class="navBtn" href="galleries.php">Galleries</a></li>
                   <li><a class="navBtn" href="browse-paintings.php">Browse</a></li>
