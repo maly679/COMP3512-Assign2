@@ -37,6 +37,11 @@ if (isset($_POST['name'])) {
                   <li><a class="navBtn" href="galleries.php">Galleries</a></li>
                   <li><a class="navBtn" href="browse-paintings.php">Browse</a></li>
                   <li><a class="navBtn" href="favorites.php">Favorites</a></li>
+                  <!-- 
+                     Makes sure that if user is already logged in, then the button changes to
+                     allow them to logout. Otherwise, if the user is not logged in, it will 
+                     prompt them to login
+                  -->
                   <?php
                   if (isset($_SESSION['status']) && isset($_SESSION['ID'])) {
                      echo '<li><a class="navBtn" href="logout.php">Logout</a></li>';

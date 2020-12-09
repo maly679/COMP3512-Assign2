@@ -1,11 +1,77 @@
 body {
-  background-color: steelblue;
-  font-family: Open Sans, sans-serif;
-  font-size: 0.8rem;
+  background-image: url("../images/unsplash-main.jpg");
+  font-family: 'Open Sans', sans-serif;
+  background-position: center;
+  background-repeat: repeat-y;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  color: black;
 }
 
-#paintingDescription,
-#paintingMedium {
+.container {
+  display: grid;
+  padding: 40px;
+  grid-gap: 10px;
+  grid-template-areas: 
+  "header header header header"
+   "gallery info paintings paintings"
+    "gallery map paintings paintings" 
+    "gallery . paintings paintings"
+    "footer footer footer footer";
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 6.5rem 22rem 20rem;
+}
+
+.box {
+  background-color: lightsteelblue;
+  color: black;
+  border-radius: 5px;
+  padding: 20px;
+  /* font-size: 150%; */
+}
+
+.a {
+  grid-area: paintings;
+}
+
+.b {
+  grid-area: gallery;
+}
+
+.c {
+  grid-area: info;
+}
+
+.d {
+  grid-area: map;
+}
+
+.navContainer {
+  grid-area: header;
+  padding: 15px;
+}
+
+.f {
+  display: grid;
+  grid-column: 1 / span 2;
+  grid-row: 1 / span 1;
+  text-align: center;
+}
+
+.h {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.i {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+
+#paintingDescription, #paintingMedium {
   font-style: italic;
   margin: 0;
 }
@@ -23,6 +89,7 @@ body {
   Used for reference on making pop up modal
   https://www.w3schools.com/howto/howto_css_modals.asp
 */
+
 #modalContainer {
   display: none;
   width: 100%;
@@ -59,66 +126,6 @@ https://www.w3schools.com/howto/howto_js_lightbox.asp
   display: grid;
 }
 
-.container {
-  display: grid;
-  padding: 40px;
-  grid-gap: 10px;
-  color: #444;
-  grid-template-areas:
-    "header header header header"
-    "gallery info paintings paintings"
-    "gallery map paintings paintings"
-    "gallery . paintings paintings";
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 6.5rem 22rem 20rem;
-}
-
-.box {
-  background-color: lightsteelblue;
-  color: black;
-  border-radius: 5px;
-  padding: 20px;
-  font-size: 150%;
-}
-
-.a {
-  grid-area: paintings;
-}
-
-.b {
-  grid-area: gallery;
-}
-
-.c {
-  grid-area: info;
-}
-
-.d {
-  grid-area: map;
-}
-
-.e {
-  grid-area: header;
-  padding: 15px;
-}
-
-.f {
-  display: grid;
-  grid-column: 1 / span 2;
-  grid-row: 1 / span 1;
-  text-align: center;
-}
-
-.h {
-  grid-column: 1;
-  grid-row: 2;
-}
-
-.i {
-  grid-column: 2;
-  grid-row: 2;
-}
-
 /*
 Used the button styling as reference
 https://www.w3schools.com/css/tryit.asp?filename=trycss_buttons_basic
@@ -139,14 +146,13 @@ https://www.w3schools.com/css/tryit.asp?filename=trycss_buttons_basic
   background-color: #6a8cff;
 }
 
-.hidden,
-#largeImageView {
+.hidden, #largeImageView {
   display: none;
   grid-gap: 10px;
   padding: 40px;
 }
 
-#paintingsList > tr > td > img {
+#paintingsList>tr>td>img {
   cursor: pointer;
 }
 
@@ -155,12 +161,14 @@ th {
 }
 
 /* this channel helped me with css */
+
 /* https://www.youtube.com/watch?v=HgwCeNVPlo0&t=866s */
 
 /* 
 Referenced stackoverflow on table column spacing
 https://stackoverflow.com/questions/44429380/spacing-between-columns-in-a-table
 */
+
 table {
   font-size: 1em;
   border-spacing: 15px 0px;
@@ -198,18 +206,21 @@ ul#galleryList li {
 }
 
 div.a section {
-  display: none; /* programmatically change this to "grid" when gallery clicked */
+  display: none;
+  /* programmatically change this to "grid" when gallery clicked */
   grid-gap: 5px;
   grid-template-columns: 10rem auto;
   text-align: left;
 }
 
 div.b section {
-  display: none; /* go ahead and change this to "block" when you have received data */
+  display: none;
+  /* go ahead and change this to "block" when you have received data */
 }
 
 div.c section {
-  display: none; /* programmatically change this to "block" when gallery clicked */
+  display: none;
+  /* programmatically change this to "block" when gallery clicked */
   grid-template-columns: 8rem auto;
   font-size: 14pt;
 }
@@ -223,14 +234,12 @@ div.e section {
   text-align: center;
 }
 
-#header2 label,
-div.e section label {
+#header2 label, div.e section label {
   font-weight: bold;
   font-size: 18pt;
 }
 
-div.h section,
-div.i section {
+div.h section, div.i section {
   display: inline-block;
 }
 
@@ -249,6 +258,7 @@ div.i section {
 }
 
 /* got this from site from the lab */
+
 /* CSS Loader source: https://loading.io/css/ */
 
 .lds-dual-ring {
@@ -278,18 +288,181 @@ div.i section {
   }
 }
 
-@media screen and (max-width: 800px) {
+.footer {
+  grid-area: footer;
+  text-align: center;
+  color: white;
+  padding: 20px;
+  width: 100%;
+}
+
+/*----------------- CSS FOR NAVBAR ---------------------*/
+
+.navBtn {
+  float: left;
+  display: block;
+  color: white;
+  text-decoration: none;
+  list-style: none;
+  cursor: pointer;
+  padding: 20px;
+}
+
+.navItems>div>div>ul>li {
+  color: white;
+  list-style: none;
+}
+
+#logo {
+  float: right;
+  width: 20%;
+}
+
+.navItems>div>div>ul {
+  padding: 0;
+  margin: 0;
+}
+
+.navBtn:hover {
+  background-color: steelblue;
+}
+
+#menuIcon, .toggler {
+  display: none;
+}
+
+/* 
+For reference: @media 
+https://www.w3schools.com/cssref/css3_pr_mediaquery.asps
+
+For reference: CSS Hamburger Menu CSS + HTML 
+https://www.youtube.com/watch?v=DZg6UfS5zYg&feature=youtu.be
+*/
+
+@media screen and (max-width: 600px) {
   .container {
-    grid-template-areas:
-      "header header header"
-      "gallery gallery gallery"
-      "info info info"
-      "map map map"
-      "paintings paintings paintings";
+    /* display: grid;
+    grid-template-rows: 8em 22em 30em;
+    grid-template-areas: 
+    "header" 
+    "form" 
+    "info";
+    grid-template-columns: 1fr;
+    grid-gap: 10px; */
+    grid-template-areas: "header header header" "gallery gallery gallery" "info info info" "map map map" "paintings paintings paintings";
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 10em 40em auto 50em 40rem;
   }
   .box {
     overflow: scroll;
   }
+  .navContainer {
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+  }
+  .toggler {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    opacity: 0;
+    display: block;
+  }
+  #menuIcon {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+  }
+  #logo {
+    float: right;
+    margin: 10px;
+    width: 50%;
+  }
+  .navItems {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .navItems>div {
+    background: rgba(0, 0, 0, 0.8);
+    width: 200vw;
+    height: 100%;
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+  }
+  .navItems>div>div {
+    text-align: center;
+    max-width: 90vw;
+    max-height: 100vh;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .navItems>div>div>ul>li {
+    list-style: none;
+    color: white;
+    padding: 1rem;
+  }
+  .navItems>div>div>ul>li>a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.4s ease;
+  }
+  /* Show menu on toggle on*/
+  .navItems .toggler:checked {
+    visibility: visible;
+  }
+  .toggler:checked~.navItems {
+    height: 100%;
+  }
+  .toggler:checked~.navItems>div>div {
+    opacity: 1;
+    transition: opacity 0.4s ease;
+  }
+  .fa {
+    font-size: 20px;
+  }
+  .button {
+    width: 100px;
+  }
+  .searchContainer input[type=text] {
+    width: 300px;
+  }
 }
+
+/* For smaller mobile screens */
+
+@media screen and (max-width: 400px) {
+  .container {
+    padding: 20px;
+  }
+}
+
+/* @media screen and (max-width: 800px) {
+  .container {
+    grid-template-areas: "header header header" "gallery gallery gallery" "info info info" "map map map" "paintings paintings paintings";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 10em 40em auto 50em 40rem;
+  }
+  .box {
+    overflow: scroll;
+  }
+} */
