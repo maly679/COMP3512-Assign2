@@ -1,6 +1,6 @@
 body {
   background-image: url("../images/unsplash-main.jpg");
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   background-position: center;
   background-repeat: repeat-y;
   background-size: cover;
@@ -15,11 +15,11 @@ body {
   padding: 40px;
   padding-top: 0;
   grid-gap: 10px;
-  grid-template-areas: 
-  "header header header" 
-  "form info info" 
-  ".    info info" 
-  "footer footer footer";
+  grid-template-areas:
+    "header header header"
+    "form info info"
+    ".    info info"
+    "footer footer footer";
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 10rem 25rem auto 2rem;
 }
@@ -111,12 +111,9 @@ body {
   grid-area: box7;
 }
 
-<<<<<<< HEAD
 .ui_form_row {
 }
 
-=======
->>>>>>> 82670e6b93d680f2842d7033386952b8248a82c7
 .formLabels {
   grid-area: formLabels;
 }
@@ -257,10 +254,10 @@ https://www.youtube.com/watch?v=DZg6UfS5zYg&feature=youtu.be
   .container {
     display: grid;
     grid-template-rows: 8em 22em 30em;
-    grid-template-areas: 
-    "header" 
-    "form" 
-    "info";
+    grid-template-areas:
+      "header"
+      "form"
+      "info";
     grid-template-columns: 1fr;
     grid-gap: 10px;
   }
