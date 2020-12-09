@@ -206,6 +206,11 @@ table td a {
   width: 100%;
 }
 
+.footer > p > a{
+  text-decoration: none;
+  color: white;
+}
+
 /*----------------- CSS FOR NAVBAR ---------------------*/
 
 .navBtn {

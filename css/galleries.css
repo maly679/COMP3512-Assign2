@@ -294,6 +294,11 @@ div.h section, div.i section {
   width: 100%;
 }
 
+.footer > p > a{
+  text-decoration: none;
+  color: white;
+}
+
 /*----------------- CSS FOR NAVBAR ---------------------*/
 
 .navBtn {
@@ -453,14 +458,3 @@ https://www.youtube.com/watch?v=DZg6UfS5zYg&feature=youtu.be
     padding: 20px;
   }
 }
-
-/* @media screen and (max-width: 800px) {
-  .container {
-    grid-template-areas: "header header header" "gallery gallery gallery" "info info info" "map map map" "paintings paintings paintings";
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 10em 40em auto 50em 40rem;
-  }
-  .box {
-    overflow: scroll;
-  }
-} */

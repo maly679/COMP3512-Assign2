@@ -17,7 +17,6 @@
 <body>
   <main class="container">
     <header class="e navContainer"> 
-      <!-- Remove box class  -->
       <input type="checkbox" class="toggler">
       <button id="menuIcon"><i class="fa fa-bars"></i></button>
       <a href="about.php"><img id="logo" src="images/login-page/logo.png"></a>
@@ -135,7 +134,7 @@
   </section>
 
   <div class="footer">
-    <p>Image from Unsplash by Darya Tryfanava</p>
+    <p>Photo by Paweł Czerwiński on <a href="https://unsplash.com/photos/bX9B9c-YasY">Unsplash</a></p>
   </div>
   
   <script src="js/galleries.js"></script>

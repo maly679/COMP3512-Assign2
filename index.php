@@ -73,10 +73,8 @@ if (isset($_POST['name'])) {
    </div>
 
    <div class="footer">
-      <p>Image from Unsplash by Darya Tryfanava</p>
+      <p>Image from <a href="https://unsplash.com/photos/UCNaGWn4EfU">Unsplash</a> by Darya Tryfanava</p>
    </div>
-
-   <!-- <script src="js/index.js"></script> -->
+   
 </body>
-
 </html>
