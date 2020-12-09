@@ -1,4 +1,16 @@
-body, div, span, h1, h2, h3, h4, aside, p, main, nav, ul, li {
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+aside,
+p,
+main,
+nav,
+ul,
+li {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -23,7 +35,7 @@ body {
     padding: 40px;
     padding-top: 0;
     grid-gap: 10px;
-    grid-template-areas: "header" "content";
+    grid-template-areas: "header""content";
     grid-template-columns: 1fr;
     grid-template-rows: 5rem auto;
 }
@@ -105,6 +117,18 @@ img {
     height: 50px;
 }
 
+.footer {
+    grid-area: footer;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    width: 100%;
+}
+
+.footer>p>a {
+    color: white;
+}
+
 /*----------------- CSS FOR NAVBAR ---------------------*/
 
 .navBtn {
@@ -141,7 +165,8 @@ img {
     background-color: steelblue;
 }
 
-#menuIcon, .toggler {
+#menuIcon,
+.toggler {
     display: none;
 }
 
@@ -159,15 +184,18 @@ img {
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 10em 40em auto 50em 40rem; */
     }
+
     .box {
         overflow: scroll;
     }
+
     .navContainer {
         top: 0;
         left: 0;
         right: 0;
         z-index: 1;
     }
+
     .toggler {
         position: absolute;
         top: 0;
@@ -179,6 +207,7 @@ img {
         opacity: 0;
         display: block;
     }
+
     #menuIcon {
         display: block;
         position: absolute;
@@ -190,11 +219,13 @@ img {
         height: 50px;
         margin: 10px;
     }
+
     #logo {
         float: right;
         margin: 10px;
         width: 50%;
     }
+
     .navItems {
         position: fixed;
         top: 0;
@@ -206,6 +237,7 @@ img {
         align-items: center;
         justify-content: center;
     }
+
     .navItems>div {
         background: rgba(0, 0, 0, 0.8);
         width: 200vw;
@@ -215,6 +247,7 @@ img {
         align-items: center;
         justify-content: center;
     }
+
     .navItems>div>div {
         text-align: center;
         max-width: 90vw;
@@ -222,33 +255,41 @@ img {
         opacity: 0;
         transition: opacity 0.4s ease;
     }
+
     .navItems>div>div>ul>li {
         list-style: none;
         color: white;
         padding: 1rem;
     }
+
     .navItems>div>div>ul>li>a {
         color: inherit;
         text-decoration: none;
         transition: color 0.4s ease;
     }
+
     /* Show menu on toggle on*/
     .navItems .toggler:checked {
         visibility: visible;
     }
+
     .toggler:checked~.navItems {
         height: 100%;
     }
+
     .toggler:checked~.navItems>div>div {
         opacity: 1;
         transition: opacity 0.4s ease;
     }
+
     .fa {
         font-size: 20px;
     }
+
     .button {
         width: 100px;
     }
+
     .searchContainer input[type=text] {
         width: 300px;
     }

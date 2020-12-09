@@ -127,6 +127,9 @@ function getIsFavorite($id, $favorites)
             </div>
         </div>
     </div>
+    <div class="footer">
+        <p>Photo by Paweł Czerwiński on <a href="https://unsplash.com/photos/bX9B9c-YasY%22%3E">Unsplash</a></p>
+    </div>
 </body>
 
 </html>
