@@ -138,6 +138,7 @@ body {
 select {
   height: 2em;
   width: 9.4em;
+  cursor: pointer;
 }
 
 .inputtext {

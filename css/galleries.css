@@ -15,12 +15,7 @@ body {
   padding: 40px;
   padding-top: 0;
   grid-gap: 10px;
-  grid-template-areas: 
-  "header header header header"
-  "gallery info paintings paintings"
-  "gallery map paintings paintings" 
-  "gallery . paintings paintings"
-  "footer footer footer footer";
+  grid-template-areas: "header header header header" "gallery info paintings paintings" "gallery map paintings paintings" "gallery . paintings paintings" "footer footer footer footer";
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 6.5rem 22rem 20rem;
 }
@@ -176,6 +171,11 @@ table tr {
   text-align: left;
 }
 
+.paintingTitle {
+  text-decoration: none;
+  color: black;
+}
+
 #map {
   display: block;
   height: flex;
@@ -294,7 +294,8 @@ div.h section, div.i section {
 }
 
 /* Purposedly leaving underline on to indicate a link */
-.footer > p > a{
+
+.footer>p>a {
   color: white;
 }
 

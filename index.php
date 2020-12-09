@@ -85,6 +85,6 @@ if (isset($_POST['name'])) {
    <div class="footer">
       <p>Image from <a href="https://unsplash.com/photos/UCNaGWn4EfU">Unsplash</a> by Darya Tryfanava</p>
    </div>
-   
+
 </body>
 </html>

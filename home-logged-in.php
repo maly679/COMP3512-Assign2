@@ -13,11 +13,13 @@ include 'home-logged-in-helpers.php';
    <title>Assignment 1</title>
    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,800" rel="stylesheet">
    <link rel="stylesheet" href="css/home-logged-in.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
 <body>
    <main class="container">
-      <div class="box h navContainer">
+      <div class="h navContainer">
          <input type="checkbox" class="toggler">
          <button id="menuIcon"><i class="fa fa-bars"></i></button>
          <a href="about.php"><img id="logo" src="images/login-page/logo.png"></a>
