@@ -1,7 +1,6 @@
 body {
-  /* background-color: steelblue; */
   background-image: url("../images/unsplash-main.jpg");
-  font-family: Open Sans, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   background-position: center;
   background-repeat: repeat-y;
   background-size: cover;
@@ -9,7 +8,6 @@ body {
   padding: 0;
   height: 100vh;
   color: black;
-  /* font-size: 1rem; */
 }
 
 .container {
@@ -17,8 +15,11 @@ body {
   padding: 40px;
   padding-top: 0;
   grid-gap: 10px;
-  /* color: #444; */
-  grid-template-areas: "header header header" "form info info" ".    info info" "footer footer footer";
+  grid-template-areas: 
+  "header header header" 
+  "form info info" 
+  ".    info info" 
+  "footer footer footer";
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 10rem 25rem auto 2rem;
 }
@@ -39,31 +40,15 @@ body {
 
 .box {
   background-color: steelblue;
-  /* color: black; */
   border-radius: 5px;
   padding: 20px;
-  /* font-size: 150%; */
 }
-
-/* div.a section {
-}
-
-div.b section {
-} */
-
-/* div.c section {
-  display: grid;
-  grid-row: flex;
-} */
 
 .ui_form {
   display: grid;
-  /* grid-template-columns: 12rem 1fr;
-  grid-template-rows: 1em 1em 1em 1em 1em 1em 1em; */
   grid-template-areas: "label1 box1" "label2 box2" "label3 box3" "label4 .   " "label5 box4" "label6 box5" "label7 box6" "label8 box7";
   grid-template-columns: 12rem 1fr;
   grid-template-rows: 30px 30px 30px 30px 30px 30px 30px;
-  /* grid-row-gap: 2em; */
 }
 
 #row1 {
@@ -98,10 +83,6 @@ div.b section {
   grid-area: label8;
 }
 
-/* #row7 {
-  grid-area: label7;
-} */
-
 #boxrow1 {
   grid-area: box1;
 }
@@ -130,19 +111,12 @@ div.b section {
   grid-area: box7;
 }
 
-.ui_form_row {}
-
 .formLabels {
   grid-area: formLabels;
-  /* grid-column: 1/2;
-  grid-template-rows: 15px 10px 10px; */
 }
 
 .formBoxes {
   grid-area: formBoxes;
-  /* grid-column: 2/2; */
-  /* display: grid; */
-  /* grid-template-rows: 1em 1em 1em 1em 1em 1em 1em 1em 1em; */
 }
 
 .formLabels label {
@@ -156,10 +130,6 @@ div.b section {
 .resetButton, .filterButton {
   cursor: pointer;
 }
-
-/* .b > input[type="radio"] {
-  cursor: pointer;
-} */
 
 select {
   height: 2em;
@@ -224,19 +194,7 @@ table td a {
   text-decoration: none;
 }
 
-/* .style_link {
-  background-color: red;
-} */
-
 .footer {
-  /* position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  display: flex;
-  justify-self: center;
-  align-items: flex-end;
-  color: white; */
   grid-area: footer;
   text-align: center;
   color: white;
@@ -287,12 +245,14 @@ For reference: CSS Hamburger Menu CSS + HTML
 https://www.youtube.com/watch?v=DZg6UfS5zYg&feature=youtu.be
 */
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 600px) {
   .container {
     display: grid;
-    /* grid-template-rows: repeat(1, 1fr); */
-    grid-template-rows: 5em 22em 30em;
-    grid-template-areas: "header" "form" "info";
+    grid-template-rows: 8em 22em 30em;
+    grid-template-areas: 
+    "header" 
+    "form" 
+    "info";
     grid-template-columns: 1fr;
     grid-gap: 10px;
   }
