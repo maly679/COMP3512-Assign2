@@ -3,6 +3,7 @@ session_start();
 require_once 'config.inc.php';
 require_once 'db-classes.inc.php';
 include 'home-logged-in-helpers.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -101,9 +102,11 @@ include 'home-logged-in-helpers.php';
       <?php
       // This is where the browser determines if the user has searched something; if they have, then the favorites are iterated through and displayed only if the full title is correct, otherwise it displays no result found.
       if (isset($_GET["checkSearch"])) {
+         echo "<div class='box' id ='Favorites'>";
          processCheckSearch($_GET["checkSearch"]);
       } else {
          processRegFavorites();
+         
       }
 
       ?>
