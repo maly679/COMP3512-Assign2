@@ -214,9 +214,11 @@ function displayDataPaintingsMayLike($ArtistID, $YoWStart, $YoWEnd, $dataFirst15
 //use search feature to generate favorite in large image view
 function processCheckSearch($getSearch)
 {
-    if (isset($_SESSION['favorites']) && !empty($_SESSION['favorites']))
-    {
+
         echo "<div class='box' id ='Favorites'>";
+        $imageFound = false;
+        if (isset($_SESSION['favorites']) && !empty($_SESSION['favorites']))
+        {
 
         foreach ($_SESSION['favorites'] as $key => $value)
         {
@@ -227,18 +229,14 @@ function processCheckSearch($getSearch)
                 echo " <img src='images/paintings/square/" . $value['ImageFileName'] . ".jpg'/ height='700' width='710'>";
                 $imageFound = true;
                 break;
-            }
-            else
-            {
-                $imageFound = false;
-            }
-        }
-        if (!$imageFound)
-        {
-            echo "<h2>No Result Found<h2> <i> Please Try searching for a Title again! </i></h2>";
-
         }
     }
+}
+        if (!$imageFound)
+        {
+            echo "<h3>No Result Found<h3> <i> Please try searching for a Title again! </i></h3>";
+
+        }
 }
 
 //generate the favorites
