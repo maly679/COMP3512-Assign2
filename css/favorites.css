@@ -1,5 +1,5 @@
 body {
-  background-color: steelblue;
+  background-image: url("../images/unsplash-main.jpg");
   font-family: Open Sans, sans-serif;
   font-size: 0.8rem;
 }
@@ -25,7 +25,7 @@ body {
 }
 
 .box {
-  background-color: lightsteelblue;
+  background-color: steelblue;
   color: black;
   border-radius: 5px;
   padding: 20px;
@@ -84,4 +84,7 @@ body {
 #paintings_ul li p {
   font-size: small;
   /* max-width: 150px; */
+}
+
+@media screen and (max-width: 800px) {
 }

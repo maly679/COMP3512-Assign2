@@ -45,6 +45,7 @@ if (isset($_GET['deleteAll'])) {
 
 <body>
     <main class="container">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <div class="navContainer box">
             <input type="checkbox" class="toggler">
             <button id="menuIcon"><i class="fa fa-bars"></i></button>
@@ -53,7 +54,13 @@ if (isset($_GET['deleteAll'])) {
                 <div>
                     <div>
                         <ul>
-                            <li><a class="navBtn" href="index.php">Home</a></li>
+                            <?php
+                            if (isset($_SESSION['status']) && isset($_SESSION['ID'])) {
+                                echo '<li><a class="navBtn" href="home-logged-in.php">Home</a></li>';
+                            } else {
+                                echo '<li><a class="navBtn" href="index.php">Home</a></li>';
+                            }
+                            ?>
                             <li><a class="navBtn" href="about.php">About</a></li>
                             <li><a class="navBtn" href="galleries.php">Galleries</a></li>
                             <li><a class="navBtn" href="browse-paintings.php">Browse</a></li>
