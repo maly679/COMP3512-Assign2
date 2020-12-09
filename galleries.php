@@ -16,12 +16,8 @@
 
 <body>
   <main class="container">
-    <header class="box e navContainer">
-      <!-- <div id="header" class="box e"> -->
-      <section>
-        <input type="button" value="Hide Galleries" id="toggleButton" />
-      </section>
-      <!-- </div> -->
+    <header class="e navContainer"> 
+      <!-- Remove box class  -->
       <input type="checkbox" class="toggler">
       <button id="menuIcon"><i class="fa fa-bars"></i></button>
       <a href="about.php"><img id="logo" src="images/login-page/logo.png"></a>
@@ -40,7 +36,6 @@
                 echo '<li><a class="navBtn" href="index.php">Home</a></li>';
               }
               ?>
-              <li><a class="navBtn" href="index.php">Home</a></li>
               <li><a class="navBtn" href="about.php">About</a></li>
               <li><a class="navBtn" href="galleries.php">Galleries</a></li>
               <li><a class="navBtn" href="browse-paintings.php">Browse</a></li>
@@ -102,15 +97,14 @@
         <label>Website:</label>
         <span><a href="" id="galleryHome"></a></span>
       </section>
+      <section>
+        <input type="button" value="Hide Galleries" id="toggleButton" />
+      </section>
     </div>
     <div id="map" class="box d"></div>
   </main>
 
   <section id="largeImageView">
-    <div id="header2" class="box f">
-      <label>COMP 3512 Assignment 1</label>
-      <span>Jordan Walker & Mariangel Ramirez & loading.io </span>
-    </div>
     <div id=largePaintingsImage class="box h">
       <img id="largeImage" />
     </div>

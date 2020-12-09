@@ -13,23 +13,23 @@ body {
 .container {
   display: grid;
   padding: 40px;
+  padding-top: 0;
   grid-gap: 10px;
   grid-template-areas: 
   "header header header header"
-   "gallery info paintings paintings"
-    "gallery map paintings paintings" 
-    "gallery . paintings paintings"
-    "footer footer footer footer";
+  "gallery info paintings paintings"
+  "gallery map paintings paintings" 
+  "gallery . paintings paintings"
+  "footer footer footer footer";
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 6.5rem 22rem 20rem;
 }
 
 .box {
-  background-color: lightsteelblue;
+  background-color: steelblue;
   color: black;
   border-radius: 5px;
   padding: 20px;
-  /* font-size: 150%; */
 }
 
 .a {
@@ -50,7 +50,6 @@ body {
 
 .navContainer {
   grid-area: header;
-  padding: 15px;
 }
 
 .f {
@@ -222,7 +221,6 @@ div.c section {
   display: none;
   /* programmatically change this to "block" when gallery clicked */
   grid-template-columns: 8rem auto;
-  font-size: 14pt;
 }
 
 div.d section {
