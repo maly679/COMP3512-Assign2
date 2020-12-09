@@ -106,7 +106,6 @@ try {
                                 echo '<li><a class="navBtn" href="index.php">Home</a></li>';
                             }
                             ?>
-                            <li><a class="navBtn" href="index.php">Home</a></li>
                             <li><a class="navBtn" href="about.php">About</a></li>
                             <li><a class="navBtn" href="galleries.php">Galleries</a></li>
                             <li><a class="navBtn" href="browse-paintings.php">Browse</a></li>

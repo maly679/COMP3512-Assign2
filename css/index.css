@@ -60,7 +60,7 @@ https://www.w3schools.com/howto/howto_js_topnav.asp
 }
 
 .navBtn:hover {
-    background-color: orange;
+    background-color: steelblue;
 }
 
 #menuIcon, .toggler {
@@ -127,6 +127,10 @@ https://www.w3schools.com/howto/howto_css_searchbar.asp
     align-items: flex-end;
     color: white;
 }
+/* Purposedly leaving underline on to indicate a link */
+.footer > p > a{
+    color: white;
+  }
 
 /* 
 For reference: @media 

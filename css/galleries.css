@@ -69,7 +69,6 @@ body {
   grid-row: 2;
 }
 
-
 #paintingDescription, #paintingMedium {
   font-style: italic;
   margin: 0;
@@ -294,8 +293,8 @@ div.h section, div.i section {
   width: 100%;
 }
 
+/* Purposedly leaving underline on to indicate a link */
 .footer > p > a{
-  text-decoration: none;
   color: white;
 }
 
@@ -344,14 +343,6 @@ https://www.youtube.com/watch?v=DZg6UfS5zYg&feature=youtu.be
 
 @media screen and (max-width: 600px) {
   .container {
-    /* display: grid;
-    grid-template-rows: 8em 22em 30em;
-    grid-template-areas: 
-    "header" 
-    "form" 
-    "info";
-    grid-template-columns: 1fr;
-    grid-gap: 10px; */
     grid-template-areas: "header header header" "gallery gallery gallery" "info info info" "map map map" "paintings paintings paintings";
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 10em 40em auto 50em 40rem;
