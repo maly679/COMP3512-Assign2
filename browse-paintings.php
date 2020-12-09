@@ -125,7 +125,7 @@ try {
                     <div id="row5"><input id="radioBefore" type="radio" id="Before" name="Year" value="Before" /><label for="Before"> Before </label></div>
                     <div id="row6"><input id="radioAfter" type="radio" id="After" name="Year" value="After" /><label for="After"> After </label></div>
                     <div id="row7"><input id="radioBetween" type="radio" id="Between" name="Year" value="Between" /><label for="Between"> Between </label></div>
-                    <div id="boxrow1"><input class="inputtext" type="text" placeholder="enter search string" name="title" /></div>
+                    <div id="boxrow1"><input class="inputtext" type="text" placeholder="Enter Painting Title" name="title" /></div>
                     <div id="boxrow2"><select class="ui fluid dropdown" name="artist">
                             <option value='0'>Select Artist</option>
                             <?php
@@ -138,16 +138,16 @@ try {
                             outputGalleries($galleries);
                             ?>
                         </select></div>
-                    <div id="boxrow4"><input id="inputBefore" class="inputtext" type="text" name="Before" disabled /></div>
-                    <div id="boxrow5"><input id="inputAfter" class="inputtext" type="text" name="After" disabled /></div>
-                    <div id="boxrow6"><input id="inputBetween1" class="inputtext" type="text" name="Between1" disabled /></div>
-                    <div id="boxrow7"><input id="inputBetween2" class="inputtext" type="text" name="Between2" disabled /></div>
+                    <div id="boxrow4"><input id="inputBefore" class="inputtext" type="text" name="Before" disabled placeholder="Enter Before Date"/></div>
+                    <div id="boxrow5"><input id="inputAfter" class="inputtext" type="text" name="After" disabled placeholder="Enter After Date"/></div>
+                    <div id="boxrow6"><input id="inputBetween1" class="inputtext" type="text" name="Between1" disabled placeholder="Enter First Date"/></div>
+                    <div id="boxrow7"><input id="inputBetween2" class="inputtext" type="text" name="Between2" disabled placeholder="Enter Second Date"/></div>
 
                     <div id="row8">
-                        <button class="small ui orange button" type="submit">
+                        <button class="filterButton" type="submit">
                             <i class="filter icon"></i> Filter
                         </button>
-                        <button class="resetbutton" type="reset">
+                        <button class="resetButton" type="reset">
                             <i class="filter icon"></i> Reset
                         </button>
                     </div>
