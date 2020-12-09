@@ -106,12 +106,14 @@ include 'home-logged-in-helpers.php';
          processCheckSearch($_GET["checkSearch"]);
       } else {
          processRegFavorites();
-         
       }
 
       ?>
       </div>
    </main>
+   <div class="footer">
+      <p>Photo by Paweł Czerwiński on <a href="https://unsplash.com/photos/bX9B9c-YasY">Unsplash</a></p>
+   </div>
 </body>
 
 </html>
