@@ -41,7 +41,10 @@ function consolidateDataPaintingsMayLike($dataFirst15, $dataPaintingsMayLike)
 //Output painting list 
 function outputFormattedPainting($data)
 {
+    $countContents = count($data);
     echo "<ul>";
+    print_r($data);
+    print_r($_SESSION['favorites']);
     for ($i = 0;$i <= count($data);$i++)
     {
         if (!empty($data[$i]['ImageFileName'])) {
