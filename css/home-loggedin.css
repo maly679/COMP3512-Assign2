@@ -337,6 +337,11 @@ body {
 		grid-row-start: 5;
 		grid-row-end: 6;
 	  }
+	  	  li {
+		  width: 150px;
+		  
+	  }
+
   }
   
   /* For smaller mobile screens */
@@ -388,6 +393,10 @@ body {
 		grid-column: 1 / span 1;
 		grid-row-start: 5;
 		grid-row-end: 6;
+	  }
+	  li {
+		  width: 150px;
+		  
 	  }
 
 	  
