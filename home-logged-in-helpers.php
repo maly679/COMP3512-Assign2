@@ -197,8 +197,6 @@ function displayDataPaintingsMayLike($ArtistID, $YoWStart, $YoWEnd, $dataFirst15
             $dataPaintingsMayLike = consolidateDataPaintingsMayLike($dataFirst15, $dataPaintingsMayLike);
         }
         $conn = null;
-        // Process the display pattern (odd even, or 0) pertaining to the paintings in order to display the first painting in the middle, $i = odd number paintings on the right column of the showPaintings grid
-        //and $i = even number paintings on the left, for formatting purposes
         outputFormattedPainting($dataPaintingsMayLike);
 
     }
