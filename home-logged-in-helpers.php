@@ -41,11 +41,7 @@ function consolidateDataPaintingsMayLike($dataFirst15, $dataPaintingsMayLike)
 //Output painting list 
 function outputFormattedPainting($data)
 {
-    $countContents = count($data);
-    echo $countContents;
-
     echo "<ul>";
-    
     foreach($data as $d) {
          echo "<li> <img src='images/paintings/square-medium/" . $d['ImageFileName'] . ".jpg'/> 
                         " . "<br>" . $d['Title'] . "</li>";
