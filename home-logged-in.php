@@ -65,9 +65,6 @@ include 'home-logged-in-helpers.php';
 
             <input type="text" name="checkSearch" placeholder="Browse for a Favorite" class='searchFavoritesBox'>
             <button type="Submit">Search</button>
-      </div>
-
-      </div>
       </form>
       </div>
       <div class="box Results">
