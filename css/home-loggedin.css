@@ -301,6 +301,7 @@ body {
 		color: white;
 		padding: 20px;
 		width: 100%;
+		grid-column: 1 / span 1;
 		grid-row-start: 6;
 		grid-row-end: 7;
 		}
@@ -364,6 +365,7 @@ body {
 		color: white;
 		padding: 20px;
 		width: 100%;
+		grid-column: 1 / span 1;
 		grid-row-start: 6;
 		grid-row-end: 7;
 		}
