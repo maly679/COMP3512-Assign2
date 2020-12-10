@@ -294,18 +294,9 @@ body {
 		grid-template-rows: auto auto auto auto auto auto;
 		grid-gap: 10px;
 		color: #444;
+		height: 95%;
 	  }
-  		.footer {
-		grid-area: footer;
-		text-align: center;
-		color: white;
-		padding: 20px;
-		width: 100%;
-		grid-column: 1 / span 1;
-		grid-row-start: 6;
-		grid-row-end: 7;
-		}
-
+	
 	  .h {
 		grid-column: 1 / span 1;
 		text-align: center;
@@ -353,22 +344,14 @@ body {
 		grid-template-rows: auto 20% auto auto auto auto;
 		grid-gap: 10px;
 		color: #444;
+		height: 95%;
+
 	  }
 	  .largeImgView {
 		height: 98%;
 		width: 98%;
 	}
 	
-  	.footer {
-		grid-area: footer;
-		text-align: center;
-		color: white;
-		padding: 20px;
-		width: 100%;
-		grid-column: 1 / span 1;
-		grid-row-start: 6;
-		grid-row-end: 7;
-		}
 	  .h {
 		grid-column: 1 / span 1;
 		text-align: center;
