@@ -44,7 +44,7 @@ function outputFormattedPainting($data)
     echo "<ul>";
     for ($i = 0;$i <= count($data);$i++)
     {
-        if (!empty($data[$i]['ImageFileName']) {
+        if (!empty($data[$i]['ImageFileName'])) {
         echo "<li> <img src='images/paintings/square-medium/" . $data[$i]['ImageFileName'] . ".jpg'/> 
                         " . "<br>" . $data[$i]['Title'] . "</li>";
         }
