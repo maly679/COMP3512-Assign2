@@ -13,7 +13,8 @@ include 'home-logged-in-helpers.php';
    <meta charset="utf-8" />
    <title>Assignment 1</title>
    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,800" rel="stylesheet">
-   <link rel="stylesheet" href="css/home-logged-in.css">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="css/home-loggedin.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
@@ -65,9 +66,6 @@ include 'home-logged-in-helpers.php';
 
             <input type="text" name="checkSearch" placeholder="Browse for a Favorite" class='searchFavoritesBox'>
             <button type="Submit">Search</button>
-      </div>
-
-      </div>
       </form>
       </div>
       <div class="box Results">

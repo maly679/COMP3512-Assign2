@@ -226,7 +226,7 @@ function processCheckSearch($getSearch)
             if ($value['Title'] == $getSearch)
             {
                 echo "<h2> " . $value['Title'] . "</h2>";
-                echo " <img src='images/paintings/square/" . $value['ImageFileName'] . ".jpg'/ height='700' width='710'>";
+                echo " <img class = 'largeImgView' src='images/paintings/square/" . $value['ImageFileName'] . ".jpg'/ height='700' width='710'>";
                 $imageFound = true;
                 break;
         }
