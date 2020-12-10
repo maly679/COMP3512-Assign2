@@ -45,13 +45,10 @@ function outputFormattedPainting($data)
     echo $countContents;
 
     echo "<ul>";
-    for ($i = 0;$i <= count($data);$i++)
-    {
-        if (!empty($data[$i]['ImageFileName'])) {
-        echo "<li> <img src='images/paintings/square-medium/" . $data[$i]['ImageFileName'] . ".jpg'/> 
-                        " . "<br>" . $data[$i]['Title'] . "</li>";
-        }
-
+    
+    foreach($data as $d) {
+         echo "<li> <img src='images/paintings/square-medium/" . $d['ImageFileName'] . ".jpg'/> 
+                        " . "<br>" . $d['Title'] . "</li>";
     }
     echo "</ul>";
 }
