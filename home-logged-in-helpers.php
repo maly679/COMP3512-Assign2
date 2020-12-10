@@ -45,6 +45,7 @@ function outputFormattedPainting($data)
     echo "<ul>";
     print_r($data);
     print_r($_SESSION['favorites']);
+    echo $countContents;
     for ($i = 0;$i <= count($data);$i++)
     {
         if (!empty($data[$i]['ImageFileName'])) {
