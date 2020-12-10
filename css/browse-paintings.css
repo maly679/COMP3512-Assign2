@@ -170,21 +170,6 @@ table td a {
 
 /* https://stackoverflow.com/questions/2187008/styling-an-anchor-tag-to-look-like-a-submit-button */
 
-/* .likeabutton {
-  text-decoration: none;
-  font: menu;
-  display: inline-block;
-  padding: 2px 8px;
-  background: ButtonFace;
-  color: ButtonText;
-  border-style: solid;
-  border-width: 2px;
-  border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
-}
-.likeabutton:active {
-  border-color: ButtonShadow ButtonHighlight ButtonHighlight ButtonShadow;
-} */
-
 /* https://www.w3schools.com/css/css3_borders */
 
 .style_link {
@@ -207,7 +192,7 @@ table td a {
   width: 100%;
 }
 
-.footer > p > a{
+.footer > p > a {
   text-decoration: none;
   color: white;
 }

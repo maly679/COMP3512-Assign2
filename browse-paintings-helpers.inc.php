@@ -330,17 +330,6 @@ function buildQuery($conn)
         $newsql .= " ORDER BY YearOfWork";
     }
 
-    //PRINT OUT PARAMS FOR TROUBLESHOOTING
-    // foreach ($paramArray as $param) {
-    //     echo " Param " . $param . "<br/>";
-    // }
-    // echo $newsql . "<br/>";
-
-
-    //TEST PARAMETERS
-    // $testSql = "SELECT Title , PaintingID FROM paintings WHERE PaintingID = :test";
-    // $testParam = ['test' => "1"];
-
 
     //$statement = bindValues($conn, $testSql, $testParam);
     $statement = DatabaseHelper::runQuery($conn, $newsql, $paramArray);
