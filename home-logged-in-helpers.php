@@ -244,7 +244,6 @@ function processRegFavorites()
     echo "<h2>Your Favorites</h2>";
     if (isset($_SESSION['favorites']) && !empty($_SESSION['favorites']))
     {
-        echo "yes";
         outputFormattedPainting($_SESSION['favorites']);
 
     }
